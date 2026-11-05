@@ -2,9 +2,13 @@ name: Publish fork image
 
 # Builds Mealie from the selected ref and publishes it to this repository's ghcr.io package
 # (ghcr.io/<owner>/mealie). Meant for forks: it needs no Docker Hub or Depot credentials,
-# only the GITHUB_TOKEN. Run it manually from the Actions tab.
+# only the GITHUB_TOKEN. It runs when the `fork-image` branch is pushed, or manually from the Actions
+# tab of the default branch.
 
 on:
+  push:
+    branches:
+      - fork-image
   workflow_dispatch:
     inputs:
       tag:
@@ -22,7 +26,7 @@ jobs:
     name: Build Package
     uses: ./.github/workflows/build-package.yml
     with:
-      tag: ${{ inputs.tag }}
+      tag: ${{ inputs.tag || 'multi-household' }}
       ref: ${{ inputs.ref }}
 
   publish:
@@ -55,10 +59,10 @@ jobs:
           # the action lowercases the image name, which ghcr.io requires
           images: ghcr.io/${{ github.repository }}
           tags: |
-            type=raw,value=${{ inputs.tag }}
+            type=raw,value=${{ inputs.tag || 'multi-household' }}
             type=sha
           labels: |
-            org.opencontainers.image.version=${{ inputs.tag }}
+            org.opencontainers.image.version=${{ inputs.tag || 'multi-household' }}
             org.opencontainers.image.revision=${{ inputs.ref || github.sha }}
 
       - name: Retrieve Python package
