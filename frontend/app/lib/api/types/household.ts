@@ -13,6 +13,9 @@ export interface CreateGroupRecipeAction {
   title: string;
   url: string;
 }
+export interface CreateHouseholdMemberInvitation {
+  email: string;
+}
 export interface CreateHouseholdPreferences {
   privateHousehold?: boolean;
   showAnnouncements?: boolean;
@@ -263,6 +266,16 @@ export interface HouseholdSummary {
   slug: string;
   preferences?: ReadHouseholdPreferences | null;
 }
+export interface ReadHouseholdMemberInvitation {
+  householdId: string;
+  userId: string;
+  invitedById?: string | null;
+  id: string;
+  createdAt?: string | null;
+  householdName: string;
+  userName: string;
+  invitedByName?: string | null;
+}
 export interface ReadInviteToken {
   token: string;
   usesLeft: number;
@@ -275,6 +288,11 @@ export interface SaveGroupRecipeAction {
   url: string;
   groupId: string;
   householdId: string;
+}
+export interface SaveHouseholdMemberInvitation {
+  householdId: string;
+  userId: string;
+  invitedById?: string | null;
 }
 export interface SaveHouseholdPreferences {
   privateHousehold?: boolean;
@@ -556,6 +574,7 @@ export interface ShoppingListAddRecipeParamsBulk {
 }
 export interface ShoppingListCreate {
   name?: string | null;
+  householdId?: string | null;
   extras?: {
     [k: string]: unknown;
   } | null;
@@ -706,6 +725,7 @@ export interface ShoppingListMultiPurposeLabelUpdate {
 }
 export interface ShoppingListOut {
   name?: string | null;
+  householdId: string;
   extras?: {
     [k: string]: unknown;
   } | null;
@@ -715,7 +735,6 @@ export interface ShoppingListOut {
   userId: string;
   id: string;
   listItems?: ShoppingListItemOut[];
-  householdId: string;
   recipeReferences?: ShoppingListRecipeRefOut[];
   labelSettings?: ShoppingListMultiPurposeLabelOut[];
 }
@@ -760,6 +779,7 @@ export interface ShoppingListRemoveRecipeParams {
 }
 export interface ShoppingListSave {
   name?: string | null;
+  householdId: string;
   extras?: {
     [k: string]: unknown;
   } | null;
@@ -770,6 +790,7 @@ export interface ShoppingListSave {
 }
 export interface ShoppingListSummary {
   name?: string | null;
+  householdId: string;
   extras?: {
     [k: string]: unknown;
   } | null;
@@ -778,12 +799,12 @@ export interface ShoppingListSummary {
   groupId: string;
   userId: string;
   id: string;
-  householdId: string;
   recipeReferences: ShoppingListRecipeRefOut[];
   labelSettings: ShoppingListMultiPurposeLabelOut[];
 }
 export interface ShoppingListUpdate {
   name?: string | null;
+  householdId?: string | null;
   extras?: {
     [k: string]: unknown;
   } | null;

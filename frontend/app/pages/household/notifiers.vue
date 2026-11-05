@@ -81,6 +81,7 @@
         > Pushover </a>
       </div>
     </BasePageTitle>
+    <HouseholdContextSelect class="mb-4" />
 
     <BaseButton
       create
@@ -184,7 +185,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserApi } from "~/composables/api";
+import HouseholdContextSelect from "~/components/Domain/Household/HouseholdContextSelect.vue";
+import { useHouseholdContext } from "~/composables/use-household-context";
 import { useAsyncKey } from "~/composables/use-utils";
 import type { GroupEventNotifierCreate, GroupEventNotifierOut } from "~/lib/api/types/household";
 
@@ -203,7 +205,7 @@ definePageMeta({
   middleware: ["auth", "advanced-only", "can-manage-household-only"],
 });
 
-const api = useUserApi();
+const { api: householdApi, householdId } = useHouseholdContext();
 const i18n = useI18n();
 
 useSeoMeta({
@@ -217,14 +219,15 @@ const state = reactive({
 });
 
 const { data: notifiers } = useAsyncData(useAsyncKey(), async () => {
-  const { data } = await api.groupEventNotifier.getAll();
+  const { data } = await householdApi.value.groupEventNotifier.getAll();
   return data?.items;
 }, { deep: true });
 
 async function refreshNotifiers() {
-  const { data } = await api.groupEventNotifier.getAll();
+  const { data } = await householdApi.value.groupEventNotifier.getAll();
   notifiers.value = data?.items;
 }
+watch(householdId, refreshNotifiers);
 
 const createNotifierData: GroupEventNotifierCreate = reactive({
   name: "",
@@ -233,7 +236,7 @@ const createNotifierData: GroupEventNotifierCreate = reactive({
 });
 
 async function createNewNotifier() {
-  await api.groupEventNotifier.createOne(createNotifierData);
+  await householdApi.value.groupEventNotifier.createOne(createNotifierData);
   refreshNotifiers();
 }
 
@@ -243,18 +246,18 @@ function openDelete(notifier: GroupEventNotifierOut) {
 }
 
 async function deleteNotifier(targetId: string) {
-  await api.groupEventNotifier.deleteOne(targetId);
+  await householdApi.value.groupEventNotifier.deleteOne(targetId);
   refreshNotifiers();
   state.deleteTargetId = "";
 }
 
 async function saveNotifier(notifier: GroupEventNotifierOut) {
-  await api.groupEventNotifier.updateOne(notifier.id, notifier);
+  await householdApi.value.groupEventNotifier.updateOne(notifier.id, notifier);
   refreshNotifiers();
 }
 
 async function testNotifier(notifier: GroupEventNotifierOut) {
-  await api.groupEventNotifier.test(notifier.id);
+  await householdApi.value.groupEventNotifier.test(notifier.id);
 }
 
 // ===============================================================

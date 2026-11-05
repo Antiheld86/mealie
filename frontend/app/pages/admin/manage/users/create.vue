@@ -48,6 +48,13 @@
                 />
               </v-col>
             </v-row>
+            <UserHouseholdMembershipsEditor
+              v-if="households.length > 1"
+              v-model="memberships"
+              class="px-4 pb-4"
+              :households="households"
+              :primary-household-id="primaryHouseholdId"
+            />
           </v-sheet>
           <AutoForm
             v-model="newUserData"
@@ -67,7 +74,9 @@
 </template>
 
 <script setup lang="ts">
+import UserHouseholdMembershipsEditor from "~/components/Domain/User/UserHouseholdMembershipsEditor.vue";
 import { useAdminApi } from "~/composables/api";
+import { useAdminUserHouseholds } from "~/composables/use-admin-user-households";
 import { useGroups } from "~/composables/use-groups";
 import { useUserForm } from "~/composables/use-users";
 import { validators } from "~/composables/use-validators";
@@ -100,6 +109,19 @@ const newUserData = ref({
   canOrganize: false,
   password: "",
   authMethod: "Mealie",
+});
+
+// the new user's id isn't known until they're created, which is when their memberships are saved
+const createdUserId = ref("");
+const {
+  memberships,
+  primaryHouseholdId,
+  save: saveMemberships,
+} = useAdminUserHouseholds(createdUserId, households, computed(() => newUserData.value.household));
+
+// picking another primary household starts the memberships over, so the previous one isn't left behind
+watch(primaryHouseholdId, (id) => {
+  memberships.value = id ? [{ householdId: id, canManageHousehold: false }] : [];
 });
 
 const disabledFields = computed(() => {
@@ -140,11 +162,16 @@ async function handleSubmit() {
 
   if (!valid) return;
 
-  const { response } = await adminApi.users.createOne(
+  const { response, data } = await adminApi.users.createOne(
     newUserData.value as UserIn,
   );
 
   if (response?.status === 201) {
+    // new users start in their primary household only, so extra memberships are only saved when chosen
+    if (data && memberships.value.length > 1) {
+      createdUserId.value = data.id;
+      await saveMemberships();
+    }
     router.push("/admin/manage/users");
   }
 }

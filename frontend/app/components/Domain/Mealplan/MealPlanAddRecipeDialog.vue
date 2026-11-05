@@ -34,11 +34,16 @@
         item-title="text"
         item-value="value"
       />
+      <HouseholdSelect
+        v-model="householdId"
+        class="mt-4"
+      />
     </v-card-text>
   </BaseDialog>
 </template>
 
 <script setup lang="ts">
+import HouseholdSelect from "~/components/Domain/Household/HouseholdSelect.vue";
 import { useUserApi } from "~/composables/api";
 import { useMealPlanEntryDates } from "~/composables/use-group-mealplan";
 import { alert } from "~/composables/use-toast";
@@ -60,13 +65,18 @@ const api = useUserApi();
 const planTypeOptions = usePlanTypeOptions();
 const router = useRouter();
 
+const { user } = useMealieAuth();
+
 const newMealType = ref<PlanEntryType>("dinner");
+// the household the entry is planned in, which is the user's primary household unless they choose another
+const householdId = ref<string | null>(user.value?.householdId ?? null);
 const { isWeekEntry, weekRange, entryDatesPayload, pickerModel, pickerMultiple } = useMealPlanEntryDates();
 
 async function addRecipeToPlan() {
   const { response } = await api.mealplans.createOne({
     ...entryDatesPayload.value,
     entryType: newMealType.value,
+    householdId: householdId.value,
     title: "",
     text: "",
     recipeId: props.recipeId,

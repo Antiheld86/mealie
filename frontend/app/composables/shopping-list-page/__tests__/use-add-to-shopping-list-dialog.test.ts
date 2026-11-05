@@ -90,10 +90,22 @@ describe("useNewShoppingListForm", () => {
 
     const created = await create();
 
-    expect(createOne).toHaveBeenCalledExactlyOnceWith({ name: "Groceries" });
+    expect(createOne).toHaveBeenCalledExactlyOnceWith({ name: "Groceries", householdId: null });
     expect(created).toEqual(list);
-    expect(form).toEqual({ show: false, name: "", loading: false });
+    expect(form).toEqual({ show: false, name: "", householdId: null, loading: false });
     expect(alertError).not.toHaveBeenCalled();
+  });
+
+  test("creates the list in the chosen household and keeps that choice for the next list", async () => {
+    createOne.mockResolvedValue({ data: createList("1", "Cabin supplies") });
+    const { form, create } = useNewShoppingListForm();
+    form.name = "Cabin supplies";
+    form.householdId = "cabin-household-id";
+
+    await create();
+
+    expect(createOne).toHaveBeenCalledExactlyOnceWith({ name: "Cabin supplies", householdId: "cabin-household-id" });
+    expect(form.householdId).toBe("cabin-household-id");
   });
 
   test.each(["", "   "])("doesn't create a list named %j", async (name) => {
@@ -132,7 +144,7 @@ describe("useNewShoppingListForm", () => {
     expect(await create()).toBeNull();
 
     expect(alertError).toHaveBeenCalledExactlyOnceWith("shopping-list.failed-to-create-shopping-list");
-    expect(form).toEqual({ show: true, name: "Groceries", loading: false });
+    expect(form).toEqual({ show: true, name: "Groceries", householdId: null, loading: false });
   });
 
   test("reset discards what was typed", () => {
@@ -142,6 +154,6 @@ describe("useNewShoppingListForm", () => {
 
     reset();
 
-    expect(form).toEqual({ show: false, name: "", loading: false });
+    expect(form).toEqual({ show: false, name: "", householdId: null, loading: false });
   });
 });

@@ -128,7 +128,7 @@
       </div>
       <v-row tag="section">
         <v-col
-          v-if="user.canManageHousehold"
+          v-if="canManageAnyHousehold(user)"
           cols="12"
           sm="12"
           md="6"
@@ -176,7 +176,7 @@
         </v-col>
         <AdvancedOnly>
           <v-col
-            v-if="user.canManageHousehold"
+            v-if="canManageAnyHousehold(user)"
             cols="12"
             sm="12"
             md="6"
@@ -194,7 +194,7 @@
         </AdvancedOnly>
         <AdvancedOnly>
           <v-col
-            v-if="user.canManageHousehold"
+            v-if="canManageAnyHousehold(user)"
             cols="12"
             sm="12"
             md="6"
@@ -212,6 +212,7 @@
         </AdvancedOnly>
       </v-row>
     </section>
+    <UserHouseholdMemberships />
     <v-divider class="my-7" />
     <section v-if="user.canManage || user.canOrganize || user.advanced">
       <div>
@@ -276,9 +277,11 @@
 </template>
 
 <script setup lang="ts">
+import { canManageAnyHousehold } from "~/lib/user/household-permissions";
 import UserProfileLinkCard from "@/components/Domain/User/UserProfileLinkCard.vue";
 import { useUserApi } from "~/composables/api";
 import UserAvatar from "@/components/Domain/User/UserAvatar.vue";
+import UserHouseholdMemberships from "~/components/Domain/User/UserHouseholdMemberships.vue";
 import { useAsyncKey } from "~/composables/use-utils";
 import StatsCards from "~/components/global/StatsCards.vue";
 import type { UserOut } from "~/lib/api/types/user";

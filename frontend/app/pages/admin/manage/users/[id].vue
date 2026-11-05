@@ -65,6 +65,13 @@
                 />
               </v-col>
             </v-row>
+            <UserHouseholdMembershipsEditor
+              v-if="households?.length"
+              v-model="memberships"
+              class="mb-4"
+              :households="households"
+              :primary-household-id="primaryHouseholdId"
+            />
             <div class="d-flex py-2 pr-2">
               <BaseButton
                 type="button"
@@ -138,7 +145,9 @@
 </template>
 
 <script setup lang="ts">
+import UserHouseholdMembershipsEditor from "~/components/Domain/User/UserHouseholdMembershipsEditor.vue";
 import { useAdminApi, useUserApi } from "~/composables/api";
+import { useAdminUserHouseholds } from "~/composables/use-admin-user-households";
 import { useGroups } from "~/composables/use-groups";
 import { useAdminHouseholds } from "~/composables/use-households";
 import { alert } from "~/composables/use-toast";
@@ -167,6 +176,12 @@ const adminApi = useAdminApi();
 
 const user = ref<UserOut | null>(null);
 const households = useHouseholdsInGroup(computed(() => user.value?.groupId || ""));
+const {
+  memberships,
+  primaryHouseholdId,
+  load: loadMemberships,
+  save: saveMemberships,
+} = useAdminUserHouseholds(userId, households, computed(() => user.value?.household));
 
 const disabledFields = computed(() => {
   const fields: string[] = [];
@@ -220,11 +235,15 @@ onMounted(async () => {
 
   if (data) {
     user.value = data;
+    await loadMemberships();
   }
 });
 
 async function handleSubmit() {
   if (!refNewUserForm.value?.validate() || user.value === null) return;
+
+  // the memberships include the primary household, so they go first and the user update then agrees with them
+  if (!(await saveMemberships())) return;
 
   const { response, data } = await adminApi.users.updateOne(user.value.id, user.value);
 

@@ -20,11 +20,13 @@ export interface CreatePlanEntry {
   text?: string;
   recipeId?: string | null;
   recipeScale?: number;
+  householdId?: string | null;
 }
 export interface CreateRandomEntry {
   date: string;
   endDate?: string | null;
   entryType?: PlanEntryType;
+  householdId?: string | null;
 }
 export interface ListItem {
   title?: string | null;
@@ -77,11 +79,12 @@ export interface ReadPlanEntry {
   text?: string;
   recipeId?: string | null;
   recipeScale?: number;
+  householdId: string;
   id: number;
   groupId: string;
-  userId: string;
-  householdId: string;
+  userId?: string | null;
   recipe?: RecipeSummary | null;
+  updatedAt?: string | null;
 }
 export interface RecipeSummary {
   id?: string | null;
@@ -142,6 +145,7 @@ export interface SavePlanEntry {
   text?: string;
   recipeId?: string | null;
   recipeScale?: number;
+  householdId: string;
   groupId: string;
   userId: string;
 }
@@ -164,6 +168,7 @@ export interface UpdatePlanEntry {
   text?: string;
   recipeId?: string | null;
   recipeScale?: number;
+  householdId?: string | null;
   id: number;
   groupId: string;
   userId: string;

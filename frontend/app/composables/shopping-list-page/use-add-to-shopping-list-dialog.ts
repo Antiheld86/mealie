@@ -48,6 +48,8 @@ export function useNewShoppingListForm() {
   const form = reactive({
     show: false,
     name: "",
+    /** The household the list is created in; `null` means the user's primary household. It survives `reset`. */
+    householdId: null as string | null,
     loading: false,
   });
 
@@ -64,7 +66,7 @@ export function useNewShoppingListForm() {
     }
 
     form.loading = true;
-    const { data } = await api.shopping.lists.createOne({ name });
+    const { data } = await api.shopping.lists.createOne({ name, householdId: form.householdId });
     form.loading = false;
 
     if (!data) {

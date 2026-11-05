@@ -90,6 +90,14 @@
                     </v-list>
                   </v-menu>
                   <v-chip
+                    v-if="showHouseholds && mealplan.householdId"
+                    class="ml-2"
+                    label
+                    size="small"
+                  >
+                    {{ householdName(mealplan.householdId) }}
+                  </v-chip>
+                  <v-chip
                     v-if="mealplan.recipe && (mealplan.recipeScale ?? 1) !== 1"
                     class="ml-2"
                     label
@@ -140,6 +148,13 @@ const props = defineProps<{
 
 const api = useUserApi();
 const planTypeOptions = usePlanTypeOptions();
+
+// entries are labelled with their household once the user belongs to more than one
+const { user } = useMealieAuth();
+const showHouseholds = computed(() => (user.value?.households?.length ?? 0) > 1);
+function householdName(householdId: string) {
+  return user.value?.households?.find(household => household.householdId === householdId)?.householdName;
+}
 
 // a week and the day it starts on share a date, so weeks get their own keys
 function planKey(plan: MealsByDate) {

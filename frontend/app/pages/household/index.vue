@@ -17,6 +17,7 @@
       </template>
       {{ $t("profile.household-description") }}
     </BasePageTitle>
+    <HouseholdContextSelect class="mb-4" />
     <v-form ref="refHouseholdEditForm" @submit.prevent="handleSubmit">
       <v-card variant="outlined" style="border-color: lightgray;">
         <v-card-text>
@@ -33,40 +34,53 @@
 </template>
 
 <script setup lang="ts">
+import HouseholdContextSelect from "~/components/Domain/Household/HouseholdContextSelect.vue";
 import HouseholdPreferencesEditor from "~/components/Domain/Household/HouseholdPreferencesEditor.vue";
+import { useHouseholdContext } from "~/composables/use-household-context";
 import { useHouseholdSelf } from "~/composables/use-households";
 import { alert } from "~/composables/use-toast";
+import type { HouseholdInDB } from "~/lib/api/types/household";
 import type { VForm } from "~/types/auto-forms";
 
 definePageMeta({
   middleware: ["auth", "can-manage-household-only"],
 });
 
-const { household, actions: householdActions } = useHouseholdSelf();
 const i18n = useI18n();
+const { api, householdId, isPrimary } = useHouseholdContext();
+// the cached copy of the user's primary household, which other pages read (e.g. the first day of the week)
+const { actions: primaryHouseholdActions } = useHouseholdSelf();
 
 useSeoMeta({
   title: i18n.t("household.household"),
 });
 
-// useHouseholdSelf() caches data in a module-level singleton for the lifetime of the tab,
-// so revisiting this page via client-side navigation can otherwise show stale
-// preferences if they were changed elsewhere (e.g. Admin Households panel) in the
-// same session. Force a revalidation whenever this page is entered.
-onMounted(() => {
-  householdActions.refresh();
-});
+// This page edits the household the user selected, which isn't necessarily their primary one. It always loads
+// fresh data rather than the module-level cache of useHouseholdSelf(), which can be stale if the preferences
+// were changed elsewhere (e.g. the Admin Households panel) in the same session.
+const household = ref<HouseholdInDB | null>(null);
+
+async function loadHousehold() {
+  const { data } = await api.value.households.getCurrentUserHousehold();
+  household.value = data;
+}
+
+watch(householdId, loadHousehold);
+onMounted(loadHousehold);
 
 const refHouseholdEditForm = ref<VForm | null>(null);
 
 async function handleSubmit() {
   if (!refHouseholdEditForm.value?.validate() || !household.value?.preferences) {
-    console.log(refHouseholdEditForm.value?.validate());
     return;
   }
 
-  const data = await householdActions.updatePreferences();
+  const { data } = await api.value.households.setPreferences(household.value.preferences);
   if (data) {
+    household.value.preferences = data;
+    if (isPrimary.value) {
+      await primaryHouseholdActions.refresh();
+    }
     alert.success(i18n.t("settings.settings-updated"));
   }
   else {

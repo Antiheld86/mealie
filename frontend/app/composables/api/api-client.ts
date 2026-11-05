@@ -3,6 +3,7 @@ import type { Composer } from "vue-i18n";
 import type { ApiRequestInstance, RequestResponse } from "~/lib/api/types/non-generated";
 import { AdminAPI, PublicApi, UserApi } from "~/lib/api";
 import { PublicExploreApi } from "~/lib/api/client-public";
+import { scopeToHousehold } from "~/lib/api/base/household-scope";
 import { useGlobalI18n } from "~/composables/use-global-i18n";
 
 const request = {
@@ -73,6 +74,15 @@ export const useAdminApi = function (i18n?: Composer): AdminAPI {
 export const useUserApi = function (i18n?: Composer): UserApi {
   const requests = useRequests(i18n);
   return new UserApi(requests);
+};
+
+/**
+ * The user API, acting on the given household instead of the user's primary one. Meant for household
+ * management routes (webhooks, notifiers, preferences, ...), which take a `householdId`.
+ */
+export const useHouseholdApi = function (householdId?: string | null, i18n?: Composer): UserApi {
+  const requests = useRequests(i18n);
+  return new UserApi(scopeToHousehold(requests, householdId));
 };
 
 export const usePublicApi = function (i18n?: Composer): PublicApi {

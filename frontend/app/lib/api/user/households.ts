@@ -1,6 +1,6 @@
 import { BaseCRUDAPIReadOnly } from "../base/base-clients";
 import type { PaginationData } from "../types/non-generated";
-import type { QueryValue } from "../base/route";
+import { route, type QueryValue } from "../base/route";
 import type { UserOut } from "~/lib/api/types/user";
 import type {
   HouseholdInDB,
@@ -9,6 +9,7 @@ import type {
   SetPermissions,
   UpdateHouseholdPreferences,
   CreateInviteToken,
+  ReadHouseholdMemberInvitation,
   ReadInviteToken,
   HouseholdSummary,
   HouseholdRecipeSummary,
@@ -20,6 +21,9 @@ const routes = {
   households: `${prefix}/groups/households`,
   householdsSelf: `${prefix}/households/self`,
   members: `${prefix}/households/members`,
+  membersId: (userId: string) => `${prefix}/households/members/${userId}`,
+  memberInvitations: `${prefix}/households/member-invitations`,
+  memberInvitationsId: (id: string) => `${prefix}/households/member-invitations/${id}`,
   permissions: `${prefix}/households/permissions`,
 
   preferences: `${prefix}/households/preferences`,
@@ -29,6 +33,11 @@ const routes = {
   householdsId: (id: string | number) => `${prefix}/groups/households/${id}`,
   householdsSelfRecipesSlug: (recipeSlug: string) => `${prefix}/households/self/recipes/${recipeSlug}`,
 };
+
+/** The query parameter that selects the household to act on; without it the user's primary household is used */
+function householdQuery(householdId?: string) {
+  return householdId ? { householdId } : null;
+}
 
 export class HouseholdAPI extends BaseCRUDAPIReadOnly<HouseholdSummary> {
   baseRoute = routes.households;
@@ -56,9 +65,34 @@ export class HouseholdAPI extends BaseCRUDAPIReadOnly<HouseholdSummary> {
     return await this.requests.get<PaginationData<UserOut>>(routes.members, { page, perPage, ...params });
   }
 
-  async setMemberPermissions(payload: SetPermissions) {
+  /** @param householdId the household to act on; defaults to the user's primary household */
+  async setMemberPermissions(payload: SetPermissions, householdId?: string) {
     // TODO: This should probably be a patch request, which isn't offered by the API currently
-    return await this.requests.put<UserOut, SetPermissions>(routes.permissions, payload);
+    return await this.requests.put<UserOut, SetPermissions>(route(routes.permissions, householdQuery(householdId)), payload);
+  }
+
+  /** Pending invitations of existing users to join the household */
+  async getMemberInvitations(householdId?: string) {
+    return await this.requests.get<ReadHouseholdMemberInvitation[]>(route(routes.memberInvitations, householdQuery(householdId)));
+  }
+
+  /** Invites an existing user of the same group, by email address */
+  async inviteMember(email: string, householdId?: string) {
+    return await this.requests.post<ReadHouseholdMemberInvitation>(
+      route(routes.memberInvitations, householdQuery(householdId)),
+      { email },
+    );
+  }
+
+  async revokeMemberInvitation(invitationId: string, householdId?: string) {
+    return await this.requests.delete<ReadHouseholdMemberInvitation>(
+      route(routes.memberInvitationsId(invitationId), householdQuery(householdId)),
+    );
+  }
+
+  /** Removes a user from the household; users can't be removed from their primary household */
+  async removeMember(userId: string, householdId?: string) {
+    return await this.requests.delete(route(routes.membersId(userId), householdQuery(householdId)));
   }
 
   async statistics() {

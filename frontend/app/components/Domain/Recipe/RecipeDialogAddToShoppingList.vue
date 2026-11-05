@@ -39,6 +39,11 @@
               hide-details
               @keyup.enter="createAndOpenList"
             />
+            <HouseholdSelect
+              v-model="newListForm.householdId"
+              class="mt-2"
+              density="compact"
+            />
             <div class="d-flex justify-end mt-2 ga-2">
               <v-btn
                 variant="text"
@@ -236,6 +241,7 @@
 
 <script setup lang="ts">
 import { toRefs } from "@vueuse/core";
+import HouseholdSelect from "~/components/Domain/Household/HouseholdSelect.vue";
 import { useUserApi } from "~/composables/api";
 import { useNewShoppingListForm } from "~/composables/shopping-list-page/use-add-to-shopping-list-dialog";
 import { alert } from "~/composables/use-toast";

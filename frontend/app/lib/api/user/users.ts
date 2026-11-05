@@ -1,4 +1,5 @@
 import { BaseCRUDAPI } from "../base/base-clients";
+import type { ReadHouseholdMemberInvitation } from "~/lib/api/types/household";
 import type {
   ChangePassword,
   DeleteTokenResponse,
@@ -24,6 +25,9 @@ const prefix = "/api";
 
 const routes = {
   usersSelf: `${prefix}/users/self`,
+  householdInvitations: `${prefix}/users/self/household-invitations`,
+  householdInvitationsId: (id: string) => `${prefix}/users/self/household-invitations/${id}`,
+  usersSelfHouseholdsIdLeave: (id: string) => `${prefix}/users/self/households/${id}/leave`,
   ratingsSelf: `${prefix}/users/self/ratings`,
   passwordReset: `${prefix}/users/reset-password`,
   passwordChange: `${prefix}/users/password`,
@@ -46,6 +50,30 @@ const routes = {
 export class UserApi extends BaseCRUDAPI<UserIn, UserOut, UserBase> {
   baseRoute: string = routes.users;
   itemRoute = (itemid: string) => routes.usersId(itemid);
+
+  /** Pending invitations to join another household */
+  async getHouseholdInvitations() {
+    return await this.requests.get<ReadHouseholdMemberInvitation[]>(routes.householdInvitations);
+  }
+
+  async acceptHouseholdInvitation(invitationId: string) {
+    return await this.requests.post<ReadHouseholdMemberInvitation>(
+      `${routes.householdInvitationsId(invitationId)}/accept`,
+      {},
+    );
+  }
+
+  async declineHouseholdInvitation(invitationId: string) {
+    return await this.requests.post<ReadHouseholdMemberInvitation>(
+      `${routes.householdInvitationsId(invitationId)}/decline`,
+      {},
+    );
+  }
+
+  /** Leaves a household that isn't the user's primary one */
+  async leaveHousehold(householdId: string) {
+    return await this.requests.post(routes.usersSelfHouseholdsIdLeave(householdId), {});
+  }
 
   async addFavorite(id: string, slug: string) {
     return await this.requests.post(routes.usersIdFavoritesSlug(id, slug), {});

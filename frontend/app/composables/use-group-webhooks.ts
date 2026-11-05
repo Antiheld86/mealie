@@ -1,9 +1,10 @@
 import { useAsyncKey } from "./use-utils";
-import { useUserApi } from "~/composables/api";
+import { useHouseholdContext } from "~/composables/use-household-context";
 import type { ReadWebhook } from "~/lib/api/types/household";
 
 export const useGroupWebhooks = function () {
-  const api = useUserApi();
+  // webhooks belong to a household: the one the page is showing, which the user can switch
+  const { api: householdApi, householdId } = useHouseholdContext();
   const loading = ref(false);
   const validForm = ref(true);
 
@@ -11,7 +12,7 @@ export const useGroupWebhooks = function () {
     getAll() {
       loading.value = true;
       const { data: units } = useAsyncData(useAsyncKey(), async () => {
-        const { data } = await api.groupWebhooks.getAll();
+        const { data } = await householdApi.value.groupWebhooks.getAll();
 
         if (data) {
           return data.items;
@@ -26,7 +27,7 @@ export const useGroupWebhooks = function () {
     },
     async refreshAll() {
       loading.value = true;
-      const { data } = await api.groupWebhooks.getAll();
+      const { data } = await householdApi.value.groupWebhooks.getAll();
 
       if (data && data.items) {
         webhooks.value = data.items;
@@ -44,7 +45,7 @@ export const useGroupWebhooks = function () {
         scheduledTime: "00:00",
       };
 
-      const { data } = await api.groupWebhooks.createOne(payload);
+      const { data } = await householdApi.value.groupWebhooks.createOne(payload);
       if (data) {
         this.refreshAll();
       }
@@ -71,7 +72,7 @@ export const useGroupWebhooks = function () {
       };
 
       loading.value = true;
-      const { data } = await api.groupWebhooks.updateOne(updateData.id, payload);
+      const { data } = await householdApi.value.groupWebhooks.updateOne(updateData.id, payload);
       if (data) {
         this.refreshAll();
       }
@@ -80,7 +81,7 @@ export const useGroupWebhooks = function () {
 
     async deleteOne(id: string | number) {
       loading.value = true;
-      const { data } = await api.groupWebhooks.deleteOne(id);
+      const { data } = await householdApi.value.groupWebhooks.deleteOne(id);
       if (data) {
         this.refreshAll();
       }
@@ -89,12 +90,13 @@ export const useGroupWebhooks = function () {
 
     async testOne(id: string | number) {
       loading.value = true;
-      await api.groupWebhooks.testOne(id);
+      await householdApi.value.groupWebhooks.testOne(id);
       loading.value = false;
     },
   };
 
   const webhooks = actions.getAll();
+  watch(householdId, () => actions.refreshAll());
 
   return { webhooks, actions, validForm };
 };

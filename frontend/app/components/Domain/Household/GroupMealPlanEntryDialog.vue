@@ -74,6 +74,11 @@
             hide-details
           />
 
+          <HouseholdSelect
+            v-model="householdId"
+            class="mt-4"
+          />
+
           <RecipeScaleEditButton
             v-if="isRecipe && recipe"
             v-model="recipeScale"
@@ -153,6 +158,7 @@
 </template>
 
 <script setup lang="ts">
+import HouseholdSelect from "~/components/Domain/Household/HouseholdSelect.vue";
 import RecipeScaleEditButton from "~/components/Domain/Recipe/RecipeScaleEditButton.vue";
 import RecipeSelector from "~/components/Domain/Recipe/RecipeSelector.vue";
 import { useMealPlanEntryDates, usePlanTypeOptions } from "~/composables/use-group-mealplan";
@@ -189,6 +195,10 @@ const entryMode = ref<"recipe" | "note">("recipe");
 const { selectedDate, isWeekEntry, weekRange, entryDates, entryDatesPayload, pickerModel, pickerMultiple }
   = useMealPlanEntryDates();
 const entryType = ref<PlanEntryType>("dinner");
+const { user } = useMealieAuth();
+const primaryHouseholdId = computed(() => user.value?.householdId ?? null);
+// the household the entry belongs to
+const householdId = ref<string | null>(null);
 const recipe = ref<RecipeSummary | null>(null);
 const recipeScale = ref(1);
 const title = ref("");
@@ -224,6 +234,7 @@ function initialize() {
   selectedDate.value = props.entry ? parseEntryDate(props.entry.date) : props.date ?? new Date();
   isWeekEntry.value = props.entry ? !!props.entry.endDate : !!props.endDate;
   entryType.value = props.entry?.entryType ?? "dinner";
+  householdId.value = props.entry?.householdId ?? primaryHouseholdId.value;
   recipe.value = props.entry?.recipe ?? null;
   recipeScale.value = props.entry?.recipeScale ?? 1;
   title.value = props.entry?.title ?? "";
@@ -236,6 +247,7 @@ function submit() {
   const payload = {
     ...entryDatesPayload.value,
     entryType: entryType.value,
+    householdId: householdId.value,
     title: isRecipe.value ? "" : title.value,
     text: isRecipe.value ? "" : text.value,
     recipeId: isRecipe.value ? recipe.value?.id : null,

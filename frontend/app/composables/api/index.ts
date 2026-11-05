@@ -1,2 +1,2 @@
 export { useStaticRoutes } from "./static-routes";
-export { useAdminApi, usePublicApi, usePublicExploreApi, useUserApi } from "./api-client";
+export { useAdminApi, useHouseholdApi, usePublicApi, usePublicExploreApi, useUserApi } from "./api-client";

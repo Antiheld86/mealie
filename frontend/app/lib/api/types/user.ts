@@ -148,6 +148,7 @@ export interface PrivateUser {
   groupSlug: string;
   householdId: string;
   householdSlug: string;
+  households?: UserHouseholdMembershipOut[];
   tokens?: LongLiveTokenOut[] | null;
   cacheKey: string;
   password: string;
@@ -155,6 +156,13 @@ export interface PrivateUser {
   lockedAt?: string | null;
   tokensValidAfter?: string | null;
   externalAvatarHash?: string | null;
+}
+export interface UserHouseholdMembershipOut {
+  householdId: string;
+  householdName: string;
+  householdSlug: string;
+  canManageHousehold?: boolean;
+  isPrimary?: boolean;
 }
 export interface LongLiveTokenOut {
   name: string;
@@ -232,6 +240,14 @@ export interface UserBase {
   canManageHousehold?: boolean;
   canOrganize?: boolean;
 }
+export interface UserHouseholdMembershipUpdate {
+  householdId: string;
+  canManageHousehold?: boolean;
+}
+export interface UserHouseholdMembershipsUpdate {
+  primaryHouseholdId: string;
+  households: UserHouseholdMembershipUpdate[];
+}
 export interface UserIn {
   id?: string | null;
   username: string;
@@ -270,6 +286,7 @@ export interface UserOut {
   groupSlug: string;
   householdId: string;
   householdSlug: string;
+  households?: UserHouseholdMembershipOut[];
   tokens?: LongLiveTokenOut[] | null;
   cacheKey: string;
 }

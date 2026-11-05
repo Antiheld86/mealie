@@ -16,6 +16,7 @@
         {{ $t('settings.webhooks.description') }}
       </v-card-text>
     </BasePageTitle>
+    <HouseholdContextSelect class="mb-4" />
 
     <BaseButton
       create
@@ -71,6 +72,7 @@
 <script setup lang="ts">
 import { useGroupWebhooks, timeUTC } from "~/composables/use-group-webhooks";
 import GroupWebhookEditor from "~/components/Domain/Household/GroupWebhookEditor.vue";
+import HouseholdContextSelect from "~/components/Domain/Household/HouseholdContextSelect.vue";
 import { alert } from "~/composables/use-toast";
 
 definePageMeta({

@@ -18,6 +18,10 @@
           autofocus
           :label="$t('shopping-list.new-list')"
         />
+        <HouseholdSelect
+          v-model="state.createHouseholdId"
+          class="mt-4"
+        />
       </v-card-text>
     </BaseDialog>
 
@@ -105,6 +109,14 @@
           <span class="flex-grow-1">
             {{ list.name }}
           </span>
+          <v-chip
+            v-if="showHouseholds"
+            class="mr-2"
+            size="small"
+            label
+          >
+            {{ householdName(list.householdId) }}
+          </v-chip>
           <v-btn
             icon
             variant="plain"
@@ -130,6 +142,7 @@
 </template>
 
 <script setup lang="ts">
+import HouseholdSelect from "~/components/Domain/Household/HouseholdSelect.vue";
 import type { ShoppingListOut } from "~/lib/api/types/household";
 import { useUserApi } from "~/composables/api";
 import { useAsyncKey } from "~/composables/use-utils";
@@ -156,12 +169,20 @@ const preferences = useShoppingListPreferences();
 
 const state = reactive({
   createName: "",
+  createHouseholdId: ref<string | null>(null),
   createDialog: false,
   deleteDialog: false,
   deleteTarget: "",
   ownerDialog: false,
   ownerTarget: ref<ShoppingListOut | null>(null),
 });
+
+// lists are labelled with their household once the user belongs to more than one
+const showHouseholds = computed(() => (auth.user.value?.households?.length ?? 0) > 1);
+function householdName(householdId: string) {
+  return auth.user.value?.households?.find(household => household.householdId === householdId)?.householdName;
+}
+
 const isCreateNameValid = computed(() => state.createName.trim().length > 0);
 
 const { data: shoppingLists } = useAsyncData(useAsyncKey(), async () => {
@@ -215,7 +236,10 @@ async function refresh() {
 
 async function createOne() {
   if (!isCreateNameValid.value) return;
-  const { data } = await userApi.shopping.lists.createOne({ name: state.createName.trim() });
+  const { data } = await userApi.shopping.lists.createOne({
+    name: state.createName.trim(),
+    householdId: state.createHouseholdId,
+  });
 
   if (data) {
     refresh();
@@ -237,7 +261,11 @@ async function toggleOwnerDialog(list: ShoppingListOut) {
 const allUsers = ref<UserOut[]>([]);
 const updateUserId = ref<string | undefined>();
 async function fetchAllUsers() {
-  const { data } = await userApi.households.fetchMembers();
+  const { data } = await userApi.households.fetchMembers(
+    1,
+    -1,
+    state.ownerTarget ? { householdId: state.ownerTarget.householdId } : {},
+  );
   if (!data) {
     return;
   }
