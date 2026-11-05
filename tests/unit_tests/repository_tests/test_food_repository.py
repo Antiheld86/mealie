@@ -76,6 +76,7 @@ def test_food_merger_with_shopping_list_reference(unique_user: TestUser):
             name=random_string(10),
             group_id=unique_user.group_id,
             user_id=unique_user.user_id,
+            household_id=unique_user.household_id,
         )
     )
 

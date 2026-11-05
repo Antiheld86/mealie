@@ -10,7 +10,13 @@ from mealie.routes._base.permissions import forbidden
 from mealie.schema.response.pagination import PaginationQuery
 from mealie.schema.response.responses import ErrorResponse
 from mealie.schema.user.auth import UnlockResults
-from mealie.schema.user.user import UserIn, UserOut, UserPagination
+from mealie.schema.user.user import (
+    UserHouseholdMembershipOut,
+    UserHouseholdMembershipsUpdate,
+    UserIn,
+    UserOut,
+    UserPagination,
+)
 from mealie.schema.user.user_passwords import ForgotPassword, PasswordResetToken
 from mealie.services.user_services.password_reset_service import PasswordResetService
 from mealie.services.user_services.user_service import UserService
@@ -73,6 +79,39 @@ class AdminUserManagementRoutes(BaseAdminController):
     @router.delete("/{item_id}", response_model=UserOut)
     def delete_one(self, item_id: UUID4):
         return self.mixins.delete_one(item_id)
+
+    @router.get("/{item_id}/households", response_model=list[UserHouseholdMembershipOut])
+    def get_user_households(self, item_id: UUID4):
+        """Every household the user is a member of"""
+        user = self.repo.get_one(item_id)
+        if not user:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail=ErrorResponse.respond("user not found"))
+        return user.households
+
+    @router.put("/{item_id}/households", response_model=list[UserHouseholdMembershipOut])
+    def set_user_households(self, item_id: UUID4, data: UserHouseholdMembershipsUpdate):
+        """Replace the households a user is a member of, including which one is their primary household"""
+        user = self.repo.get_one(item_id)
+        if not user:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail=ErrorResponse.respond("user not found"))
+
+        can_manage = {membership.household_id: membership.can_manage_household for membership in data.households}
+        if data.primary_household_id not in can_manage:
+            raise HTTPException(
+                status.HTTP_400_BAD_REQUEST,
+                detail=ErrorResponse.respond(self.t("household.invalid-membership-change")),
+            )
+
+        for household_id in can_manage:
+            household = self.repos.households.get_one(household_id)
+            if household is None or household.group_id != user.group_id:
+                raise HTTPException(
+                    status.HTTP_400_BAD_REQUEST,
+                    detail=ErrorResponse.respond(self.t("household.invalid-membership-change")),
+                )
+
+        self.repo.set_household_memberships(item_id, data.primary_household_id, can_manage)
+        return self.repo.get_one(item_id).households  # type: ignore[union-attr]
 
     @router.post("/password-reset-token", response_model=PasswordResetToken, status_code=201)
     def generate_token(self, email: ForgotPassword):

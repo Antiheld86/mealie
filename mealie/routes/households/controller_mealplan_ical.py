@@ -7,7 +7,7 @@ from mealie.core.security import url_safe_token
 from mealie.db.db_setup import generate_session
 from mealie.lang import get_locale_provider
 from mealie.lang.providers import Translator
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.permissions import Perm, not_found, require
 from mealie.schema.meal_plan.mealplan_ical import ReadMealPlanICalToken
@@ -19,7 +19,7 @@ public_router = APIRouter(prefix="/households/mealplans/ical", tags=["Households
 
 
 @controller(router)
-class MealplanICalController(BaseUserController):
+class MealplanICalController(HouseholdContextController):
     def _get_token(self) -> ReadMealPlanICalToken:
         prefs = self.repos.household_preferences.get_one(
             self.household_id, key="household_id", override_schema=ReadMealPlanICalToken

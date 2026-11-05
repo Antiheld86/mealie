@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import UUID4
 from sqlalchemy import func, select
 
+from mealie.db.models.household import HouseholdMembership
 from mealie.db.models.users.users import User
 from mealie.schema.household.household import (
     HouseholdCreate,
@@ -82,7 +83,11 @@ class AdminHouseholdManagementRoutes(BaseAdminController):
         if item:
             stmt = select(func.count(User.id)).filter_by(group_id=item.group_id, household_id=item_id)
             user_count = self.session.scalar(stmt)
-            if user_count:
+            # users who joined as additional members keep their primary household elsewhere
+            member_count = self.session.scalar(
+                select(func.count(HouseholdMembership.id)).where(HouseholdMembership.household_id == item_id)
+            )
+            if user_count or member_count:
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail=ErrorResponse.respond(message="Cannot delete household with users"),

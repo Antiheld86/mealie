@@ -97,6 +97,8 @@ def publish_list_item_events(publisher: Callable, items_collection: ShoppingList
 
 @controller(item_router)
 class ShoppingListItemController(BaseCrudController):
+    scope_to_member_households = True
+
     @cached_property
     def service(self):
         return ShoppingListService(self.repos)
@@ -158,6 +160,8 @@ router = APIRouter(prefix="/households/shopping/lists", tags=["Households: Shopp
 
 @controller(router)
 class ShoppingListController(BaseCrudController):
+    scope_to_member_households = True
+
     @cached_property
     def service(self):
         return ShoppingListService(self.repos)
@@ -185,7 +189,8 @@ class ShoppingListController(BaseCrudController):
 
     @router.post("", response_model=ShoppingListOut, status_code=201)
     def create_one(self, data: ShoppingListCreate):
-        shopping_list = self.service.create_one_list(data, self.user.id)
+        household_id = self.resolve_member_household(data.household_id)
+        shopping_list = self.service.create_one_list(data, self.user.id, household_id)
         if shopping_list:
             self.publish_event(
                 event_type=EventTypes.shopping_list_created,
@@ -203,14 +208,17 @@ class ShoppingListController(BaseCrudController):
 
     @router.put("/{item_id}", response_model=ShoppingListOut)
     def update_one(self, item_id: UUID4, data: ShoppingListUpdate):
-        # The list belongs to its owner's household, so a new owner would move it to their household
+        existing = self.mixins.get_one(item_id)
+        household_id = self.resolve_member_household(data.household_id) if data.household_id else existing.household_id
+
         owner = self.repos.users.get_one(data.user_id)
-        if owner is None or owner.household_id != self.household_id:
+        if owner is None or household_id not in {membership.household_id for membership in owner.households}:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="the list owner must be a member of your household",
+                detail="the list owner must be a member of the list's household",
             )
 
+        data.household_id = household_id
         shopping_list = self.mixins.update_one(data, item_id)
         self.publish_event(
             event_type=EventTypes.shopping_list_updated,

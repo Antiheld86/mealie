@@ -33,6 +33,7 @@ def shopping_lists(unique_user: TestUser):
                 name=random_string(10),
                 group_id=unique_user.group_id,
                 user_id=unique_user.user_id,
+                household_id=unique_user.household_id,
             ),
         )
 
@@ -55,6 +56,7 @@ def shopping_list(unique_user: TestUser):
             name=random_string(10),
             group_id=unique_user.group_id,
             user_id=unique_user.user_id,
+            household_id=unique_user.household_id,
         ),
     )
 
@@ -74,6 +76,7 @@ def list_with_items(unique_user: TestUser):
             name=random_string(10),
             group_id=unique_user.group_id,
             user_id=unique_user.user_id,
+            household_id=unique_user.household_id,
         ),
     )
 

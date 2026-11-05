@@ -2,7 +2,7 @@ from functools import cached_property
 
 from fastapi import Depends, HTTPException, status
 
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.permissions import Perm, require
 from mealie.routes._base.routers import UserAPIRouter
@@ -19,7 +19,7 @@ router = UserAPIRouter(prefix="/households", tags=["Households: Self Service"])
 
 
 @controller(router)
-class HouseholdSelfServiceController(BaseUserController):
+class HouseholdSelfServiceController(HouseholdContextController):
     @cached_property
     def service(self) -> HouseholdService:
         return HouseholdService(self.group_id, self.household_id, self.repos)
@@ -40,8 +40,10 @@ class HouseholdSelfServiceController(BaseUserController):
 
     @router.get("/members", response_model=PaginationBase[UserOut], dependencies=[require(Perm.GROUP_MANAGE)])
     def get_household_members(self, q: PaginationQuery = Depends()):
-        """Returns all users belonging to the current household"""
-        q.query_filter = QueryFilterBuilder.combine_filters(q.query_filter, f"household_id={self.household_id}")
+        """Returns all users belonging to the current household, including those whose primary household is another"""
+        q.query_filter = QueryFilterBuilder.combine_filters(
+            q.query_filter, f"household_memberships.household_id={self.household_id}"
+        )
 
         response = self.repos.users.page_all(q, override=UserOut)
 
@@ -66,18 +68,26 @@ class HouseholdSelfServiceController(BaseUserController):
         if target_user.group_id != self.group_id:
             raise HTTPException(status.HTTP_403_FORBIDDEN, detail="User is not a member of this group")
 
-        if target_user.household_id != self.household_id:
+        if not any(membership.household_id == self.household_id for membership in target_user.households):
             raise HTTPException(status.HTTP_403_FORBIDDEN, detail="User is not a member of this household")
 
         if target_user.id == self.user.id:
             raise HTTPException(status.HTTP_403_FORBIDDEN, detail="User is not allowed to change their own permissions")
 
-        target_user.can_invite = permissions.can_invite
-        target_user.can_manage = permissions.can_manage
-        target_user.can_manage_household = permissions.can_manage_household
-        target_user.can_organize = permissions.can_organize
+        # The household flag belongs to the membership. The group-level flags belong to the user as a whole, so
+        # they can only be changed from the user's primary household.
+        if target_user.household_id == self.household_id:
+            target_user.can_invite = permissions.can_invite
+            target_user.can_manage = permissions.can_manage
+            target_user.can_organize = permissions.can_organize
+            target_user.can_manage_household = permissions.can_manage_household
+            self.repos.users.update(permissions.user_id, target_user)
+        else:
+            self.repos.users.set_household_manager(
+                permissions.user_id, self.household_id, permissions.can_manage_household
+            )
 
-        return self.repos.users.update(permissions.user_id, target_user)
+        return self.repos.users.get_one(permissions.user_id)
 
     @router.get("/statistics", response_model=HouseholdStatistics)
     def get_statistics(self):

@@ -784,6 +784,7 @@ def _create_list_with_items(user: TestUser, item_count: int = 3) -> ShoppingList
             name=random_string(10),
             group_id=user.group_id,
             user_id=user.user_id,
+            household_id=user.household_id,
         ),
     )
 

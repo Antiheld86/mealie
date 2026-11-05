@@ -4,7 +4,7 @@ from functools import cached_property
 from fastapi import APIRouter, BackgroundTasks, Depends
 from pydantic import UUID4
 
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.mixins import HttpRepo
 from mealie.routes._base.permissions import Perm, require
@@ -17,7 +17,7 @@ router = APIRouter(prefix="/households/webhooks", tags=["Households: Webhooks"])
 
 
 @controller(router)
-class ReadWebhookController(BaseUserController):
+class ReadWebhookController(HouseholdContextController):
     @cached_property
     def repo(self):
         return self.repos.webhooks

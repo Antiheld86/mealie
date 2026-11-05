@@ -4,7 +4,7 @@ from fastapi import APIRouter, Header, HTTPException, status
 
 from mealie.core.config import get_app_settings
 from mealie.core.security import url_safe_token
-from mealie.routes._base import BaseUserController, controller
+from mealie.routes._base import HouseholdContextController, controller
 from mealie.routes._base.permissions import Perm, require
 from mealie.schema.household.invite_token import (
     CreateInviteToken,
@@ -20,7 +20,7 @@ router = APIRouter(prefix="/households/invitations", tags=["Households: Invitati
 
 
 @controller(router)
-class GroupInvitationsController(BaseUserController):
+class GroupInvitationsController(HouseholdContextController):
     @router.get("", response_model=list[ReadInviteToken])
     def get_invite_tokens(self):
         if not self.user.admin:

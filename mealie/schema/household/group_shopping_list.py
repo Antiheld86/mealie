@@ -14,7 +14,6 @@ from mealie.db.models.household import (
     ShoppingListRecipeReference,
 )
 from mealie.db.models.recipe import IngredientFoodModel, IngredientFoodSubstitutionModel, RecipeModel
-from mealie.db.models.users.users import User
 from mealie.schema._mealie import MealieModel
 from mealie.schema._mealie.mealie_model import UpdatedAtField
 from mealie.schema._mealie.types import NoneFloat
@@ -140,9 +139,7 @@ class ShoppingListItemOut(ShoppingListItemBase):
             joinedload(ShoppingListItem.label),
             joinedload(ShoppingListItem.unit),
             selectinload(ShoppingListItem.recipe_references),
-            joinedload(ShoppingListItem.shopping_list)
-            .joinedload(ShoppingList.user)
-            .load_only(User.household_id, User.group_id),
+            joinedload(ShoppingListItem.shopping_list).load_only(ShoppingList.household_id, ShoppingList.group_id),
         ]
 
 
@@ -179,6 +176,8 @@ class ShoppingListItemPagination(PaginationBase):
 
 class ShoppingListCreate(MealieModel):
     name: str | None = None
+    household_id: UUID4 | None = None
+    """The household the list belongs to; defaults to the user's primary household"""
     extras: dict | None = {}
 
     created_at: datetime | None = None
@@ -214,6 +213,7 @@ class ShoppingListRecipeRefOut(MealieModel):
 class ShoppingListSave(ShoppingListCreate):
     group_id: UUID4
     user_id: UUID4
+    household_id: UUID4
 
 
 class ShoppingListSummary(ShoppingListSave):
@@ -237,7 +237,6 @@ class ShoppingListSummary(ShoppingListSave):
             .joinedload(ShoppingListRecipeReference.recipe)
             .joinedload(RecipeModel.tools),
             selectinload(ShoppingList.label_settings).joinedload(ShoppingListMultiPurposeLabel.label),
-            joinedload(ShoppingList.user).load_only(User.household_id, User.group_id),
         ]
 
 
@@ -247,6 +246,8 @@ class ShoppingListPagination(PaginationBase):
 
 class ShoppingListUpdate(ShoppingListSave):
     id: UUID4
+    household_id: UUID4 | None = None
+    """Set to move the list to another household; the list stays where it is if omitted"""
     list_items: list[ShoppingListItemOut] = []
 
 
@@ -288,7 +289,6 @@ class ShoppingListOut(ShoppingListUpdate):
             .joinedload(ShoppingListRecipeReference.recipe)
             .joinedload(RecipeModel.tools),
             selectinload(ShoppingList.label_settings).joinedload(ShoppingListMultiPurposeLabel.label),
-            joinedload(ShoppingList.user).load_only(User.household_id, User.group_id),
         ]
 
 

@@ -2,6 +2,11 @@
     "generic": {
         "server-error": "An unexpected error occurred"
     },
+    "household": {
+        "not-a-member": "You are not a member of that household",
+    "membership-not-found": "That user, household or invitation could not be found",
+    "invalid-membership-change": "That change to the household's members is not allowed"
+    },
     "recipe": {
         "unique-name-error": "Recipe names must be unique",
         "recipe-created": "Recipe Created",

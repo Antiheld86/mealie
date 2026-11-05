@@ -3,7 +3,7 @@ from functools import cached_property
 from fastapi import Depends
 from pydantic import UUID4
 
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.mixins import HttpRepo
 from mealie.routes._base.routers import UserAPIRouter
@@ -15,7 +15,7 @@ router = UserAPIRouter(prefix="/households/mealplans/rules", tags=["Households: 
 
 
 @controller(router)
-class GroupMealplanConfigController(BaseUserController):
+class GroupMealplanConfigController(HouseholdContextController):
     @cached_property
     def repo(self):
         return self.repos.group_meal_plan_rules

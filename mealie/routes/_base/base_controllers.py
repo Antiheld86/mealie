@@ -22,6 +22,7 @@ from mealie.lang.locale_config import LocaleConfig
 from mealie.lang.providers import Translator
 from mealie.repos._utils import NOT_SET, NotSet
 from mealie.repos.all_repositories import AllRepositories, get_repositories
+from mealie.routes._base.permissions import forbidden, get_target_household_id
 from mealie.schema.household.household import HouseholdInDB
 from mealie.schema.user.user import GroupInDB, PrivateUser
 from mealie.services.event_bus_service.event_bus_service import EventBusService
@@ -153,6 +154,42 @@ class BaseUserController(_BaseController):
     def household_id(self) -> UUID4:
         return self.user.household_id
 
+    scope_to_member_households: bool = False
+    """
+    When set on a controller, its meal plan and shopping list repositories cover every household
+    the user is a member of, rather than just the primary household.
+    """
+
+    @property
+    def household_ids(self) -> list[UUID4]:
+        """Every household the user is a member of, including the primary one"""
+        ids = [membership.household_id for membership in self.user.households]
+        return ids if self.household_id in ids else [self.household_id, *ids]
+
+    @property
+    def repos(self):
+        if not self._repos:
+            self._repos = AllRepositories(
+                self.session,
+                group_id=self.group_id,
+                household_id=self.household_id,
+                household_ids=self.household_ids if self.scope_to_member_households else None,
+            )
+        return self._repos
+
+    def resolve_member_household(self, requested: UUID4 | None) -> UUID4:
+        """
+        Returns the household an item should be created in: the requested one, or the user's primary household if
+        none was requested. Raises a 403 if the user isn't a member of the requested household.
+        """
+        if requested is None or requested == self.household_id:
+            return self.household_id
+
+        if requested not in self.household_ids:
+            raise forbidden(self.t("household.not-a-member"))
+
+        return requested
+
     @property
     def group(self) -> GroupInDB:
         return self.repos.groups.get_one(self.group_id)
@@ -202,3 +239,20 @@ class BaseCrudController(BaseUserController):
             document_data=document_data,
             message=message,
         )
+
+
+class HouseholdContextMixin:
+    """
+    Makes a controller act on the household named by the optional `householdId` query parameter, which defaults to the
+    user's primary household. The user must be a member of it. Put it before the controller's base class.
+    """
+
+    target_household_id: UUID4 = Depends(get_target_household_id)
+
+    @property
+    def household_id(self) -> UUID4:
+        return self.target_household_id
+
+
+class HouseholdContextController(HouseholdContextMixin, BaseUserController):
+    """Base class for controllers that manage a household's own data (settings, webhooks, notifiers, ...)."""

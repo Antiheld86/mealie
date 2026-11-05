@@ -37,6 +37,8 @@ MEALPLAN_NOTIFICATION_KEYS: dict[EventOperation, tuple[str, str]] = {
 
 @controller(router)
 class GroupMealplanController(BaseCrudController):
+    scope_to_member_households = True
+
     @cached_property
     def repo(self) -> RepositoryMeals:
         return self.repos.meals
@@ -78,18 +80,25 @@ class GroupMealplanController(BaseCrudController):
         )
 
     def _get_random_recipes_from_mealplan(
-        self, plan_date: date, entry_type: PlanEntryType, limit: int = 1, end_date: date | None = None
+        self,
+        plan_date: date,
+        entry_type: PlanEntryType,
+        household_id: UUID,
+        limit: int = 1,
+        end_date: date | None = None,
     ) -> list[Recipe]:
         """
         Gets rules for a mealplan and returns a list of random recipes based on the rules.
         May return zero recipes if no recipes match the filter criteria.
 
-        Recipes from all households are included unless the rules specify a household filter.
+        The rules are those of the household the entry is planned for. Recipes from all households are
+        included unless the rules specify a household filter.
         """
 
         # date range entries (e.g. a week) aren't on a specific weekday, so only rules for all days apply to them
         day = PlanRulesDay.unset if end_date else PlanRulesDay.from_date(plan_date)
-        rules = self.repos.group_meal_plan_rules.get_rules(day, entry_type.value)
+        rules_repo = get_repositories(self.session, group_id=self.group_id, household_id=household_id)
+        rules = rules_repo.group_meal_plan_rules.get_rules(day, entry_type.value)
         cross_household_recipes = get_repositories(
             self.session, group_id=self.group_id, household_id=None
         ).recipes.by_user(self.user.id)
@@ -133,7 +142,8 @@ class GroupMealplanController(BaseCrudController):
     @router.post("", response_model=ReadPlanEntry, status_code=201)
     def create_one(self, data: CreatePlanEntry):
         self._require_group_recipe(data.recipe_id)
-        data = mapper.cast(data, SavePlanEntry, group_id=self.group_id, user_id=self.user.id)
+        household_id = self.resolve_member_household(data.household_id)
+        data = mapper.cast(data, SavePlanEntry, group_id=self.group_id, user_id=self.user.id, household_id=household_id)
         result = self.mixins.create_one(data)
 
         self.publish_event(
@@ -169,7 +179,10 @@ class GroupMealplanController(BaseCrudController):
         Refer to the meal plan settings routes for more information on how rules can be applied
         to the random meal selector.
         """
-        random_recipes = self._get_random_recipes_from_mealplan(data.date, data.entry_type, end_date=data.end_date)
+        household_id = self.resolve_member_household(data.household_id)
+        random_recipes = self._get_random_recipes_from_mealplan(
+            data.date, data.entry_type, household_id=household_id, end_date=data.end_date
+        )
         if not random_recipes:
             raise not_found(self.t("mealplan.no-recipes-match-your-rules"))
 
@@ -182,6 +195,7 @@ class GroupMealplanController(BaseCrudController):
                 recipe_id=recipe.id,
                 group_id=self.group_id,
                 user_id=self.user.id,
+                household_id=household_id,
             )
         )
 
@@ -210,6 +224,8 @@ class GroupMealplanController(BaseCrudController):
     @router.put("/{item_id}", response_model=ReadPlanEntry)
     def update_one(self, item_id: int, data: UpdatePlanEntry):
         self._require_group_recipe(data.recipe_id)
+        # moving an entry to another household requires being a member of it
+        self.resolve_member_household(data.household_id)
         result = self.mixins.update_one(data, item_id)
 
         self.publish_event(

@@ -7,7 +7,7 @@ from pydantic import UUID4
 from mealie.core.config import get_app_settings
 from mealie.core.exceptions import NoEntryFound
 from mealie.pkgs import safehttp
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.mixins import HttpRepo
 from mealie.routes._base.permissions import Perm, not_found, require
@@ -27,7 +27,7 @@ router = APIRouter(prefix="/households/recipe-actions", tags=["Households: Recip
 
 
 @controller(router)
-class GroupRecipeActionController(BaseUserController):
+class GroupRecipeActionController(HouseholdContextController):
     @cached_property
     def repo(self):
         return self.repos.group_recipe_actions

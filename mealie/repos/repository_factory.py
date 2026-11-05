@@ -13,6 +13,7 @@ from mealie.db.models.group.preferences import GroupPreferencesModel
 from mealie.db.models.household.cookbook import CookBook
 from mealie.db.models.household.events import GroupEventNotifierModel
 from mealie.db.models.household.household import Household
+from mealie.db.models.household.household_member_invitation import HouseholdMemberInvitation
 from mealie.db.models.household.household_to_recipe import HouseholdToRecipe
 from mealie.db.models.household.invite_tokens import GroupInviteToken
 from mealie.db.models.household.mealplan import GroupMealPlan, GroupMealPlanRules
@@ -58,6 +59,7 @@ from mealie.schema.household.group_shopping_list import (
     ShoppingListRecipeRefOut,
 )
 from mealie.schema.household.household import HouseholdInDB, HouseholdRecipeOut
+from mealie.schema.household.household_member_invitation import ReadHouseholdMemberInvitation
 from mealie.schema.household.household_preferences import ReadHouseholdPreferences
 from mealie.schema.household.invite_token import ReadInviteToken
 from mealie.schema.household.webhook import ReadWebhook
@@ -77,6 +79,7 @@ from mealie.schema.user.user_passwords import PrivatePasswordResetToken
 from ._utils import NOT_SET, NotSet
 from .repository_generic import GroupRepositoryGeneric, HouseholdRepositoryGeneric
 from .repository_group import RepositoryGroup
+from .repository_household_member_invitations import RepositoryHouseholdMemberInvitations
 from .repository_meals import RepositoryMeals
 from .repository_recipes import RepositoryRecipes
 from .repository_shopping_list import RepositoryShoppingList
@@ -265,10 +268,16 @@ class AllRepositories:
         *,
         group_id: UUID4 | None | NotSet = NOT_SET,
         household_id: UUID4 | None | NotSet = NOT_SET,
+        household_ids: Sequence[UUID4] | None = None,
     ) -> None:
+        """
+        `household_ids`, when given, widens the scope of the meal plan and shopping list repositories to every
+        household in the list (a user's memberships). Everything else stays scoped to `household_id`.
+        """
         self.session = session
         self.group_id = group_id
         self.household_id = household_id
+        self.household_ids = household_ids
 
     def uuid_to_str(self, val: UUID4) -> str:
         """Helper method to convert a UUID into a database-safe string"""
@@ -425,6 +434,19 @@ class AllRepositories:
         )
 
     @cached_property
+    def household_member_invitations(
+        self,
+    ) -> RepositoryHouseholdMemberInvitations:
+        return RepositoryHouseholdMemberInvitations(
+            self.session,
+            PK_ID,
+            HouseholdMemberInvitation,
+            ReadHouseholdMemberInvitation,
+            group_id=self.group_id,
+            household_id=self.household_id,
+        )
+
+    @cached_property
     def group_invite_tokens(self) -> HouseholdRepositoryGeneric[ReadInviteToken, GroupInviteToken]:
         return HouseholdRepositoryGeneric(
             self.session,
@@ -452,7 +474,13 @@ class AllRepositories:
     @cached_property
     def meals(self) -> RepositoryMeals:
         return RepositoryMeals(
-            self.session, PK_ID, GroupMealPlan, ReadPlanEntry, group_id=self.group_id, household_id=self.household_id
+            self.session,
+            PK_ID,
+            GroupMealPlan,
+            ReadPlanEntry,
+            group_id=self.group_id,
+            household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property
@@ -472,7 +500,13 @@ class AllRepositories:
     @cached_property
     def group_shopping_lists(self) -> RepositoryShoppingList:
         return RepositoryShoppingList(
-            self.session, PK_ID, ShoppingList, ShoppingListOut, group_id=self.group_id, household_id=self.household_id
+            self.session,
+            PK_ID,
+            ShoppingList,
+            ShoppingListOut,
+            group_id=self.group_id,
+            household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property
@@ -484,6 +518,7 @@ class AllRepositories:
             ShoppingListItemOut,
             group_id=self.group_id,
             household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property
@@ -497,6 +532,7 @@ class AllRepositories:
             ShoppingListItemRecipeRefOut,
             group_id=self.group_id,
             household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property
@@ -510,6 +546,7 @@ class AllRepositories:
             ShoppingListRecipeRefOut,
             group_id=self.group_id,
             household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property
@@ -523,6 +560,7 @@ class AllRepositories:
             ShoppingListMultiPurposeLabelOut,
             group_id=self.group_id,
             household_id=self.household_id,
+            household_ids=self.household_ids,
         )
 
     @cached_property

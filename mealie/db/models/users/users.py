@@ -18,7 +18,7 @@ from .user_to_recipe import UserToRecipe
 
 if TYPE_CHECKING:
     from ..group import Group
-    from ..household import Household
+    from ..household import Household, HouseholdMembership
     from ..household.mealplan import GroupMealPlan
     from ..household.shopping_list import ShoppingList
     from ..recipe import RecipeComment, RecipeModel, RecipeTimelineEvent
@@ -83,7 +83,6 @@ class User(SqlAlchemyBase, BaseMixins):
     last_read_announcement: Mapped[str | None] = mapped_column(String)
 
     # Permissions
-    can_manage_household: Mapped[bool | None] = mapped_column(Boolean, default=False)
     can_manage: Mapped[bool | None] = mapped_column(Boolean, default=False)
     can_invite: Mapped[bool | None] = mapped_column(Boolean, default=False)
     can_organize: Mapped[bool | None] = mapped_column(Boolean, default=False)
@@ -103,8 +102,15 @@ class User(SqlAlchemyBase, BaseMixins):
     owned_recipes: Mapped[RecipeModel | None] = orm.relationship(
         "RecipeModel", single_parent=True, foreign_keys=[owned_recipes_id]
     )
-    mealplans: Mapped[list[GroupMealPlan]] = orm.relationship("GroupMealPlan", order_by="GroupMealPlan.date", **sp_args)
-    shopping_lists: Mapped[list[ShoppingList]] = orm.relationship("ShoppingList", **sp_args)
+    household_memberships: Mapped[list[HouseholdMembership]] = orm.relationship(
+        "HouseholdMembership", back_populates="user", cascade="all, delete-orphan"
+    )
+    # Meal plans and shopping lists belong to a household, which may have other members; deleting a user
+    # must not delete them (see the household membership service for how they are handled).
+    mealplans: Mapped[list[GroupMealPlan]] = orm.relationship(
+        "GroupMealPlan", back_populates="user", order_by="GroupMealPlan.date"
+    )
+    shopping_lists: Mapped[list[ShoppingList]] = orm.relationship("ShoppingList", back_populates="user")
     rated_recipes: Mapped[list[RecipeModel]] = orm.relationship(
         "RecipeModel",
         secondary=UserToRecipe.__tablename__,
@@ -122,7 +128,7 @@ class User(SqlAlchemyBase, BaseMixins):
         exclude={
             "password",
             "admin",
-            "can_manage_household",
+            "household_memberships",
             "can_manage",
             "can_invite",
             "can_organize",
@@ -138,6 +144,33 @@ class User(SqlAlchemyBase, BaseMixins):
     @hybrid_property
     def household_slug(self) -> str:
         return self.household.slug
+
+    def get_membership(self, household_id: GUID | None) -> HouseholdMembership | None:
+        for membership in self.household_memberships:
+            if membership.household_id == household_id:
+                return membership
+        return None
+
+    def ensure_primary_membership(self) -> HouseholdMembership:
+        """Make sure the user is a member of their primary household and return that membership"""
+        from mealie.db.models.household import HouseholdMembership
+
+        for membership in self.household_memberships:
+            if membership.household is self.household:
+                return membership
+        return HouseholdMembership(household=self.household, user=self)
+
+    @property
+    def can_manage_household(self) -> bool:
+        """Whether the user can manage their primary household; other households use their own membership"""
+        membership = self.get_membership(self.household_id) if self.household_id else None
+        if membership is None:
+            membership = next((m for m in self.household_memberships if m.household is self.household), None)
+        return bool(membership and membership.can_manage_household)
+
+    @can_manage_household.setter
+    def can_manage_household(self, value: bool) -> None:
+        self.ensure_primary_membership().can_manage_household = bool(value)
 
     @auto_init()
     def __init__(
@@ -174,6 +207,7 @@ class User(SqlAlchemyBase, BaseMixins):
         self.rated_recipes = []
 
         self.password = password
+        self.ensure_primary_membership()
 
         if self.username is None:
             self.username = full_name
@@ -203,6 +237,9 @@ class User(SqlAlchemyBase, BaseMixins):
 
         if self.username is None:
             self.username = full_name
+
+        if self.household is not None:
+            self.ensure_primary_membership()
 
         self._set_permissions(**kwargs)
 

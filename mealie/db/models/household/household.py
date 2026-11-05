@@ -22,6 +22,7 @@ if TYPE_CHECKING:
         GroupInviteToken,
         GroupRecipeAction,
         GroupWebhooksModel,
+        HouseholdMembership,
         HouseholdPreferencesModel,
     )
 
@@ -51,6 +52,9 @@ class Household(SqlAlchemyBase, BaseMixins):
     group_id: FilterableColumn[GUID] = mapped_column(GUID, sa.ForeignKey("groups.id"), nullable=False, index=True)
     group: Mapped[Group] = orm.relationship("Group", back_populates="households")
     users: Mapped[list[User]] = orm.relationship("User", back_populates="household")
+    memberships: Mapped[list[HouseholdMembership]] = orm.relationship(
+        "HouseholdMembership", cascade="all, delete-orphan", overlaps="household"
+    )
 
     COMMON_ARGS = {
         "back_populates": "household",
@@ -81,6 +85,7 @@ class Household(SqlAlchemyBase, BaseMixins):
     model_config = ConfigDict(
         exclude={
             "users",
+            "memberships",
             "webhooks",
             "recipe_actions",
             "cookbooks",

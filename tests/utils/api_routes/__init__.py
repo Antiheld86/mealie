@@ -115,6 +115,8 @@ households_mealplans_rules = "/api/households/mealplans/rules"
 """`/api/households/mealplans/rules`"""
 households_mealplans_today = "/api/households/mealplans/today"
 """`/api/households/mealplans/today`"""
+households_member_invitations = "/api/households/member-invitations"
+"""`/api/households/member-invitations`"""
 households_members = "/api/households/members"
 """`/api/households/members`"""
 households_permissions = "/api/households/permissions"
@@ -219,6 +221,8 @@ users_self = "/api/users/self"
 """`/api/users/self`"""
 users_self_favorites = "/api/users/self/favorites"
 """`/api/users/self/favorites`"""
+users_self_household_invitations = "/api/users/self/household-invitations"
+"""`/api/users/self/household-invitations`"""
 users_self_ratings = "/api/users/self/ratings"
 """`/api/users/self/ratings`"""
 utils_download = "/api/utils/download"
@@ -273,6 +277,11 @@ def admin_households_item_id(item_id):
 def admin_users_item_id(item_id):
     """`/api/admin/users/{item_id}`"""
     return f"{prefix}/admin/users/{item_id}"
+
+
+def admin_users_item_id_households(item_id):
+    """`/api/admin/users/{item_id}/households`"""
+    return f"{prefix}/admin/users/{item_id}/households"
 
 
 def comments_item_id(item_id):
@@ -423,6 +432,16 @@ def households_mealplans_item_id(item_id):
 def households_mealplans_rules_item_id(item_id):
     """`/api/households/mealplans/rules/{item_id}`"""
     return f"{prefix}/households/mealplans/rules/{item_id}"
+
+
+def households_member_invitations_invitation_id(invitation_id):
+    """`/api/households/member-invitations/{invitation_id}`"""
+    return f"{prefix}/households/member-invitations/{invitation_id}"
+
+
+def households_members_user_id(user_id):
+    """`/api/households/members/{user_id}`"""
+    return f"{prefix}/households/members/{user_id}"
 
 
 def households_recipe_actions_item_id(item_id):
@@ -638,6 +657,21 @@ def users_id_ratings_slug(id, slug):
 def users_item_id(item_id):
     """`/api/users/{item_id}`"""
     return f"{prefix}/users/{item_id}"
+
+
+def users_self_household_invitations_invitation_id_accept(invitation_id):
+    """`/api/users/self/household-invitations/{invitation_id}/accept`"""
+    return f"{prefix}/users/self/household-invitations/{invitation_id}/accept"
+
+
+def users_self_household_invitations_invitation_id_decline(invitation_id):
+    """`/api/users/self/household-invitations/{invitation_id}/decline`"""
+    return f"{prefix}/users/self/household-invitations/{invitation_id}/decline"
+
+
+def users_self_households_household_id_leave(household_id):
+    """`/api/users/self/households/{household_id}/leave`"""
+    return f"{prefix}/users/self/households/{household_id}/leave"
 
 
 def users_self_ratings_recipe_id(recipe_id):

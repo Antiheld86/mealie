@@ -281,8 +281,12 @@ def test_generic_repo_filter_by_household_with_proxy(session: Session):
     household_2_repos = get_repositories(session, group_id=group.id, household_id=household_2.id)
     shopping_list_service_1 = ShoppingListService(household_1_repos)
     shopping_list_service_2 = ShoppingListService(household_2_repos)
-    shopping_list_1 = shopping_list_service_1.create_one_list(ShoppingListCreate(name=random_string()), user_1.id)
-    shopping_list_2 = shopping_list_service_2.create_one_list(ShoppingListCreate(name=random_string()), user_2.id)
+    shopping_list_1 = shopping_list_service_1.create_one_list(
+        ShoppingListCreate(name=random_string()), user_1.id, household_1.id
+    )
+    shopping_list_2 = shopping_list_service_2.create_one_list(
+        ShoppingListCreate(name=random_string()), user_2.id, household_2.id
+    )
 
     assert household_1_repos.group_shopping_lists.get_one(shopping_list_1.id) == shopping_list_1
     assert household_1_repos.group_shopping_lists.get_one(shopping_list_2.id) is None
@@ -297,7 +301,7 @@ def test_generic_repo_filter_by_household_with_proxy(session: Session):
     assert result[0].id == shopping_list_2.id
 
 
-def test_changing_user_changes_household(session: Session):
+def test_moving_shopping_list_between_households(session: Session):
     unfiltered_repos = get_repositories(session, group_id=None, household_id=None)
     group = unfiltered_repos.groups.create({"name": random_string()})
     group_repos = get_repositories(session, group_id=group.id, household_id=None)
@@ -332,7 +336,7 @@ def test_changing_user_changes_household(session: Session):
 
     # create shopping list with user_1/household_1
     shopping_list = ShoppingListService(household_1_repos).create_one_list(
-        ShoppingListCreate(name=random_string()), user_1.id
+        ShoppingListCreate(name=random_string()), user_1.id, household_1.id
     )
 
     # only household_1_repos should find the list
@@ -347,18 +351,35 @@ def test_changing_user_changes_household(session: Session):
     assert items[0].id == shopping_list.id
     assert household_2_repos.group_shopping_lists.page_all(PaginationQuery(page=1, per_page=-1)).items == []
 
-    # update shopping list to user_2/household_2 using household_1_repos
+    # changing the owner doesn't move the list: it stays in the household it was created in
     shopping_list.user_id = user_2.id
     household_1_repos.group_shopping_lists.update(shopping_list.id, shopping_list)
+    assert household_1_repos.group_shopping_lists.get_one(shopping_list.id)
+    assert household_2_repos.group_shopping_lists.get_one(shopping_list.id) is None
 
-    # now only household_2_repos should find the list
-    response = household_1_repos.group_shopping_lists.get_one(shopping_list.id)
-    assert response is None
+    # a repo scoped to a single household can't move a list out of it
+    shopping_list.household_id = household_2.id
+    household_1_repos.group_shopping_lists.update(shopping_list.id, shopping_list)
+    assert household_1_repos.group_shopping_lists.get_one(shopping_list.id)
+    assert household_2_repos.group_shopping_lists.get_one(shopping_list.id) is None
+
+    # a repo covering both households can
+    both_repos = get_repositories(
+        session, group_id=group.id, household_id=None, household_ids=[household_1.id, household_2.id]
+    )
+    both_repos.group_shopping_lists.update(shopping_list.id, shopping_list)
+
+    assert household_1_repos.group_shopping_lists.get_one(shopping_list.id) is None
     response = household_2_repos.group_shopping_lists.get_one(shopping_list.id)
     assert response
     assert response.user_id == user_2.id
-
-    items = household_2_repos.group_shopping_lists.page_all(PaginationQuery(page=1, per_page=-1)).items
-    assert len(items) == 1
-    assert items[0].id == shopping_list.id
     assert household_1_repos.group_shopping_lists.page_all(PaginationQuery(page=1, per_page=-1)).items == []
+    assert [
+        x.id for x in household_2_repos.group_shopping_lists.page_all(PaginationQuery(page=1, per_page=-1)).items
+    ] == [shopping_list.id]
+
+    # ...but never into a household it isn't a member of
+    household_3 = group_repos.households.create({"name": random_string(), "group_id": group.id})
+    shopping_list.household_id = household_3.id
+    both_repos.group_shopping_lists.update(shopping_list.id, shopping_list)
+    assert household_2_repos.group_shopping_lists.get_one(shopping_list.id)

@@ -3,11 +3,22 @@ from pathlib import Path
 from typing import Annotated, Any
 from uuid import UUID
 
-from pydantic import UUID4, BaseModel, ConfigDict, Field, StringConstraints, field_validator
+from pydantic import (
+    UUID4,
+    AliasChoices,
+    AliasPath,
+    BaseModel,
+    ConfigDict,
+    Field,
+    StringConstraints,
+    field_validator,
+    model_validator,
+)
 from sqlalchemy.orm import joinedload, selectinload
 from sqlalchemy.orm.interfaces import LoaderOption
 
 from mealie.core.config import get_app_dirs, get_app_settings
+from mealie.db.models.household import HouseholdMembership
 from mealie.db.models.recipe.recipe import RecipeModel
 from mealie.db.models.users import User
 from mealie.db.models.users.user_to_recipe import UserToRecipe
@@ -167,6 +178,37 @@ class UserIn(UserBase):
     password: str
 
 
+class UserHouseholdMembershipOut(MealieModel):
+    """A household the user belongs to, with the permissions they have in it"""
+
+    household_id: UUID4
+    household_name: str = Field(
+        validation_alias=AliasChoices("household_name", "householdName", AliasPath("household", "name"))
+    )
+    household_slug: str = Field(
+        validation_alias=AliasChoices("household_slug", "householdSlug", AliasPath("household", "slug"))
+    )
+    can_manage_household: bool = False
+    is_primary: bool = False
+    model_config = ConfigDict(from_attributes=True)
+
+    @classmethod
+    def loader_options(cls) -> list[LoaderOption]:
+        return [selectinload(User.household_memberships).joinedload(HouseholdMembership.household)]
+
+
+class UserHouseholdMembershipUpdate(MealieModel):
+    household_id: UUID4
+    can_manage_household: bool = False
+
+
+class UserHouseholdMembershipsUpdate(MealieModel):
+    """The complete set of households a user belongs to. It replaces the existing memberships."""
+
+    primary_household_id: UUID4
+    households: list[UserHouseholdMembershipUpdate]
+
+
 class UserOut(UserBase):
     id: UUID4
     group: str
@@ -175,9 +217,20 @@ class UserOut(UserBase):
     household: str
     household_id: UUID4
     household_slug: str
+    households: list[UserHouseholdMembershipOut] = Field(
+        default_factory=list,
+        validation_alias=AliasChoices("households", "household_memberships"),
+        description="Every household the user is a member of. `household` is the primary one.",
+    )
     tokens: list[LongLiveTokenOut] | None = None
     cache_key: str
     model_config = ConfigDict(from_attributes=True)
+
+    @model_validator(mode="after")
+    def mark_primary_household(self):
+        for membership in self.households:
+            membership.is_primary = membership.household_id == self.household_id
+        return self
 
     @property
     def is_default_user(self) -> bool:
@@ -185,7 +238,12 @@ class UserOut(UserBase):
 
     @classmethod
     def loader_options(cls) -> list[LoaderOption]:
-        return [joinedload(User.group), joinedload(User.household), joinedload(User.tokens)]
+        return [
+            joinedload(User.group),
+            joinedload(User.household),
+            joinedload(User.tokens),
+            *UserHouseholdMembershipOut.loader_options(),
+        ]
 
 
 class UserSummary(MealieModel):
@@ -237,7 +295,12 @@ class PrivateUser(UserOut):
 
     @classmethod
     def loader_options(cls) -> list[LoaderOption]:
-        return [joinedload(User.group), joinedload(User.household), joinedload(User.tokens)]
+        return [
+            joinedload(User.group),
+            joinedload(User.household),
+            joinedload(User.tokens),
+            *UserHouseholdMembershipOut.loader_options(),
+        ]
 
 
 class UpdateGroup(GroupBase):

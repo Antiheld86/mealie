@@ -7,7 +7,7 @@ from pydantic import UUID4
 
 from mealie.core.exceptions import mealie_registered_exceptions
 from mealie.repos.all_repositories import get_repositories
-from mealie.routes._base import BaseCrudController, controller
+from mealie.routes._base import BaseCrudController, HouseholdContextMixin, controller
 from mealie.routes._base.mixins import HttpRepo
 from mealie.routes._base.permissions import not_found
 from mealie.routes._base.routers import MealieCrudRoute
@@ -26,7 +26,7 @@ router = APIRouter(prefix="/households/cookbooks", tags=["Households: Cookbooks"
 
 
 @controller(router)
-class GroupCookbookController(BaseCrudController):
+class GroupCookbookController(HouseholdContextMixin, BaseCrudController):
     @cached_property
     def cookbooks(self):
         return self.repos.cookbooks

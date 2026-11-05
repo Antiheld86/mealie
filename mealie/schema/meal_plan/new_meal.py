@@ -11,7 +11,6 @@ from sqlalchemy.orm.interfaces import LoaderOption
 
 from mealie.db.models.household import GroupMealPlan
 from mealie.db.models.recipe import RecipeModel
-from mealie.db.models.users.users import User
 from mealie.schema._mealie import MealieModel
 from mealie.schema._mealie.mealie_model import UpdatedAtField
 from mealie.schema.recipe.recipe import RecipeSummary
@@ -45,6 +44,8 @@ class CreateRandomEntry(MealieModel):
     date: date
     end_date: datetime.date | None = None
     entry_type: PlanEntryType = PlanEntryType.dinner
+    household_id: UUID | None = None
+    """The household to plan the meal for; defaults to the user's primary household"""
 
     _validate_end_date = field_validator("end_date")(validate_end_date)
 
@@ -57,6 +58,8 @@ class CreatePlanEntry(MealieModel):
     text: str = ""
     recipe_id: Annotated[UUID | None, Field(validate_default=True)] = None
     recipe_scale: Annotated[float, Field(gt=0)] = 1.0
+    household_id: UUID | None = None
+    """The household to plan the meal for; defaults to the user's primary household"""
 
     @field_validator("recipe_id")
     @classmethod
@@ -78,10 +81,13 @@ class UpdatePlanEntry(CreatePlanEntry):
 class SavePlanEntry(CreatePlanEntry):
     group_id: UUID
     user_id: UUID
+    household_id: UUID
     model_config = ConfigDict(from_attributes=True)
 
 
 class ReadPlanEntry(UpdatePlanEntry):
+    user_id: UUID | None = None  # type: ignore[assignment]
+    """Unset once the author's account has been deleted; the entry stays with its household"""
     household_id: UUID
     recipe: RecipeSummary | None = None
     updated_at: datetime.datetime | None = UpdatedAtField(None)
@@ -93,7 +99,6 @@ class ReadPlanEntry(UpdatePlanEntry):
             selectinload(GroupMealPlan.recipe).joinedload(RecipeModel.recipe_category),
             selectinload(GroupMealPlan.recipe).joinedload(RecipeModel.tags),
             selectinload(GroupMealPlan.recipe).joinedload(RecipeModel.tools),
-            selectinload(GroupMealPlan.user).load_only(User.household_id),
         ]
 
 

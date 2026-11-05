@@ -82,6 +82,10 @@ EXPECTED_ROUTE_PERMISSIONS: dict[Perm, set[str]] = {
         "GET     /api/households/webhooks/{item_id}",
         "PUT     /api/households/webhooks/{item_id}",
         "DELETE  /api/households/webhooks/{item_id}",
+        "GET     /api/households/member-invitations",
+        "POST    /api/households/member-invitations",
+        "DELETE  /api/households/member-invitations/{invitation_id}",
+        "DELETE  /api/households/members/{user_id}",
         "POST    /api/households/webhooks/{item_id}/test",
     },
 }

@@ -3,7 +3,7 @@ from functools import cached_property
 from fastapi import APIRouter, Depends
 from pydantic import UUID4
 
-from mealie.routes._base.base_controllers import BaseUserController
+from mealie.routes._base.base_controllers import HouseholdContextController
 from mealie.routes._base.controller import controller
 from mealie.routes._base.mixins import HttpRepo
 from mealie.routes._base.permissions import Perm, not_found, require
@@ -35,7 +35,7 @@ router = APIRouter(
 
 
 @controller(router)
-class GroupEventsNotifierController(BaseUserController):
+class GroupEventsNotifierController(HouseholdContextController):
     event_bus: EventBusService = Depends(EventBusService.as_dependency)
 
     @cached_property

@@ -3,10 +3,13 @@ from collections.abc import Generator
 from uuid import UUID
 
 from pytest import fixture
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from starlette.testclient import TestClient
 
 from mealie.db.db_setup import session_context
+from mealie.db.models.household import Household, HouseholdMembership
+from mealie.db.models.users import User
 from mealie.db.models.users.users import AuthMethod
 from mealie.repos.all_repositories import get_repositories
 from tests import utils
@@ -391,3 +394,20 @@ def ldap_user():
     with session_context() as session:
         db = get_repositories(session, group_id=None, household_id=None)
         db.users.delete(user.id)
+
+
+@fixture
+def multi_household_user(
+    session: Session, unique_user: utils.TestUser, h2_user: utils.TestUser
+) -> Generator[utils.TestUser]:
+    """`unique_user`, who is also a member of `h2_user`'s household. Their primary household is unchanged."""
+    user = session.execute(select(User).where(User.id == unique_user.user_id)).scalar_one()
+    household = session.execute(select(Household).where(Household.id == h2_user.household_id)).scalar_one()
+    membership = HouseholdMembership(household=household, user=user)
+    session.add(membership)
+    session.commit()
+
+    yield unique_user
+
+    session.delete(membership)
+    session.commit()

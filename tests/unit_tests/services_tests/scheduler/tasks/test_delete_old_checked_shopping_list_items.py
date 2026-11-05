@@ -19,6 +19,7 @@ def test_cleanup(unique_user: TestUser):
             name=random_string(),
             group_id=unique_user.group_id,
             user_id=unique_user.user_id,
+            household_id=unique_user.household_id,
         )
     )
     unchecked_items = list_item_repo.create_many(
@@ -70,6 +71,7 @@ def test_no_cleanup(unique_user: TestUser):
             name=random_string(),
             group_id=unique_user.group_id,
             user_id=unique_user.user_id,
+            household_id=unique_user.household_id,
         )
     )
     unchecked_items = list_item_repo.create_many(

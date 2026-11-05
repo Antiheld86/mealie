@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import random
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from datetime import UTC, datetime
 from math import ceil
 from typing import Any
@@ -517,6 +517,13 @@ class GroupRepositoryGeneric[Schema: MealieModel, Model: SqlAlchemyBase](Reposit
 
 
 class HouseholdRepositoryGeneric[Schema: MealieModel, Model: SqlAlchemyBase](RepositoryGeneric[Schema, Model]):
+    """
+    Scopes every query to a group and a household. Alternatively, `household_ids` scopes it to several
+    households at once (all the households a user is a member of); it takes precedence over `household_id`.
+    """
+
+    _household_ids: list[UUID4] | None = None
+
     def __init__(
         self,
         session: Session,
@@ -526,12 +533,40 @@ class HouseholdRepositoryGeneric[Schema: MealieModel, Model: SqlAlchemyBase](Rep
         *,
         group_id: UUID4 | None | NotSet,
         household_id: UUID4 | None | NotSet,
+        household_ids: Sequence[UUID4] | None = None,
     ) -> None:
         super().__init__(session, primary_key, sql_model, schema)
         if group_id is NOT_SET:
             raise ValueError("group_id must be set")
         self._group_id = group_id if group_id else None
 
+        if household_ids is not None:
+            self._household_ids = list(household_ids)
+            self._household_id = None
+            return
+
         if household_id is NOT_SET:
             raise ValueError("household_id must be set")
         self._household_id = household_id if household_id else None
+
+    @property
+    def household_ids(self) -> list[UUID4] | None:
+        return self._household_ids
+
+    def _household_scope_clause(self) -> ColumnElement[bool]:
+        """Restricts a query to the households in `household_ids`"""
+        assert self._household_ids is not None
+        return self.model.household_id.in_(self._household_ids)
+
+    def _query(self, override_schema: type[MealieModel] | None = None, with_options=True):
+        q = super()._query(override_schema=override_schema, with_options=with_options)
+        if self._household_ids is not None:
+            q = q.where(self._household_scope_clause())
+        return q
+
+    def _keep_scope(self, entry: Model, new_data: dict) -> dict:
+        new_data = super()._keep_scope(entry, new_data)
+        if self._household_ids is not None and new_data.get("household_id") not in (None, *self._household_ids):
+            # never move a row into a household the caller doesn't belong to
+            new_data["household_id"] = getattr(entry, "household_id")  # noqa: B009
+        return new_data
