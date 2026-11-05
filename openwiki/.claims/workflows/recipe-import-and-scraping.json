@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f78cddd5c360ee422695f4aab7cae386af9e4eb32300d1a474543919b5eb400a",
+  "claims": [
+    {
+      "id": "claim_41251cd4626b4ef38f0955edae73f75d",
+      "statement": "RecipeScraper tries strategies in a fixed order (package, OpenAI transcription, OpenAI, OpenGraph), skips those whose can_scrape is false, moves on after an exception or empty result, and returns the first recipe that survives cleaner.clean.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scraper/recipe_scraper.py#L17-L106",
+          "version": "repo-lines-v1:sha256:c7ca2515ee988cd00e97abaf3f4fb4082242fd66b386c1d44462d44522bebb85:eyJzZWxlY3RlZExpbmVDb3VudCI6OTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhZmJhMDUyN2MzOTUzYzRiNmUwZTViNTczOWJhODM2MTJmODA1M2JjZGM5NDY2NzMwMTkzY2QxZDU5MGI0MDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2Yzk4ZDk5NjdiNDA2YjM1Zjk2NTU3NWZmNjVkM2VkYTJkZmEyNWU3ODNmMWU0ZmZlZDU5NzQ2YjlkYzFiMWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3MGY5MTg5OGQ0N2RkNDdlOTM4YjNkYmU3NjliYWFhMjBhMzkyNjU5MDFhMDc2OGMyMmFjZDVlNGQzNDU0ZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf6a07da7e0547569058d9006a382629",
+      "statement": "The OpenAI scraper strategy only runs when the group has AI enabled, and the transcription strategy only runs when an audio provider is enabled and the URL is a video URL.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scraper/scraper_strategies.py#L356-L358",
+          "version": "repo-lines-v1:sha256:c0aac73b365e75298cb62b950b2bb668dba218ddf25ec86ff069cd52e913bdb5:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2IwNWRhMGI1ZGRiYjZlZmNhMjk0NzY2M2I2MzQ2NTJkMTc0MjI4ZjM2ZmQ5NDg2NThiYTgxM2ViZWJkMWRlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU2Mzk1NzUwOTIxMDhiM2FjYjUyYzI0MjAxYzkwY2NlNDc5OGM2NDg3OTQwYjk5YzRlZjViM2M1N2NiMGFjYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzNhMmIwMTc3YzlmZWU1MDE0NTA1ZTc4N2M1NGI1NTAyNjBjYTFkMmNhYjM0NTc1ZjI1N2E4MzE5MDZkNGM3MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzMzN2Q3ZTZmYTdkOWVjOGRiNDhkOTRjN2ZiNjc4YTliMTNiYWVkM2E3NWZkZjMwZDc4MmZiNjUzN2VjYjI5MCJ9"
+        },
+        {
+          "resource": "repo://mealie/services/scraper/scraper_strategies.py#L396-L405",
+          "version": "repo-lines-v1:sha256:e42d5c80c12476675f575251db8b470962387cef4574a8195a238871a35eee91:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiMDVkYTBiNWRkYmI2ZWZjYTI5NDc2NjNiNjM0NjUyZDE3NDIyOGYzNmZkOTQ4NjU4YmE4MTNlYmViZDFkZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZDlmOWUyNDA1YTkwZGIwM2QwNmY4ZmRjMDUxMjBlYmQ4MGM5Mjk2NjI5ZGQwMmY2ZTJkNjZkMDVkMmQ2YzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwN2I5OTJmNWZmY2ZjZjFhN2M2ZDU2YmE0MDc2OGZkYWFlM2Y4ZmU5YTEyYTdiMDU0ZWU4ZGM2NmMxYzYyNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmOWE4MjY5YzU3OTc2Y2Y3NDZmMjFmNTM3MTJmNmM3MmY2ZTUwMWEzMmYxMzE3ZWEyYjE4YzAxMDA3NzFhMzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd587f3318be4bc685c0d8fe99038a47",
+      "statement": "create_from_html extracts the first URL from the input (400 BAD_RECIPE_DATA if none) and finalize_scraped_recipe assigns an id, downloads the image and ensures a name and slug without persisting the recipe.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scraper/scraper.py#L25-L115",
+          "version": "repo-lines-v1:sha256:86de480f9ea57de720dd333674324bdc3ade724bd1192def7e828120ddd8a3a5:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0YjE2MmUxZjFjMDFkODU5YTRiYzAxZTAyNWMzMDgxNjI2ODM4YWYyM2RkYzNkMWFjZDM2MWY0ZmQ0NTQ3MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4NzllNzc1NDU4M2I2NzNhNTA2NDM4OWU5NTM4MTIzYTEyZTZiMDlmNzc3MGZiMTU3NjNlMTc2MjI4YjRhNGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_26360d2c697a424baad7d1684789b959",
+      "statement": "A recipe's image cache key is set only when an image file was actually written, so the frontend never requests an image that does not exist.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scraper/scraper.py#L97-L103",
+          "version": "repo-lines-v1:sha256:92cb249ded5c8153e00c8a3ecc4cde0b7482740a0602f74edf479c152a289103:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmE2MzBkZjk4OWEwZTgxODE3N2FmMDJkYWRjOTdmNTYwNDIwNDBlNWJlY2ViZmU3MmNkODQxMTE3OGFjNmVkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjk0MzU5OWI0MGUyNGE3OWFhYWFiYzVjYzExYzA5ZTY3MWMzYzBiOWMyYzI4Mzk3NmUzOTE5OTQ2ZDIxMmQ1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWEwNWM2NjBmYWQ0ZjEzMWNhYzNlOGExMzVlYzEyZmQxZTc2ODA0ZjZiODg1MGZlZjQ5MDA0OTBkMzQ2NzAxNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_226bfd0035dd4126b437170bed63b9b2",
+      "statement": "RecipeDataService.scrape_image picks the largest image of a list via concurrent HEAD requests, requires an image content type, and writes through a minifier that converts to webp.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/recipe/recipe_data_service.py#L117-L196",
+          "version": "repo-lines-v1:sha256:8ceaba70aaa88d810ad88c5625ed05b3a73ec57187a87983dc49a3f26633726f:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhOWJjOTRkZTQxMTg1YjliYmE3MWRmYjFkODRiYzhiNGM4MTRkZjA0YzU0NzZhNDBhN2Q4ZWRiZDMxOGZkZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxNDZlOTAwZDUyYzU3Njk4ZjZmYTkxNjgxMGI1OTBkZGM2NmNmN2YzNWEwZTMzNmIyMWJiYjNhNWQyNTNhMDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2ZmNhZmZiYzNiNDMzMzg5M2I2NmY5MGZlZTJlNWU4ZTY1OGFlZDM4OTllYzQ1MGY5MDE5YjkzZDQ5MGVmOTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://mealie/services/recipe/recipe_data_service.py#L28-L47",
+          "version": "repo-lines-v1:sha256:df249cc5dcdffe71f2a3b34cdd79522ca2422b34291d402f384c08ddba1a788c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZWMxYjVlYWY3Yjc0YzhiN2JhYTk5ZDFiYzExZWUxNDM0YjE5YTIyNTJiMDU0ZTdkM2E3NWRkNDBhMjZiNDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwNjUxNGM3MjYxZDRiMzM2MjgyNWEzZDA1MmQ0ZjI4MmNhMDUwZjk2ZDY0NGI2NzhkYmU4OGFjODVlMjk5NGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxYzE5YmUyNTRmMjMzNTUxN2FhODM2NGJhYTk3ZDM5ZjRjN2FhODYwMWQxYTg5MzJkNmYwMzdmZDY1MDExNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyNDZjNWEyMTAxYjE0ZDgyYmIxNDUwN2IyN2U0NzVmYzA3NWRjNWFmOWJlMWU2ZDAzMmEzOWVhYTMwOGRlNTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_89ced156db1248a995ca4e48221517b7",
+      "statement": "RecipeService.create_one applies the household's default recipe settings when none are provided, converts an incoming rating into a user rating, and creates the first timeline event.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/recipe/recipe_service.py#L212-L254",
+          "version": "repo-lines-v1:sha256:9d7ae78d128a3109f1613fd5a2ed0a97cf04e9cb5f1306a26285a693e4eaf92e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZWU5Zjk2MzA5MjBjNjE5NDZjMTllZDg2MzY0ZjczNDYyOGM2NmVkNzUxYjgxZDcyZDdjYjZkNzYxYzVmODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0YTUyYWM2ZTdjZTllMzk0YjVjZDBlNDQ2MzU5ZjBiNWY5MzVjMzcyZmIyMzA5OThlYWZiYWI2YjZhMTlhZjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzOTAyZmJjYjY5NjQyNTg2N2Q0MzJhZTE5NzUyNmNmNzU1NmMxY2QyMzViMTI5OTJjODBiZWZkNWJjNzRmOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzNzBhY2UyM2JhOWNmNTYxNWE2MzgzYTExMjM3NDA4Nzc0ZjYzOGVmMjI5MjY5ZDUwYmQwNjkzYWI2ZDg2MzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec9f1b219ff84b24a0d19f37c67d651d",
+      "statement": "Bulk URL import scrapes with a semaphore of 3, applies per-URL tags and categories, records per-URL report entries and sets the report status to success, failure or partial.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scraper/recipe_bulk_scraper.py#L45-L127",
+          "version": "repo-lines-v1:sha256:6b0857f3b9d930ac2a79115b3e9be5164868e97a95502de1b3cdd1cd601df90e:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZmVkZDYzNjg5ZTIyYThiNTlkNGE0OWY0NmIzYmYyZDQ1Yzg1ODMwNWNhMjIwZDhiZTViODQ5YWI1ZTFhMmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiMmQ3NzlkNWU1N2M5NzRlNzM1NTQwMTg3ZDlkMzZjYWE4MWZmZmJlNzk2MDZjNThkMmJiNGY3NzY2NmFmYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_697b07d615df4205b5dbc3f2e418dca7",
+      "statement": "AIRecipeService.build_recipe rejects empty input, requires AI (and an image provider for images) to be enabled for the group, and runs RecipeImportWorkflow, whose result is finalized but not persisted by build_recipe.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/recipe/ai_recipe_service.py#L69-L129",
+          "version": "repo-lines-v1:sha256:043ca0ca05d304a56b04676d38cd28b25b066cc016185a169d540acae9ea1512:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhODY4ZWExZjljYWY2OTg4OWQxNzhkMWM3NDMzMjk4OTM0Njg1NmZiNTZkMjFjN2U4YWJhNzQ3OTkzYjllYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMTFkYTY3YjZlZjQ5ZTk1NDhlY2ExOTM4NGYyNjBmNzU2MjRmZTU0NjNhODI5MmY5NjlkMDEyMDcwM2JlYjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzNjc0MmYzMmE3YTNjZjc1YmRmZmQ0YzI2ZTYyMzdmMTM4YmNjMzNjMTAxNWFlNjllMzIxYzIyMzJmMjMyZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56bf731c39d14f47a618521aed69cd59",
+      "statement": "RecipeImportWorkflow runs CompileSource, BuildRecipe, TranslateRecipe and ResolveOrganizers steps in order, skipping steps that should not run, aborting on a failed required step and continuing past a failed optional step.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/recipe/import_workflow/workflow.py#L1-L57",
+          "version": "repo-lines-v1:sha256:5e8b47f9cdb9d6b54d66ab60ac06394b4c4bf2d5c27c1376e26888b3d2ad101c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmYmU4N2UxOWU3NTEwMjRlYTgxZmI1NDQ1MjZlZmU3ODJjZDY2ZTgwNjhhODA3MTE3YTRiOTllNWZjNGIxZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0OTY0YmFjNzQ1MGFmYmYxNTk5OGU4YmNmOTZkYmI0ZThlNWJiNDQ3ZjFiNzJkZjlhZmZhODlhYmNmMDhjYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e3fa2825a69a43579906cf64c960f10b",
+      "statement": "OpenAIService loads per-group provider settings and the default, audio and image providers from the repositories.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/openai/openai.py#L140-L165",
+          "version": "repo-lines-v1:sha256:d1064f2aef4fcc4ddefeb346c1c53bea8bc29f191d5e48c6e98ef82de7186667:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhMzViYjU1YzNjNjg5MTMxMGIwYjgyZWI3NDFmYjhlYmU4NmY0ZTUyYWI2MGMzNzMyOTQ5NjIyZWM4NGUzNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmMzdkMzdjNjM1YmY3MjBiNzg0N2VjYTlhZTY3NGVjNzY5MjY0MmM4NDhlYjUzNzdmNjQzYzIxZTY4NWI4MWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmOGNmNmU2MjBjMDg2ZDAzMTIyYzIxNThkMTY2ODZkMmIzYzBkZGE3YjY1ZDdkMjc4YjVkNWFlOGE2MDMxMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4NjlmOGFlN2EwMDgxYTRkYzliMjAwZTk1YWNjZGFmYjMxMzkwNDM0YzhhZDEyMGRkOTkyZWVmYWIwOTMyODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0749e29dcdf54d07aa93029a3be26e8d",
+      "statement": "get_parser selects the NLP or brute-force ingredient parser from a registry, defaulting to NLP, and lazily imports the OpenAI parser for the openai option.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/schema/recipe/recipe_ingredient.py#L519-L522",
+          "version": "repo-lines-v1:sha256:068aa92a2f96f8de7a8cfc4a07052c3e2d5808ef6e5c5b6e1fa0f4e64c267d00:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJiMDhlNWFhMzdiMjc3YWQzYTYxYjUxZGI3YTE0YzI1YzQyY2ZhOGU4YjdlMTBhZTFkOGExY2Y4Mjg4NTQyNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM3MGM0MGNlZTlmZjg4ZDViNmQ5YjllZmExYWM4MTA0NTc4YmExYWYwNTFjNDIwZjg4MzBmY2UyNDAwZjIzNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWIyMGI5OWRiOTNmMjhkYzI2M2VjMzMwNTNkNTY3MjI3ZWRkOWU2MDdhMzUyMTZjYjRmZDc3ZjI2NTU0ZGYwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTk1NzE1MDk3ZmU0ODE2YTZlMWMxZmFjOTcxNGUwZDZmMjY4OGFhZWMyOWI1MWQ5ZWRiYzllYWI4ZTkyNzg4ZSJ9"
+        },
+        {
+          "resource": "repo://mealie/services/parser_services/ingredient_parser.py#L310-L329",
+          "version": "repo-lines-v1:sha256:4c0ff963fe12dd5a9f6a0ea6039222dc5714dc25a1465f8cc855d591ee7754b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4OGIzODJjZjJmMWMzMGRlZTcxZmRiMzVmM2Q5ZTgxN2I2NzBmOWI5OGQ1YzY4MDI0MWExZjE1NTEwZGM2MmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxNTk2ODYwMTk0ODExYTQ3YzY2YjU1ZmNkMjQzMmYyZWZlNDFhNDExMWRhOTU5ZjkwYjcxNjU4MDQ2MjVjNjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:222ceb2b556fc2cec1900d40d0d37cc8716f2060cebf2569eb1ead0834872fc0",
+  "claims": [
+    {
+      "id": "claim_bd5b9ea34986499c9dca88c5ad2b2991",
+      "statement": "task dev:generate runs dev/code-generation/main.py (optionally with named generators) followed by Ruff formatting.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L77-L82",
+          "version": "repo-lines-v1:sha256:7c333a79ac9e4d2b907adcb07fbcb56671e703354a842ec5e054a0b5b869a9e7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZmOWMyODk2ZmI5YTE1NTYxMTk3OTU2NmI4ZDhmYTMwNTlmNDQ4NTg2MDliMzEyNzkyYjkwZDVmZjQ3YWE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2RjNzRjNTA1ZjMwNGJmY2FmYzcxZjc3ZjM1MmIzNzM0MTM2YjA4YjkwZGU3YmMyMjhhZjA5OGIxNjkyOWY2MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY2ZWJjNTllNTUzYjM0YmQ1OWVjMWM3MDM1YjUzOTEzZGQ0M2E1MGFlMjc4NzcyNzJmYjQ5ZWI0ZWY5YjUzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d105e923cd6948a793fffd03d6e189a1",
+      "statement": "main.py registers the schema, types, locales, unit-systems, data-paths, routes and crowdin-approvals generators, and by default runs all except the opt-in crowdin-approvals, which changes Crowdin rather than local files.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/main.py#L16-L59",
+          "version": "repo-lines-v1:sha256:dea64b9cfd7e01c4ec01fe88892195c52c88f69b01ada4d4dbdaffcd48c33c66:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViYzBlNjVjN2QwYmRiZjhkZTU3MTgzN2Y2ZDliM2VjNjE5OWZlMzUyZmM0NGQ0ZjA2NDA5NjEyMDNlNTJhNjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ZTk5MjMyY2QzYTMwOWY1MGNiZDZmNjYyMTI3ZWVhYWZjZTFmNzM2MjkyZGVmYjExM2Q5ODFhMjBjN2Q4NTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5M2JkNjZlMmJiNzFmM2I4YTkyNDA2NGJiZjdiMDdjNTkwM2E3NzNmYTRmOGMzNTQ2MDYwMzg2NjcxZDNhNzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4719f9d0c18c4067b03b7e81729d20fc",
+      "statement": "gen_py_schema_exports regex-extracts top-level class names from each non-underscore schema module and writes imports and __all__ into the package __init__.py.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/gen_py_schema_exports.py#L1-L80",
+          "version": "repo-lines-v1:sha256:00a519138f2661e51d8860b82bbcf2b2e6652dfdc52f187432c0f2c664ed9b08:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjI3OWY3ZDc2MmRkNGU3OTk1NjY1MWYxZGNhZWMzZjMzZDdlMGEyY2Y5OTY4MzM1ODc4NDRmMjJlYTQxZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1NWE2ZjZjZGRkY2M1NGU1MWIwODM4ZDhiNjE1NTUwYzY4MjA4MjU0ZTg2ZmMyNThkN2U4MmJkOTNjNThkMzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmZTI3MDczODEzNzE5MmI0ZmYyZDEzY2I2NmIwNzRmNGQ4YWQ4MzdkMWIxNGRlNWI2M2VjNjUzOWJjYzUyMTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0aa7e8fbad214c858e6278c4812bfdf1",
+      "statement": "gen_ts_types generates one TypeScript file per schema package into frontend/app/lib/api/types (underscores become hyphens), skipping static and _mealie, temporarily forbidding extra fields, and runs pnpm lint --fix on the output.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/gen_ts_types.py#L190-L255",
+          "version": "repo-lines-v1:sha256:d5700967b56323b689394b2e5f92bb23ec3e8c917464fac5ccf6295757584279:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5ODNjMzUzM2Q4MjQ0Mjk2NWNmMGNmZGM1NTg4OTk4MDZhZjZmNDFjOTUzNzU4ZmIxMzY3YTk0OWNmOGE5ZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliMmI2MjI0NjBhZjc0OThlNjJkYjZjODRjMmJhNWJmOWJjYTUxZGU4YzdkYjFhNzMzYWJkMDlhZTExNWEyNGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmNzQ1ODAzMWQzYzQ4ODY2OWM5ODY5OWYwNzJiMTY5MGUyZDI0ZWRkYjdmOGI0ODA5YWJlMDIwODQ2NGY3ZDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f5901eeadbf84fc7bd1f09dfee347711",
+      "statement": "gen_ts_types also regenerates frontend/app/types/components.d.ts listing the global and layout Vue components.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/gen_ts_types.py#L45-L82",
+          "version": "repo-lines-v1:sha256:43d82f15ee322f902feea93a496e70d11324272be51d490ef3f66da5f8947888:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyMmFlYTUxNWE2MGZkMjU3N2Y4MmM2YmNjOWJhYmMyYzlhZWU4Mjg3OTE3MGE5YzUwNWE2N2QxYzg4MGQxZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1YmNhZTZhYzhkMGExODQxMTUyM2NhNjY4OTcxZTI4YjU1YzY1YjRmMzE1NTQwMmEyNTgxM2RmNWNmYmMyOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0MzBmYjNkZTY4ZGRhYWYyYmRmNTUwNjU0YWU3MjMyNWMwZmFkZTRhOWJmYTBmNDc3YmJhZWQxNTJjOWE3ZGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_42c41ce09cb04adfba0c2d50312136e3",
+      "statement": "gen_py_pytest_routes imports the real FastAPI app, forces all routes into the OpenAPI schema and renders tests/utils/api_routes from it.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/gen_py_pytest_routes.py#L1-L91",
+          "version": "repo-lines-v1:sha256:dd3fe521807d547f41356fd63b073d63c4512262f5cba71b2a8838dfdf0fb1f0:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2MWE5MTEyYTI5MThlMmFiYTAzZTE5YTJmMjIxYTAyN2FiNGI2ZjllOTQ2YTZjMzk4MTRmNTRlMThlMDdkZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ZTk5MjMyY2QzYTMwOWY1MGNiZDZmNjYyMTI3ZWVhYWZjZTFmNzM2MjkyZGVmYjExM2Q5ODFhMjBjN2Q4NTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_511efc0994344d2f8d25991601fe359e",
+      "statement": "MealieModel uses a camelize alias generator with populate_by_name, normalizes datetimes and provides cast, map_to, map_from, merge and loader_options helpers.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/schema/_mealie/mealie_model.py#L46-L150",
+          "version": "repo-lines-v1:sha256:17528e869aab92eb7771170442a46505444260cfe3e5536594b7b1a8830ae8d2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0MzdjOTZhNzNlMmIzM2VlMjExNjUwOWViZDcwNGU3MmVhNWJkMTc4YjM4NjVlMzM5MDk3ZjMwMjQ1ZGY1MzVhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4M2U4ODlmNGY0OTI2ZDZmOTUyZWYzMDYwMmYxYjRiNTk1ZDIwYmVkMzhmNzA5ZWE0Mjc2OTA5MjNhNDQxMTZlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhYWQ2YzM5ZWQyYTIyODJlNjljNGVhZWU0MTkyMTg2MTNhMjk4MDA0MzdkNjA0ZDg0Mjg5YjUxZTI1MTgwNjhkIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d0b1c54866544088594f913a751e1f1",
+      "statement": "The unit-systems generator writes frontend/app/composables/recipes/unit-systems.ts and the locales generator targets use-locales/available-locales.ts.",
+      "evidence": [
+        {
+          "resource": "repo://dev/code-generation/utils/static.py#L16-L21",
+          "version": "repo-lines-v1:sha256:93e64d557f8163ea051eb5e04ccaa187546d4b606c01412f7c17bfa8e1e3eb62:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODlkMTNmZWJiNWUwMDM0NmZlZWZiNWM2MmRlMTIxMTk5OTMyNGQ5MDE1YjczOWYzNDQ2NjM5NTcxODkyYTk5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTcwZjZlMDQwMzZlY2NjMjljYzk3ZGRjZDFkNTA2YzA2ZDhlYWZiMGY0YmRiODhkNTkzODQ4NzU3YjJmNjUzNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYyMGU2Y2IyMTg5ZjgwYjAwYjAwODRiYzI0YWNkY2M2M2M0YzczMmQyYjIwODgzYzdhZjA2ODI5OTFmOWFmMyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

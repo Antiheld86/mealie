@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:2541ded5732175bdb4a52d3d1a38f248b8cedabb406f67ebbd22507e391c7114",
+  "claims": [
+    {
+      "id": "claim_ba6528629d474d768a3ccd72004d2e4b",
+      "statement": "The backend requires Python 3.14 and the project is the 'mealie' package.",
+      "evidence": [
+        {
+          "resource": "repo://pyproject.toml#L1-L8",
+          "version": "repo-lines-v1:sha256:722d7178d958dfce7f910a2614d4d97789299e4469adf436ad01d059e039e289:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzAyYTgxYzM4MzZlZGVmMmQwYmExMWQyMzUzZmI2ZGFiYzc3NzE1MGE3Y2E4M2VhMGQ5ZTlhNzAzMTNmZWFiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWQ5NWY1ZTllZGUwMTgxNjA0M2MwNzk3YWNlOGRhMmFjNGU5OWE4YTZhNjEwZmE5ODU3MGVmMzRiOTM1NjEwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjU1ODg4N2ZmNWUyMDBlNWU0NDNiN2U5NzgwYzMxYTg2ZDI3NGY3ZTAwZGYxZGFjMWU3ZTUzMDQ5M2U1OTYwZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_51d08c2e23444b6980324c68895cbc88",
+      "statement": "Development runs the API and the Nuxt dev server as separate processes, with CORS for localhost:3000 enabled only when not in production, while production serves the statically generated frontend through FastAPI's SPA module.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L5-L12",
+          "version": "repo-lines-v1:sha256:e5855e01b63edebac2ad3e4dd52f429a49337bcfbf2b785d90b2c18e7fc667f8:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmZjMWI4MWI5NDU0OTcxNGVhNGM1ZjIwM2I5OWJiZDkyNDZmNTBiMGI4ZGU0ZDUxZTIyNmNlNjRhNzE3NzZiNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzdlYWI0ZGJiMGQ3ZDdmZGE0NzFkNTI0M2JmMzZkZGU4OWI2YTA4OTVlYTJmN2ZiMTVkNGMzYTYxNTU5YjdhYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjA5MWUwNjllYTc0MzIwMDY5ZjkwOGY2NTZlNDgxZjkwZTYzNWM0YjI5MWNjMDczODgzMGZmYzcxNWM5MTU4YSJ9"
+        },
+        {
+          "resource": "repo://mealie/app.py#L113-L128",
+          "version": "repo-lines-v1:sha256:53f6bda5cf719990ac340acfd0227959dbc52fb4a9d3b39d73dccf381bbc82b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiOWY3NjBjMGFjNmYzMjUyNmVkYzBhMjJjN2E3YTI0MDQ3NmQ3NDg2OTVkNjcxNDNlYmM3YzMyMTMwODg5YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2MTY4MWYzNDViOGM2YzAzZWVkNDBjMGUwNDk3Yjc5MjM3OWJlMTQ4OTFkZTZiYjFhNGQ0YmNkNjRkZmE2M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2MGVkYTk3YWU5NjUzZDJkNTVkZGZjMGFkNDQ1ZDNkYTNjNzY4NmJkMjg4YThjYTQzYmY0NTlkY2U4ZWEwNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3YWUwMjYzZTEwZmQyNzQzMmQzMWU4MzBiNzNmNmJiZWE4M2RlNjg4OTYxZjMwOTJjMDBjMWIzMGFlOTI3NTUifQ"
+        },
+        {
+          "resource": "repo://mealie/app.py#L155-L160",
+          "version": "repo-lines-v1:sha256:5a5bd7921a099fede66b29550f59af1ea5f61f6a3cf3f861b5977acfc8f48958:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmU3NGJiYzRlMWE3YTA5ZWVmZmVkY2FiNGRlNDdkODY1NDAxNDJkN2IzZWY4ZGI3ZTNjMDU4OGEwYTQxYjZmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIyMzY5OWFhODBmYTQ2MTE5MWQyOWMwOWUxYzAxZmJjZTIyZThhM2IwNjEzZGRiMTg5OWQzOTVkMzc5NmEyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFmNmQ3OGEyZmM0MzFiZTYwYjdkZjYzOTMzYmFlMzFjNzg1N2JmODk0YWUzNzM5ZDNkM2NmYzAxNDkzOWZlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTYyMjM4Y2M1ODY4ZmMwMzg0Nzc0Yzc2YjE2YzQ2Y2M1ZjljOTE4ZTg2YjFlNmI2MjM1YmI1MzIxOTExNTFkMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6b72f2fbaee34edf8bc8f6358ce63bc5",
+      "statement": "The Taskfile provides setup, dev:generate, dev:services, py:test, py:check, py:migrate, ui:test, ui:check, ui:generate and ui tasks used as the standard workflow.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L224-L310",
+          "version": "repo-lines-v1:sha256:4266a4d4d96b0dd3db4396ad9f462bb3049f260fd87860bbfb73ae96d13793bf:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlMGMxMGExODVmNTBiY2M2OWJkMGZlNTZmNjZjMTA1M2VmNjJjOGMzYzhkOGJiNjJjYTJiZmU3ZGNmZjYwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlMDZiZTMzOTk2OTExMzVlMzEzMWFkNzlmNmJjMWQ5YTY4NDNiNTIwOGVkZDc3Y2IzMzU4YzVjMzY0ZGMxMTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4MTExNzhlYmM4ODYzMDJhMDFjYWJjNTViOGM2MTViNWZlZWJlM2YxZWM3NzgyYTM2MTQzZjMwM2Y4NDRiZjQifQ"
+        },
+        {
+          "resource": "repo://Taskfile.yml#L32-L112",
+          "version": "repo-lines-v1:sha256:475dbb2f98322cfff6ee4dd578aeb7f6cfc281d9d21cb52ec1be48f33b81637f:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5MmE5Mzk1NzkwN2Q2NjA4YmI4MGQ1MDM0YWFjNGY0YTkxNzc3NzJhNWVjNzQ4ZGQ2YzJmMzRhM2NlMzkzYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4MzlkZDBlNzExMjY0N2UzMzg3NTMyNjliNzBmMzJjZmY3ODE1MjY5MGU5OTU3MGEzN2U5OTZkOGM0M2IzMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlMmY3MmVhZjVjMmU0MTMyODJhNDhlZDgwZWM0YThmMzQwNGNmYmVlOGE5NzhiM2M5ZjJlZDBiOTVhZjc2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUyOGZhYjJmNmZjMGM4ZWM5NzkyNDI1ODgwOTUzZWY1MTIzYTNkNWFiZThmZjI1NmM2NDdjNjlhYzA0NDhjZWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d35971b8e9524f3694bce6bed2428628",
+      "statement": "Project rules forbid hand-editing generated frontend API types and schema __init__ exports, require only en-US locale edits, and require uv for Python commands.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L100-L104",
+          "version": "repo-lines-v1:sha256:745bf78c196b2597a7b24bebcdbda631fc4a35c1907c751c4ecb68a57ce3f231:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I1NGViZWQ5NzA4ZjQ4Zjk4ZGFiNWQ1Yzk3YmRlMDc2MDExYmQwZWFkZTIyMDBmYzUxMjRkZmY1ZWEzYmVlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU5NmY2YjkzM2Q2YmEwMTg4NDY2ZjQwZWQ5YWEwNjlhM2FlNTlhNmNhMDYyZmE3ZGE0ZDhjMjEzOGM3YmM1NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzI5YzRmMDhiODU0Mzc0NzAzYmYwZTUyNzAxOGIxODc3NWJjMjZlZDAyNDc5ODM5ZmUwYTllYWY4YzViNDgwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGQwZDkxYjNlNzVkNzQ3NWFlYmEzMzgzZmRlNWNlYTJmMzAyNDEwMzcwNGZkODc2MjQ0N2MwODdkYTlhNjY5NiJ9"
+        },
+        {
+          "resource": "repo://AGENTS.md#L144-L144",
+          "version": "repo-lines-v1:sha256:84313d2c01471b8c65c31b9d1d2d93a7f922ee07417f3ce5319e0c80c537c262:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQzMTNkMmMwMTQ3MWI4YzY1YzMxYjlkMWQyZDkzYTdmOTIyZWUwNzQxN2YzY2U1MzE5ZTBjODBjNTM3YzI2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODQzMTNkMmMwMTQ3MWI4YzY1YzMxYjlkMWQyZDkzYTdmOTIyZWUwNzQxN2YzY2U1MzE5ZTBjODBjNTM3YzI2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2E5MTI4MWQ5MmZhYWZiMWI1YjA5YjA3OGNhYjljNDIxZGFkNGNkMTU5OTFjNzYwYWRkY2EyYzNhNmU1MjIwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzlmZjM1OWU5MGRiNjdjNTMzMTE2NzFhZWY2NjU3M2VlODliMDkyZDUxYzJhOTdkMGI2ZWUwNTU0YTcyMzAwMiJ9"
+        },
+        {
+          "resource": "repo://AGENTS.md#L28-L33",
+          "version": "repo-lines-v1:sha256:f78b4c5ef32773ed6345cb8c6cac958986e93941a46beb288b649ebf67f2f6a2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTUyOGQyNjIzMmIwNWJjMDU2NDdmYjU0YWMzYmFkMDRiYTJmYmMyM2E2ZWJlZjdjZDI2M2UwMzAxYzA4ZTlhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTZmMTBkZTIwNGJjZTQ3ZWU3NGUzOTFiYzQyYjAxZTNjMmEwMzFjNzYzMWE4ZDkzMjdjYTYzY2ZmZTIyYWEwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTYyNzQzYzdiNGJhYmI0NTY0NzJjYzk0YTA3OTAyOTk4MzVjMTgwYmZiZGFjZjg1MzY5NTMyNDZhZDk5NmI3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjMxMDY2YTY1M2Q3MjMwMTIyYmIyMjM3MGM2MjlhNTc1Yjk0ZGVkNjczYTFjMmZmNWE5ZTA4MjhmNWJmZTE2ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_520062fc3cf040d1a453fc334acc93f6",
+      "statement": "PR titles must follow Conventional Commits with the prefixes feat, fix, docs, chore or dev, and the PR template marks the description, linked issues and AI/LLM assistance sections as required.",
+      "evidence": [
+        {
+          "resource": "repo://.github/pull_request_template.md#L1-L72",
+          "version": "repo-lines-v1:sha256:f872689d58e4453de88be0fda43c6485029242cc91d141fb4df454caed101282:eyJzZWxlY3RlZExpbmVDb3VudCI6NzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkMWY5MWE2ZjU4NzA0ZDU1NmM2NGEyMTBhNjY5Y2Y4ZDhlMGFmNDNjYTFiODgwZjcxMzlhMDU2NmU1ZmUxY2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4NmE5MjYxNjNmYjI5MjZjNTQ3MDY4YTNlNTQzYjNlYmRhN2RiMjM0YjM1NjA3MGUyZWJhY2YxYjY2ODQwNmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_494a4ec480064407936742aa575a2279",
+      "statement": "Mealie releases on a regular automatic schedule, so PRs must be stable, complete and include tests for new features or regressions.",
+      "evidence": [
+        {
+          "resource": "repo://.github/pull_request_template.md#L11-L19",
+          "version": "repo-lines-v1:sha256:9b8290346e7406f42ae7d9aec21ce749ba4f7f37634f6ae15fc0dfc061bbe7ed:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMyMjFiODllMjVlOGFlNTM4OGUyNzNiY2JlYWFjNmE1NmU3OWQ0NGY4Mzc1Njg4MzA2ZGI4OTk1ZTM4NDRjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJmMjYzZjNkNWMzMDkzYmRlZTE2ZWM4NTE0MjQwNDFkZmI2ZjhkNTdjMGVhNmJiMTM1ODRlMWU2NzUzZGVmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTZkYTMzYzI3YmFlNDA1YWJjM2YyYzI3MzI0ZGFjYTg4ZGQzNDkyYjZlZGNjODc4MzM1MGM1MjM1NWVlZjg2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2ZjYjM4MDc0MmExOGVjYmUzNjIzYTBiM2Q3YjUwZWM2MTY0YjRlMDgyNWM5ZWVmYjVjNzUxZjNiYTBiYWI5YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae0abb17f5874a3bbe62a67a3d8acebb",
+      "statement": "Contributors should run task py:check and task ui:check before submitting a PR, run task dev:generate after schema changes, and include user-facing changes as release notes in the PR description.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L158-L170",
+          "version": "repo-lines-v1:sha256:1511c6a4530745397d61a9157d834bba621b0662534daac5c58e34b99b64a400:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNDFmYmU2MDExNTU4ODJhMmNmYjVlNTM3ZTcwN2E4Yzc1ZDAyNjhkYzEyODE2NGE3ODljY2Y3ZmE1MmNiYmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0Y2UwZGE5ODc2ZjE4Yjg3M2Q0MzA5NjFhYjE3MzYwYWRlMWI3OTg3ZGZhODljMGE5ZTM5M2RmOTA2OTQ2MGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1MWI2ZDQwYmJlYTQxMzBlNWM1Y2IxNDhhYzcxMGEzNTk0YzllNDQyYzhkZjNkZDI5ZGQ4ZWYwZjUyZDIyYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2f4e467499984449b5b1ad6c5a5eb2bd",
+      "statement": "task setup:py installs the pre-commit hooks via uv run pre-commit install.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L48-L57",
+          "version": "repo-lines-v1:sha256:64d8306f1c52ac083cf09387823963dc6ab9df6f4ee3a8420648ab5637ce586f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3MDE3Mjc3OTkyOTY3YzMwZTQ0ZDIwNjRkMTBjZDQzZmIzZjBlNmZhNjU5NjNlOGI2NjUyYmViMTNhODY1ZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5MDNiZjUyNzYxNGUxNGY0Y2RjMjk3MmU2ZDI5OTI0NTVhOTA5NTBjYjRmZmE5NjQ4NGFhNDE4YWJjOTdmYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmYmE2MmY3YWYzN2E2ZjcyMmE1NTgyODQ3NmEwOWNmOGZlNTRlMGExMGU5YjczOWU0YTFmZDU3OWJkNzQ5YTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5MGRhY2VmODE2Nzg2ODkwY2RiMWQ4ODA0YzAwZjQwNGE3YzY0ODdjZDA5Y2RlN2Q0MTdmMjljN2Q0ZGI1YjQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:38:26.692Z"
+  }
+}

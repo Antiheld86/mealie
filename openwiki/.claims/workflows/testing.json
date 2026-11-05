@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0a5773544181bd3d69411bb9ffb81a57c8645e7a3e3158f0ad5b8e45b1f167bb",
+  "claims": [
+    {
+      "id": "claim_46d6c61884af46068bc356ac5910e605",
+      "statement": "task py:test runs pytest in parallel with xdist using --dist loadfile, and task py:check runs format, lint, semgrep authz rules, mypy and tests.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L105-L141",
+          "version": "repo-lines-v1:sha256:b372883e43d5c284ad10c11b91c964337a2453a0a22e34391a011f4a9e614632:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmYTEzZTlmMGM2NzFkMDQzOWVmYzYwZDM5ZDExZmNjYzg1YjFmNzdmZWVmNjE5MWFhMzk3M2Y0MWFiMjA3NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyYWJjMWQzNGZkNjY3MDFmZTc1NzBmN2IzOTllZDQ2OTQ2MmJiOTU1NmUzNDU3YTUyMzE1NzNlYTVlNzQzMWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmMjc4NTFlMTA3NzJhODZhNWNjNjFhZTE3MzM4OGU0YjZmMjM5ZWE3NzIwYmMxMWEyY2Q1ZGFkNTc0ZmQyMDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7742f7a0e93c497abcac738c94f5d74f",
+      "statement": "The pytest configuration treats every warning not explicitly ignored as an error.",
+      "evidence": [
+        {
+          "resource": "repo://pyproject.toml#L98-L117",
+          "version": "repo-lines-v1:sha256:46600d8f5eea0f1e5922444a7538ac1e6358294c17a5c79b1244ad6810a14f15:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2NzZlNjQxNDY1YTY1NTFlOWU5Y2ZmZDdmYWExZTZhNDJmOWI3MjQ4MDk4MTNjOTAzZDdlZGNiNTJmMzAwNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxNjQ2N2ZkMjM3ZTBhMWY0ZTQ4ZTZkMWVlYzUyOTgwZTBjY2JjYTIzMTdmYTg2ZWI1MThlNDUwMzdmYTYzY2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViODhmZmMzNGFiYTVlMGYyNzY1YTViZDE4OTAxM2Q4MDExNzU2N2ZiMDkwOGQ1NGNjNTE2NTBiNGY1MmYwYjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8b67d29b8364e1a997e0cc77c05d53d",
+      "statement": "conftest.py sets PRODUCTION, TESTING and ALLOW_SIGNUP before importing the app, gives each xdist worker its own data directory and (on PostgreSQL) its own database, and calls init_db.main().",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py#L1-L52",
+          "version": "repo-lines-v1:sha256:1ef0a261f32ec3b5b700612a6b2d80543c9836e5bbe6d7e236e1e55a8f0008ea:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjOTRkNjViOTAwMjJjMmNlMDk5ODEzYjI3ZDE1MDhiZDExOTZlZTMyZTQ3MzVkZmUyMDRkZmJkNzAzNGIwOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzOTE0OTY0OTRkN2IwNzU0OWU1Yzg4MDY5MjAzNGM0MDk1MTI0NGU0YmNiMjk0ZWE3YjA2YjdkZTEyYzdlZDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_15900b2e6cba44ed82792b7f8447fea6",
+      "statement": "The api_client fixture overrides generate_session with a fresh SessionLocal, and an autouse fixture clears the client's cookies around each test so earlier logins cannot authenticate later anonymous requests.",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py#L55-L87",
+          "version": "repo-lines-v1:sha256:69951ff2e0e2a35169c17ecbdcf70dee453e2b74180cb1d85acc42ffac9cdcdc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2ZGM0ZTkxMjA3YThlNzdiMjI5OWI3ZTJkMmJkN2FjNGU1YjlhMzcxODM3NmUyOGQ0ZDU1NWY3NmU5MjdhNWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkNjNmMWMzMDY0ODQ0MDg0MDA2OTNiZTgwYWFhMDZiYWRiNTJmOWMxMmJkMDY1OWM2NjJkNzI5MjY5MTBmMTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlZmE5YTYzNmExNzk5YmIxYmUzNzE4MTZiYTEyNDY1ZDE2MGYzMGZmOTQ1MjcyNmViYmQzOGM0NWYxMzM5YzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_47a708690e7740c380a15e0c70b262c8",
+      "statement": "Backend CI runs on both SQLite and PostgreSQL with an OpenLDAP service.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/test-backend.yml#L1-L50",
+          "version": "repo-lines-v1:sha256:c768479b72b416b12f3f6794ff08b1d90e643ab5d621e60fd1c147e5a9cee664:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzYzkwNjQxYzA0OTdjMjI1Mjg4YTdiMjU1MmMxN2UzNTIzNjY1NjhlY2Y0OTY3OWI0Yjc0ZTVjODBiNzk1YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkN2U2MDZmOGRjZjYzYmQ4Y2U5YzY0ZTNkNzMxYjYwODgwZmY2YmIzMGY3NmEyZWEwYjQ2ZjUwOTYxZmE1MWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkYThmNDgyNDNhMTAyZjMzZDFlMzUxMDNjMjdiNTA3NDIwZmI5NzFjYTAyYjBiMjQ2MTQ4N2QwYjM1NWQxZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_14317b6e47d04ca38f95240034bf87ae",
+      "statement": "Multitenant fixtures create two users in different groups and an unfiltered repository fixture gives scope-free database access for tests.",
+      "evidence": [
+        {
+          "resource": "repo://tests/fixtures/fixture_database.py#L1-L20",
+          "version": "repo-lines-v1:sha256:0d67dded3749febd6d18b5b53901891ea8ebe49ef8e633431918955e2e5968a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MDQwYWNkMGQ3YjY5M2Q0NDAzMDBhYmE4YWQ1NzJiYzJiMTBlMzgxNDgwMGUxYmY4MDZkOTAzYzY5ZGJhNmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkOGQ2NGQyNDRlNzE3OTljZjA3YjNlMmViN2I1M2I0YmM2NmIyYzdiOWNlYTNhOWNlNDYyMGE3M2MwYWIyZjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExNDU3NzJkMWU0YjA2MDZjOTBkYzY1NGE3ZjY4M2MyZTQzYzEyNDExNmM2MzZmYTgzMjNjOWNlMGQxYmMxYWQifQ"
+        },
+        {
+          "resource": "repo://tests/fixtures/fixture_multitenant.py#L1-L22",
+          "version": "repo-lines-v1:sha256:87b2df25620268d1fc8213c99b82ef8efbc1d94a699c88a3a1f433635998f159:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3YWMyN2VlYTQxZWY3ZTBkMTRlZWI0Y2M2NWViZjBiZWFhMjA0MWFkOTEzODI2ZWJkZjk3ZDU2ZDZmZWJkNWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkZGQyMzAyNDVhMThmYTljZDBiNDZiNTgwNDNjMzBlYTgyODA0NmY1YzE4Mzc1ODJiMjY0NGFlNjNkMDRmNjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_35e12b137713496b8b91218755a203d9",
+      "statement": "The route permission test compares each route's declared permission against an explicit expected table so permission changes are visible in review.",
+      "evidence": [
+        {
+          "resource": "repo://tests/integration_tests/test_route_permissions.py#L1-L30",
+          "version": "repo-lines-v1:sha256:c27e4ff11b79a0a26f9823884c8a65a11275dcf96268e1802066d01c007300a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4MzAzMzMzMTJjNGM5YzIyMzNiYjAyNzYyYmQ0OTgyMDNiMWMzYmYwNTI3NjE0NzM1NjkzYjRiNzlmNmQxNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MjkwYTJjNGFhMzc5MjE2YmEzM2IxMWNkMzU4NDJiN2NiOTRkM2YyNDQxOTA3NGNkMDk2NjQ2ODU1MDdkZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3OGU2NTZhMmJmNGFkMDQ5ZjMyZTJiYWY2OTUzNTJiMjAxZTE2NzI3ODI3YzRhYjU2NTliZmJhMTc4YjUyMzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b343c23597e14232b4d3658324c25601",
+      "statement": "Frontend Vitest uses jsdom with a setup file, auto-imports and v8 coverage that excludes generated API types.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/vitest.config.js#L1-L46",
+          "version": "repo-lines-v1:sha256:87ce219e811038243fe8d2468a91845aeb2c3f3217970db7e8a821f48d3187fc:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0ZDA1NGU0ZGVmNDdjMzYzMjg2ZWZiNDhkNWExMmIzYTYzNzZjNjkyNGI4ZDM4NzdmOTA4MTczYjBkZWZkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c577c7d450864ddcbecc64ce33878925",
+      "statement": "Playwright e2e tests run against http://localhost:9000 in Chromium, sequentially, with retries and a single worker on CI.",
+      "evidence": [
+        {
+          "resource": "repo://tests/e2e/playwright.config.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:c1479410fabac739ad40678729fde446ad0506cc796ad90f2b7e2a6abe91f59b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmNThjMzMyMGM0Mjg4MjM0ZDVkMjZhMDk1YWEzZjY0ZmMxMjc2YWU0MzM0MDE3YzBkNzM2OTBhYTkyYTZiYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZGJmMGQ2NjE1MmIwZTRhNWJjZDQyNTA5NGE4ZmNkMjVjOGMxZTE5NmRmYzhiZDI1MmJkMjZmZjA3MTliZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwZGFhZWMwMzNhNzQ3MTg2ZjdmMGIwNmM4NGJkOWQyYmNjMGJhNmQxNzRmMTlhYzhhMGQyNzRhZTE0OWE3NzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_681fcc91262341ee99255599263109f4",
+      "statement": "E2E specs cover password login, LDAP login where the LDAP user must not see admin settings, and native OIDC flows.",
+      "evidence": [
+        {
+          "resource": "repo://tests/e2e/login.spec.ts#L1-L30",
+          "version": "repo-lines-v1:sha256:7f55e025e68e98ac74d6e6f9dfecd6ce4e6a67eac22de5b947cc3c3035cdd8e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhOTI4MzM2YThmNWQwMGU3OWEwMzNiNjhjZmY3ZTYzMTc2MmUyYmYwZjY1YTcwMzc3MmQ5MDdjNjU4YTIxMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YzA3YzVlZjI1MzRkMzA4NGE3N2M2ZWNkN2YzYTBmMWJmOGI4MWIwMmJlYjM3NGM0ZDVmMzRjZDdlNDBmNGMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

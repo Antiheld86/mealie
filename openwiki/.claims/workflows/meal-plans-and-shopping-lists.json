@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e2d550eb4cb6be4ff478e8a08abc658bae483f54bbb75d6d04a48227d224d73d",
+  "claims": [
+    {
+      "id": "claim_1d2b83f8fd51444caee652b00c81ba41",
+      "statement": "RepositoryMeals.update forces user_id back to the stored value so a client-supplied user_id cannot move a plan entry to another household, and get_today/get_meals_by_date_range require a household and ignore entries with an end_date.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_meals.py#L11-L43",
+          "version": "repo-lines-v1:sha256:cabde1f2d7bf2382788cbb28cd8a53d313519bc4798cf2d4f5af5980c5a3ec30:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTQ5OTQ1MDcwZDRiM2JiYTY0ODUxYjg0Mjg4NDViODMzNjQ5ZDM5YWVkZWQ3ZjhkZGNjMmE1ZTllZmJhYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4MDhkZDgzN2UyZTU0MjY5YjNhOTk0ZDQ0OWYzODM3MGU3Mzc5NTVmNWM0NzQxM2YxMzM4MzI0NzVhNTc2YzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9bda4ce8553b4ada955c9f78d3829daa",
+      "statement": "Random meal selection combines the matching plan rules' query filters, queries recipes across all households of the group in random order, uses the 'unset' rule day for date-range entries, and returns 404 if nothing matches.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/households/controller_mealplan.py#L162-L186",
+          "version": "repo-lines-v1:sha256:40ba7bfe422da8be173217417eaa9d18c35ba2494b09c98cb141d24164234b91:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlZmUyZmUzMGRjMzI0YmM5YWYxNTg3OTM5ZTViNjcwYWI4NDdjYTM4M2FiZWViZWE0Y2FjYzJkNzhkY2MyMjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2MWI2NDRkNWM2ZWVjNjZmMmI4NTFhNDY0NzAzODJiOTc3Y2VjMjhmZTNhYWUyY2Y1MGNjN2FhZjdiNzBiZjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhjOGFmODdmODczYWVjMjEzZTE1MWZlZTI1ZjNiYmJjODJmZjgxNzhiNDQzYjNhZGU3MmQxZjI5Y2U3NDdkOGMifQ"
+        },
+        {
+          "resource": "repo://mealie/routes/households/controller_mealplan.py#L80-L108",
+          "version": "repo-lines-v1:sha256:f059a00521d45633cd61bb5d203887e7193db9b2d57bc3250a1f6f5de99a7d0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmNDExMjBlZDZmYjc4YjBlMWRiZmQ5MTcyNTc2NDEyN2JhMGRhZTg4ZmJiNTMzMTk4ZGRiODFkNmI4ZjI0MzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkZjVmOTczMTJjMGFhNGY3MDcxYzVlYWRhYTk1MzBjMmI0NTc2NDRhZWRjMGU0MjhmMzg5OTJmOTZlZmVhYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhYTdlNTIzMWQ5MmM5MjdmOTVlY2E2OTNhYjI4YWUyODJmYjk5ODFiOTYwMDkzMzc5YjFhZmNiZjY2NGE4YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3961b1db526b4e8e89a71badc6201cf0",
+      "statement": "Plan rules have a day, an entry type and a query filter string that is validated by building it with the query filter builder.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/schema/meal_plan/plan_rules.py#L17-L72",
+          "version": "repo-lines-v1:sha256:f53973da1fe95fbe9500f54459915bae61fe355d1d266555425b5d3260f2745b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkZjRkZWY0MjlhODI3NDk2ZTc0OGE4ZGEyNmM5OGM0NjI1NmNkMDU4ZTMyOWNjNTc4ODY2YmFiNjg4MTA5ZTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwMDFkMTI2YTZmN2UzOGY1YmNmMmQ3ODA2Y2NjNzg4NGI5YTJlOTE2YWEzNmRhYTJmNTU2ZGFjMzhhMDgxMGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhYzE2ZDlmZDFlNTA3YmE5NmU3ZDUwZGZlNWY0ODY4ZDFjNDU2OWExN2Y3NWRmMDlmZjU1YzFhODBkMTcwNTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1428c59def343909152997ea832f5c7",
+      "statement": "The public iCal feed is authenticated only by a secret per-household token; get_feed looks up the household by token with unscoped repos, limits entries to a recent window (FEED_HISTORY_DAYS = 90), and returns 404 for unknown tokens.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/households/controller_mealplan_ical.py#L35-L72",
+          "version": "repo-lines-v1:sha256:ad7b0655d820d0f759777490d7da0a3833a27e3aa627f4fe5c2e62988faa4b84:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlNzEzM2Q3Y2Y1MTY0YmY2NmIwMjZmMjgzYzUxNWY3ZTI0ZDRhMzczNjkwZTM2NjJkYzA0Y2M3ZTcxYjdlYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwYzdhODI0ZDMzMmNjMzg3MjdiZTY1NmM0MDBmMDhkZGI1MzQ0Y2VkMGU2ZTNmMWZmNTIzM2YyMDdjNDNlMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://mealie/services/household_services/mealplan_ical_service.py#L121-L168",
+          "version": "repo-lines-v1:sha256:3b0e509da6632bd92fd67128fa69399183dc6d9cb93288e177ab41c9d291e7ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1YzYxMmU3OTk1MTdiZTE2M2QxZmI1YjE3ZmEzOWZhNzY4ODAzYjIxMWZlMTBhMjc1NThhYTVmZjQ0NjQzZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1NTcyMWU2MmIwMTgzZDUyYzFiOTEzOWNmZWM2ZGMxOGQyMWE5NWY3NjcwOGQ4MjhjODczMmMxOTdhMzdlZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2ODUwYjJiNmNlMTAxZDg2OWM3YTE2YmZkNTE2MmI0YjE3OTI1ZGUwM2VlZmQ5ZjM4ZjQyMzRkN2FkNGJhMmUifQ"
+        },
+        {
+          "resource": "repo://mealie/services/household_services/mealplan_ical_service.py#L22-L22",
+          "version": "repo-lines-v1:sha256:ac3932baafe4b12948dfb7ae4347f62769dc10fd7e87c4f79686829eca4fe419:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWMzOTMyYmFhZmU0YjEyOTQ4ZGZiN2FlNDM0N2Y2Mjc2OWRjMTBmZDdlODdjNGY3OTY4NjgyOWVjYTRmZTQxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWMzOTMyYmFhZmU0YjEyOTQ4ZGZiN2FlNDM0N2Y2Mjc2OWRjMTBmZDdlODdjNGY3OTY4NjgyOWVjYTRmZTQxOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDM0MzMyMzgwMjgxZmVkOWMyZTIxNWMyOTg3NDYzMzA4NDYzZDQ2NGEzNGI1NDkyZWJmMTk0OWVkMzYzMTVhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmI2YTA3OGY2MDdhYjhkYTA4NTMzZjFjNmQxY2E2NDFjMTA5NTcwMzY5YmJmODNlYTcwNWI5NzMwN2FhMGJkZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2982a1320c484c8e88ddf001a298bd75",
+      "statement": "Creating or deleting the iCal token requires the HOUSEHOLD_MANAGE permission.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/households/controller_mealplan_ical.py#L40-L47",
+          "version": "repo-lines-v1:sha256:db4782463da63069bac0b0980ae7fc4723387e9075959a561b9aece4ea9d6b4e:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjEyZmYwMGNkOGUyMzRkZTQzOGYzMmZhNjBiY2M5ZGVlZTdhZGZmNGVkZjBhN2YwNTRiZjA3ZjExMWUxMjI1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDQxMzNmZmJhOWYyYTFlOGI4ZjAwZDZlOTRhYWU1YWRhMjhkYzQzMTJjZDBlZjU0ZDAyOWNhOTU5Y2IwY2VjMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjFlY2MxYjI1YWU1ZGIzN2VmNDczZGYzNGI3ZjAzZWJhMzk4NmY0NjliYmJkYWI1NmEyZjY4YWM4NGRiMTJjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDUwZTYxMTdjYTgxMjI1YTdjYjYxNDJkN2M2NzdjOTU1ZDBlNTZhNDE2M2VmYjFlZDFjZDI4YmIyOGY3M2JiNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9a2848121a04fdb93969a27836abe7e",
+      "statement": "ShoppingListService.can_merge only merges unchecked items with the same food whose units match or are convertible via standard units, and foodless items merge only if notes match.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L49-L75",
+          "version": "repo-lines-v1:sha256:6f3da9876ece8cd39e25248caf49e8d0befdf7d635bfd38e4996e22c120824b0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1OTNhY2U0MmRkNGQ1NGQ1OTJmNThiNTY0YWI5NDU1ZjdmNGU0NGU4YmJiZDMzYzczNjk3OTRmMjg2N2FlYzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExOWZjMTMzMDA1ZThmODU5NDIyZDhjYjJjODNkM2U3NGIzNTk0Zjg0ZGVlMzBmOTM4YzMzMDY4ZWIyODM2OTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5ZDdiZWE0NzI4YzAwYTkyNDFiMzU0YTYyYjcyNDY2NGUzNTE4NDAzYTFhZjM0NDRkNjE4MDhmZDFhZDI1ZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViMTM4Y2ViY2Y4NGYxOTY5YWZlNThhNjRhYTVjNTA1NWVmMDRiOGUwODcxYTg5Mjg1NmY1OTM3MWE3YTcxNzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eaff967526bc4886b2e0b42c213be665",
+      "statement": "merge_items sums quantities (converting units when possible), joins differing notes with ' | ', merges extras, and adds recipe scales for the same recipe reference.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L77-L132",
+          "version": "repo-lines-v1:sha256:9448d9935e68e4a1c3c0080e50fda46b8feba2e74da9dd9673fd83c0eb545959:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiMDAwNGFkYmUxYjgxOTg3ODBiNjY4MzllNmNhZTkwMDE4ZDBkMzc4OGE2YjMwYzczMTgyYmY4NjE1MGFiNTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxZTA2YjczYjlhN2QyOGE0MDM3MGE1MDAzNDZlYWM0NTgzYThhMmZhOWI0MzQ4YTBiNTY4NjdjNWFlZjA2YjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0MDc1NTk1ZTNkMTBmODU1MGU4NWQ1ZWM1ZDM2MWUyZDI1ZTg3YzFlMzg5M2E1M2VjNzNkMWY1MGJlZDM4YTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiODhiYTcxNTdjMmFjMWVjOWM2ZTYzYjRhNzFhZjc4MDQ0YTZkNGFjYjdkNWEyMDJkZmI4OWVhYWU3YTVkZTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1fbeaec32054ef2bfdd462e0c80d138",
+      "statement": "Shopping list writes first verify that each list is visible to the caller's household and return 404 otherwise, while recipes are read through a group-level repo so any recipe in the group can be added.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L240-L246",
+          "version": "repo-lines-v1:sha256:4772bf40d3a279e70785547a60d942a99ac1bf41707ba2f8d8ce2d0d6e046eab:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzczYzg4MTQ3MjJlNzAwYTFkYmYxM2MxNWVlYWZlZjEwNjVkMDFiZjg3ODNhN2YxMmM2YmJlMDc1OWI2Y2JlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjAxOTEwYThiYjk5Y2JlNTJkYTM4Mjc5MjFmZjlhMmVjNWVmOWU4N2U3ZGQ3ZWQ1NTU0NjI3MDExNTg5YmZjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODBiMDkwMzkyN2E2YThhYjdhMjA5NWZlMDg1MzQwMGZhZGY0NTZjNTliYjdjODI4MjQwMDE5ODZhNTViMDNhOCJ9"
+        },
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L525-L545",
+          "version": "repo-lines-v1:sha256:1d9020ed039decdae922e21dd29435d36ded4714a46c00f3ae0f221c9d81b031:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MWQwYjkyOGEwMWY2NTYwMzU5ZDNlY2U4MDg2N2Y0NmFmMWQ0ZDExNGVjZTkwNjZkNTAzNDMxNDlmOTY0NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNzNlODE2ODczMTBkOTQyODcxZTEzNmQ4NDY1MDVjNmExMDcyMzQzM2VlYzc2OWVlMTFkMmMxNDg3ZDYwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhNGRhYjA4MjAzZTdlNzAzNGMwMWI0NmM3YTcxZjgwMDRjYTVjZGY4YTRhMjEzMmFmOTNmOGI1MWExNjkwNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmNjkyYzJkOTExMmU0MzNkYmU1YTY2OWQyZmYzYzE0ZDcxMGI5YTk3OGUyYWY2MDcxNDljNTc1NjQ3MmUwZGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bfa88bcd373b44e89ba89e9f1b08d6db",
+      "statement": "Converting a recipe to list items expands sub-recipes recursively with scaled quantity, skips foods on hand for the list's household when using stored ingredients, and combines duplicate ingredients within one recipe.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L419-L525",
+          "version": "repo-lines-v1:sha256:95980c9e50d884d251a64c24f4ea28edced673342e061f5a9c206caba658f8f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxNzk5NTRmYzE2MDM2Y2MwMjMxZWE1NzJhZjdjZTExYjIwZDU2NjY0OGZiZGEzZTZhZWRmOTI3YjhkZGQ3ZjdhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlODFkMGI5MjhhMDFmNjU2MDM1OWQzZWNlODA4NjdmNDZhZjFkNGQxMTRlY2U5MDY2ZDUwMzQzMTQ5Zjk2NDVhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlZjNjOWJlMTcwNDI2M2Q3N2M5ZWQ3ZTRlOTdkMTlkMDA2YjI3ZDVjMWMxMzY2Y2E5NjAyODhmYzAzMjI2NTVjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5YTg1MDJlODI3ODI2YTljNmJkNmNmNzc0Yzc0ZDQ2YzEzNzU4NjI0MGQ4OTI5MzA3MTVkNzRlNDFkOTA4OTE2In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_3972541bfeec419db080126daa145f0a",
+      "statement": "Removing a recipe from a list skips checked items and on-hand foods, decrements recipe reference scales and quantities, and deletes items whose quantity drops to zero with no remaining recipe references.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/household_services/shopping_lists.py#L579-L660",
+          "version": "repo-lines-v1:sha256:60efe5d230324a77c41871095bb9ed84a83222a756dffd9b25ccf532f4cb003e:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxYjAyZjFkMmViZTQxY2YxZTRlZTljMWEzNGQxOTY4MGRmOGM1NDYxMDY5OGQwOTExZjVhZTAzNWE2MjA4ZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwODk4NjVmY2RlMWEwMWNmYjcyNGFiZTE2ZjZiNzQ2ZjFmZTcxNDY0NTViZjIzZDQxN2M1ZjkxNzQ4ODE2YmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5OWVmMDcxNzAyZmVkMThkOTgwMzJkZmQ1ZTIzMDZlMTg2ZjkwMTU0ZGU1YTIzZTg5YTBmM2QxM2RmOTVlNTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b467971c9325425eab3f154634402e3b",
+      "statement": "The daily delete_old_checked_list_items task keeps only the 100 most recently updated checked items per shopping list and deletes the rest.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scheduler/tasks/delete_old_checked_shopping_list_items.py#L14-L75",
+          "version": "repo-lines-v1:sha256:aee1b3f218d5b1f9619d1f1da448886ef3535b80f02999231eae2f20f0de496b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyZDg5YTY5YmFjNzdlNTdiMTIyNzYyNjIyYTQ1MjdkYzBmMWZmNTAzMTZlMjdlNzA1OWRmOTZkZTM3OTA5YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwMDEwNWUwYTY4NTIxYzNkMzMyNjE1MzkwZTg1OWUzOWNmMjQxMjc0YTdkNzgxZDE5NmEzYWRhMDdiMTBmZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4OTRjZTc3NmM1YjE2YTkzODIyYTE2ZWQwZWM5YzBlMTJjNDdlM2JiZjNmZDM1MGYxMTNkYTAyZGRlZGRmNWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

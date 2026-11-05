@@ -1,0 +1,8 @@
+# Files
+
+- [Backups, Exports and Third-Party Migrations](backups-and-migrations-import.md) - How admins create and restore full backups (database JSON plus data directory), how group recipe exports are written, and how migrators import recipes from other apps with per-run reports.
+- [Meal Plans and Shopping Lists](meal-plans-and-shopping-lists.md) - How household meal plan entries, rule-driven random meals, the tokenized public iCal feed and the shopping list service (recipe-to-list conversion, item merging, on-hand foods) work.
+- [Recipe Creation, Scraping and AI Import](recipe-import-and-scraping.md) - How recipes enter Mealie from URLs, raw HTML/JSON, bulk URL lists, zip files and AI sources, covering the scraper strategy chain, cleaning, image download, the AI import workflow and ingredient parsers.
+- [Pydantic Schemas and Code Generation](schemas-and-codegen.md) - How Mealie's Pydantic schemas (MealieModel and suffix conventions) feed generated TypeScript types, schema __init__ exports, locale files and pytest route helpers through the task dev:generate pipeline.
+- [Recipe Search, Query Filters and Suggestions](search-and-filtering.md) - How Mealie paginates and searches records, how the query filter string language is parsed into SQLAlchemy expressions against filterable columns, and how the recipe suggestion finder ranks recipes by missing foods and tools.
+- [Testing and Quality Checks](testing.md) - How Mealie's backend pytest suite, multitenant and route-permission tests, Vitest frontend tests and Playwright end-to-end tests are organized, configured and run locally and in CI.

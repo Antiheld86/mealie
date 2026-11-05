@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a074f1d5fdf14cc329ed84a2164772e671dceeb0acab5873386030efb3644623",
+  "claims": [
+    {
+      "id": "claim_e2c3c6a3947e412d9b0acec423de0bd5",
+      "statement": "RepositoryGeneric.page_all applies the scope filter, optional extra filter, text search, query filter and ordering, defaults to created_at ordering when there is no explicit order or search, and returns total counts and pages; per_page -1 means all and page -1 means the last page.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L324-L372",
+          "version": "repo-lines-v1:sha256:1963bd756505dc3d64251d8b3bad9e84a94c91ae61c1c0cefbc722a42f494196:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2NTI4OGEzOWFmYWVhNzI1NTZkODBlNGU3MTFmNjk0YjNmOTJjMDQ1YjJmYTFmMmI5MDc5ODg5MWE1NmZlZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1ZjVkZjJhMGRkYzRiMTI2MzU5OGU4ZDEyYmQwZGE4ODlkYWI3OGRmY2NmZjhhNGY3ZWIxNDNjZTVhMWFiYmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzZTJhOTU3ZDg4OTA0ODRmNzVkNWJmYjc5YzY5NjU2ZDRkYWQ2MjU4YmU2ODAyNGYyMzlhOGNkYjlhNDA1ZTIifQ"
+        },
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L374-L420",
+          "version": "repo-lines-v1:sha256:13a8551e7c617a3a1810a3665f42cf14f3ca6f43eb6e2c1e6d02e708e2fde13e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NGQzNzRmNjcxZjVkMjNiYzI0YjY4NWVhOGFmMjVjNmNkYjAwNzI4NGFkMDhkZjVjMDkwMDNmYzY0NzcyM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MmE2YjczYjg1M2Q2NTY1MTA0YjI0NGQ0ZmJkOTkzZWJhZGJiMDYwZTExMWRiMDI1NGFkZjQxZjljNDgzMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlNjVhNWEyNmNiNDYxYzBiMzQ2YTE3MDk1YzQ5ZmQwMDU3NDE2NmEwYzcyODMzYWNiNjA1YzE2YjBmOTBmNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmOTI5OTA2OWQ3ZDgyNGI3MGMwZWUzYjM3OGNhNWVlYjRjYTg4OGFjYjNkNTA1Y2ExMmM0Mjc0NjNiYmE3YTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe82b2690e954eeb825926aeefaae5b3",
+      "statement": "An invalid query filter raises ValueError in the builder, which pagination converts to an HTTP 400 response.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L384-L391",
+          "version": "repo-lines-v1:sha256:574edb867a279bffb047247dc96439628013acfa6183cb31907b7c8502b98ece:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgxNTU5YzVkNWZmYjE4YWUzOWNjNGJjZjA3ZmIxMmJkM2I5NGI3YTdlMzgzYzhhMzUwZmQ3NDc3ODU0MGY0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODI4NjhmMmZjNTVmM2I1MmJkZGUzOTM5MTJiMDg2Yjg2MGNlZjMxMjQ4OTY2MGYzMmIxZmQyNjYwMjRiZDEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWJiODkzNDc2NjY1MTYxZjIwMjE5NDc2MWQ0ZjU4OTdkY2Y2MWIyNjQ5ODhmNTQyMjk5MmYyNWQ5M2Y2ODEyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjg1YjhjZGZjYmNlMTZmZGQ4OGU0YTIxNWE2ZGQ2NmYzN2ExYzRkYzY0ODZjYTg0ZTgxNTA3NDZjYzhjYTgwNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b456686e26ea4f49a005f59493944b2a",
+      "statement": "Text search uses PostgreSQL trigram fuzzy search only on PostgreSQL when the search has no quoted parts, and otherwise tokenized LIKE search.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/schema/_mealie/mealie_model.py#L139-L168",
+          "version": "repo-lines-v1:sha256:0436793d0f4feaf51ced87be94fa74ea6eaae85e221cef9070d71af75de5c46d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1ZmJjODZlNTliNTI0MTE2ODUyMGQ2NTZkNTY4MGU5ZTA2MDlkZjE0NGI0ZTE3ZGE5MmRlODg2ZmViN2IzODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4YWNlNjhlOTljMmFjMTZiZGI1MDY5ODIzY2I4MGFjOTFkMDI1YTg0YzU4MjU3YWE3ZWY2OTUwZWQwNWZkMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0NmI1ZTY3YjU5ZTZmNjYzNzcwNmIyY2E0OGM4YzJiMzVhMDU4OTA5Y2ZlMjU3MDUwMjEyMWZjZGI5NDdmZjAifQ"
+        },
+        {
+          "resource": "repo://mealie/schema/response/query_search.py#L1-L67",
+          "version": "repo-lines-v1:sha256:77f1dce7cdd9868ade653b0f09e1383e34e6d7325b22e90db8176f42149d5531:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4MzAzMzMzMTJjNGM5YzIyMzNiYjAyNzYyYmQ0OTgyMDNiMWMzYmYwNTI3NjE0NzM1NjkzYjRiNzlmNmQxNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmYTQyNTYyYTliZWNjOTkyM2E1ZTc5NjNiMDM5NjI3MTI4MzNhOWNhMTBlZDZkZThmM2FmNGQwZTdjZWEzZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f02df484c56457d93136a75f319c6cc",
+      "statement": "QueryFilterBuilder supports relational operators and the keywords IS, IS NOT, IN, NOT IN, CONTAINS ALL, LIKE and NOT LIKE with AND/OR and parentheses, requires lists for IN, NOT IN and CONTAINS ALL, and only accepts NULL for IS and IS NOT.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L78-L110",
+          "version": "repo-lines-v1:sha256:0ed2226e8bf61ddb5387a7e625dac7c5a0b7c8a99846c1005e524d046aa839e0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3Y2ZiMjc1YWJhYmYyNDViNDBiNDA0NGNlZGU5ZTNjOTNiNmYxODg1NDM4YTBkMTBlZTk2NmJjYjQ1NmFiYjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YTczM2RhOWRkYmEyMjc1ZDA5M2Y4ZDA5YTFlMmFlYjc5YzVkZWQ0MTM1NmJjMGJmNmZhYzE4ZDk1ZWEzZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyZTI5MmQ0YjUxZmIxNDE4MzIzYTFhN2FmYzIyODE5N2E1ODc2MTkwYWVmMDI3NWIyMzgzNmY0NjUzNDllYTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0MDZhYzk3ZWU5MDNkMTZiYWYyOGQ5ZGUxMWNmMzM5M2VhZjg2ZThlZmE5Y2Y4NTc2MmZjYTEyNjBmOTI5MzAifQ"
+        },
+        {
+          "resource": "repo://mealie/services/query_filter/keywords.py#L106-L113",
+          "version": "repo-lines-v1:sha256:6897f55b24d37350fc89fd3765bb8a7c09cf8a4ce8c22dfca47521395684f84b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNThiMDgzMGI2NTZhOTkxNzVjYjAyMDNhNGQ5OWY2YTVhNzUxOGUzNmM0NWMxNDVlOTdkZWIzY2VhNzA1MmJjYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmYxY2E0ZjJiOTkxYmFiNmI1OTlmMTY4Y2EwZGExYThjZWFhYjkwMTcwZTQxOGM5NDM4YjZiYWRhYTcwMGFhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY1YzkxZDEwZjU0OWY1YTBjMjVhZDA5Nzc4OGVmYjUxZGM5MmE2MGFmMzM0NjdiZDc0Njc4ZjVmM2ExYTg5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWE4ZDZjN2Y2MWZiNDNjZjNjNmQ4MTE0ZmYzODg1NDVmZWU0MjM2ZDFkNzE1ZTQ1YzEzYjRiZGQ5MzRmZGFjNyJ9"
+        },
+        {
+          "resource": "repo://mealie/services/query_filter/operators.py#L1-L33",
+          "version": "repo-lines-v1:sha256:9e113c21f407c47d570fd37d20a2e626e91c9bfaa66e3e3900d6f15f8d2659bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MmNlZGU2MGJmZTkyY2IzNTNkMWUzOTc5MDUxZTk3MmE1NmFjNjIzZTc0MDdkMDMwZWRjNjQ4M2Y5M2Y5NjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlN2M5NTdiY2I0NGZiNjczYzk4YjAwNTBhNzVkMzgwODJkYjgxZDkxOGRlMzEzYTNmMDdjMTIzNTMwNmQ3ZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_208c20125c8e4529a6519aa695962363",
+      "statement": "The $NOW placeholder supports arithmetic with +/- and units y, m, d, H, M, S, and the raw value is preserved in the JSON model.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L146-L155",
+          "version": "repo-lines-v1:sha256:b8aa27d3a39541683649ce0ef5e1647f61ca6cb425cafc8b93f158630befdbe1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4NjA0NjVmNmFiNmVmYWVlNzg0YWYyOTNiMGY5MWRlZWY0ZDFiY2EwNTVhYWU4YmZhYzNkOGFhNTZjYTc3YjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5ZWRlNTQxMTE4MDY3ODA4MTg0Yzg0ZjdiOTc3ZWQ0ZWNkMzYxNTU3MDViNzlmMTlhMjMwYTM3N2Y1ZDg1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwODliMTAzYjU3OTAwMGM2ODQwYzFiMGNkZDk5NmJlNjcwYTI0NDVjYzcxNTg0NDE4YjIxNTY2ZWE5N2JkMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjYjcxMzllYzZjOWM1NmVkNDYyMGUzNTdlNzg2ZmQ2NzE3N2Y1YzNlNmI0ZWRiNDg0ZGYzNGVlNmFmZGFlNjEifQ"
+        },
+        {
+          "resource": "repo://mealie/services/query_filter/keywords.py#L1-L60",
+          "version": "repo-lines-v1:sha256:905099615cf484ddf89002d6ee38732067a19f22e4af7b3e387f631346038097:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlZDAyNDdjYzA1Yjg2MWZlYTMzOTFlZTc2NTFhZWM0YmI1NzMwNGI3MWJlNmU5NmQyYjc0ZDE3MWM1NTFmNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhNDc5MGI1ZTg5OTk2NTJkMTdkZGRhNGRmMDEwNGVmZDcwOTZkMDM3YjEwOTE2MDVmOGE4ODgyZmEwY2I3YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzNTU0YjEwZmJhOTI0YzQ4ZjFlNzgzZmQ5Njc3NDU2ZGIzZmZhNTMyYTZmY2JmNTA5YWI3ZjBhOGZmMWVlYzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b4c464b2e204975b4c4db63e9e2b99f",
+      "statement": "Filter attribute strings are resolved through relationships and association proxies, and the final column must be marked filterable or NonFilterableValueError is raised.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L233-L300",
+          "version": "repo-lines-v1:sha256:6cb0a5b7a024ed41ac14a660efc891dbae1bce40d91da2f340164b84e881a221:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ2YWIwZjJhYWU3MWY1MDk2N2U2YWJhNWVkZWU0ZWViOGQ2M2JkMmQ1NWQxOWIyNTI1M2FiMzAwNDY2NThiOTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2ODQxYTVlYzNjOGExNmRhMDg2YTJmMDNiNDY2ZTlhOGU1NWNlZDNmOTE0MWM0OTRlZTRjYmRmNjQwYjJiNTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e15de85c03274e1dbcf27281ce0390e9",
+      "statement": "Relationship conditions are wrapped in EXISTS subqueries and ordering by related attributes uses correlated MIN/MAX scalar subqueries, to avoid duplicating parent rows that would break LIMIT/OFFSET.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L300-L375",
+          "version": "repo-lines-v1:sha256:7d84f15c661dc9690d8c3bbeeb803594f761b59357d67447386024ddc12f33ff:eyJzZWxlY3RlZExpbmVDb3VudCI6NzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxNDg2M2M1ZTRkM2RlOWI4YWM4Mzg1MWE5MTk0YTFlYzcwN2JiYWNmYjVlODA3MjBhNzdmOTdiYTgxMzkxZDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyOTI1Y2U5YmM2OTFiOTBlZjFkNWNlMDUxYzY5NWE1OWEwN2UzN2Y4NGFlNmM0ODYyZmIyZmFiNGJlMGIwNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwYzkwZWJmMWFkMmNlZjU3YmM0MzI5MjhhMDZmNTQzYWI5ODIyYTliY2RjZmYxMzYzNDE2OWM4YTliNGEyYWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_40baa514d51744129907196f3c4eb3ec",
+      "statement": "combine_filters validates each sub-filter, raises 400 on invalid ones, and joins non-empty filters with AND.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L180-L200",
+          "version": "repo-lines-v1:sha256:9af1ec3aa4bdb408ca99edea2c82757d85b9b1c081e7ebdd5c8d0ec0884befc4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlYjJmOTMxYzIyZGE3Y2M0MTAyNGY1NTBhMjA4ZTBhMzI0NTU4MWU0ZDc1N2U5ZDY3YjJkZjc5N2JmZGIyZjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkZmU2OGI2N2M5YmU5MDA0OTRmZTI2ZDhjZWEzNGYyMWQ2MDliMmY5ZGM3OWUxYzI5ZTQwZDQ5MDQ2YzMyZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2NDYyOGRkM2VhYjRjMzg1ZjUyY2NjY2I1ZWJiODBmZWU1OGQ4YTc0NmRhMGE2OGNkMzBlMmM2MDZhNzA5NTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7ce6d2622ca243309db4a880e232c842",
+      "statement": "find_suggested_recipes orders results by missing tools, then missing foods, then the requested order, applies household on-hand foods and tools, and returns missing and substituted foods per recipe.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/_recipe_suggestions.py#L322-L412",
+          "version": "repo-lines-v1:sha256:dda593dd716c5e9798b10aa25860d86c3fbd824e14ed88c9ed8cf1d0b64bc2ff:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3OWZhMzdiNTdlNWVhYWZhZjkwN2M2NjhhNDdlZjVmZjc1N2NkZGNjYjQwM2U1ZTA1ZDk5NjRlMWQ4OWE3ZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjZDRhZGUyNWEwZTU4MjA5OWZmMTcxZWUzOTMwYTViYTFmYzc0MjdlYTY0MmEyZjM2YjRhMzE5ZTc3MjYwNTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1NTM2MTk1NzJjYjUyNjE4ODA4ZTUyZDE0NTNiZGNlZDJlNWU2YTczNjhhZWZhZmY0ZTI0ZmMyMzZmZjBhMTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_87eb3343e779475db1426aa1d122a015",
+      "statement": "Recipe-level ingredient substitutions are checked before a food's own substitutions, and note-only substitutions without a food id can never satisfy an ingredient.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/_recipe_suggestions.py#L67-L84",
+          "version": "repo-lines-v1:sha256:aa611be2765c376b3a33bb5996cf786e34efc49d617b14da4aa3fbde058d19c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYWJjZDBjYzY5MTNkNGY1MWViMjFlNGY1YWZjMmU5MGY4NmQzNmE0NTBiYjQyY2IwNWM2ZjNlMGQ3MDZmOGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlY2M0M2M0OWQ0YjI3YWYzMjBmZDlmOTljYjg4NTc2MGFmODIyMmNkYjA3ZWEzNmY1NzVkMTBmNGI3Y2NmZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyMmRhMzYxODUwOGU5NWY0MTJkNGNiYTZhMDdmOWJlNDRkZDJjNTI2MDQ3MDVlZmVhOWJmNzUwZWMxNDRhMjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_537c1e9f8b27467e8802a3f9e2a26717",
+      "statement": "matching.find_match returns an exact dictionary match if present and otherwise the closest rapidfuzz ratio match at or above a threshold.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/matching.py#L1-L19",
+          "version": "repo-lines-v1:sha256:275d4d924756f19d1b0a2e779df39a0bac9f829771e7521371e001d24934c569:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwZDJkNzcxMjdlNjk2ZDJiYjgyNWMwMWFiMjJhZWIxMGY2NzBhYTdmZGRkYjVjOWQ0MGE1YWQ5MGI4YzY4ODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkMTg2ODQ3YTFlYzBkODdiMDczZmJmOGEwOTY1YzEyZjUyYjYwM2MyOTU0OWM2MGNiNTRkOGRkNjQ3NDkxYWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

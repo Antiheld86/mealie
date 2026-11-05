@@ -1,0 +1,9 @@
+# Files
+
+- [App Startup, Settings and Scheduler](app-lifecycle.md) - How the Mealie FastAPI app is assembled, what runs at startup, how settings are obtained, how the in-process scheduler runs periodic tasks, and how production serves the Nuxt SPA.
+- [Authentication and Security](auth-and-security.md) - How Mealie authenticates users (credentials, LDAP, OIDC, reverse proxy), mints and validates JWTs and API tokens, resolves the current user as a FastAPI dependency, and locks out repeated failed logins.
+- [Backend Controller-Service-Repository Layers](backend-layers.md) - How Mealie's FastAPI backend is layered into class-based controllers, services and group/household-scoped repositories, and how dependency injection, sessions and the HttpRepo mixin tie them together.
+- [Database Models and Alembic Migrations](database-and-migrations.md) - How Mealie configures SQLAlchemy for SQLite and PostgreSQL, organizes ORM models, runs Alembic migrations and post-migration data fixes at startup, and marks columns as filterable.
+- [Event Bus, Webhooks and Notifications](events-and-notifications.md) - How domain events are dispatched through EventBusService to Apprise notifier and scheduled-webhook listeners, how the minutely webhook task works, and how transactional email is sent.
+- [Nuxt Frontend Architecture](frontend.md) - Structure of the Mealie Nuxt 4 single-page frontend, including component naming rules, the typed API client layer, axios token-refresh handling, auth state composables, stores, middleware, and the dev proxy.
+- [Groups, Households and Data Scoping](multi-tenancy.md) - How Mealie isolates data between groups and households, how repositories and controllers enforce scope, the per-user permission flags and RequirePermission dependency, and the tests that guard tenant boundaries.

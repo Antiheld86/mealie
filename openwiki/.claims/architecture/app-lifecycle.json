@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:20c55c314d6419e1a12aa7f4282384d85290350dd2395456d36427e6543663f5",
+  "claims": [
+    {
+      "id": "claim_f0fcad232cc84d4c9f6ec64c59bd865a",
+      "statement": "The FastAPI lifespan runs init_db.main() and then starts the scheduler on startup.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/app.py#L56-L70",
+          "version": "repo-lines-v1:sha256:690f149a3f8d3c707f01e3ca588b2771639b1e56ec33d56504cd9ca3eb2729b8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkMmRlNjdiNDJiMzE3YWE5NmM2MDcxODk3YjYxNmQxMDNmNzcxNzlhZjkwMzVjZWMyNWY2MTA3NDhjZjEzNWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlOTUzMTFhYmIzNjhkMDA4ODY4ZGUyOTYzMmI5M2U1N2IwNmNmMGMwZGIwOTIzZGZlMGQ2MmRiNTFjNmVkY2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxNDJhMTBkZGU0YWEzMzFlNzY1MGM2MGNhY2VjMTljNzkyYmQyM2EzZWZkOTA0MTBmZmM5YzZkOThjZWQzMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NhMTVkODNlZWJjMjFmNDJlYzVhMjAyZTc0Y2JlM2NhMzdkY2UxMTk2ZWI0MWM2M2ZhZDFkYTE3YmRjYTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b599dc583374b3e8fe10d3a2a92960c",
+      "statement": "CORS for http://localhost:3000 is added only when settings.PRODUCTION is false; GZip, Session and LocaleContext middleware are always added.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/app.py#L113-L128",
+          "version": "repo-lines-v1:sha256:53f6bda5cf719990ac340acfd0227959dbc52fb4a9d3b39d73dccf381bbc82b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiOWY3NjBjMGFjNmYzMjUyNmVkYzBhMjJjN2E3YTI0MDQ3NmQ3NDg2OTVkNjcxNDNlYmM3YzMyMTMwODg5YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2MTY4MWYzNDViOGM2YzAzZWVkNDBjMGUwNDk3Yjc5MjM3OWJlMTQ4OTFkZTZiYjFhNGQ0YmNkNjRkZmE2M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2MGVkYTk3YWU5NjUzZDJkNTVkZGZjMGFkNDQ1ZDNkYTNjNzY4NmJkMjg4YThjYTQzYmY0NTlkY2U4ZWEwNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3YWUwMjYzZTEwZmQyNzQzMmQzMWU4MzBiNzNmNmJiZWE4M2RlNjg4OTYxZjMwOTJjMDBjMWIzMGFlOTI3NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f6402f834ab4a17bf9152e2c4adabec",
+      "statement": "get_app_settings() is lru_cached, making AppSettings a process-wide singleton.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/config.py#L41-L43",
+          "version": "repo-lines-v1:sha256:159d6b5517437a5c51ef249e02b453cf42e5eb0a0d1b3590b9b894056c4453db:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmU5Y2M1ZjhmYWNjZmRlYmVlOThkYTk5ZGUxZjc0N2FkYzU5ZGM4ODczNGYyMTBhYmY0MzAyOWZiYjNjZjM0MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2E3M2E4NmIyNjI4ZTkxOTU4MDk5OThmZTdkMjNmZmQwMTQ5ZjM3MjA5MDc3ZGJlNzFlMjA1MTgxYjBhZjVjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE4MmFmYWEyNDNiNDZlOGNiYjVkNmVmOTMyMTIwMmY5YWVmZGI5NTExOGRhOTg0OGU4NTYwNjc0YWIxM2JhZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzFmOGMwYTlkNWZkOWY5MzVmZWQ1YTQyYjFjOWI0MGM0NjRhMTA5NjA5YmIxMDJkYTM0ZmVlYmZkODRhYjdmMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9c677b357b3649cf9d15cd28e56f75ab",
+      "statement": "The scheduler registers daily, hourly (locked_user_reset) and minutely (post_group_webhooks) callbacks in SchedulerRegistry and then calls SchedulerService.start().",
+      "evidence": [
+        {
+          "resource": "repo://mealie/app.py#L131-L151",
+          "version": "repo-lines-v1:sha256:1f2dda4bdcd19845c7335168bfd2274c41c90757a3acb6b146684badebb45156:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2OGIzOTg5YmRmZWNhNjhjY2E1OTczYjhmNTRjMjJmMGNlYzlhNDBkZjg2ZmNmOWJhMzYxNGFhMWIxY2U3ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMjg3MjViY2I2MTIxZGE5YTY5ZjU1MDdhYWY5ZmI0ZTE5ZDU1YTVmYTFhNmE5ZjZhY2NjYjI5OGVjOTA3Y2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiZWUwYjQ5Mzc4MmM5NjMwNTNlZmE4YjA1YjZlMzY2MWMzZjI3OTJkMjEwMmViZmZjOWQ3ZTEzNmM3ODQ0ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxZjZkNzhhMmZjNDMxYmU2MGI3ZGY2MzkzM2JhZTMxYzc4NTdiZjg5NGFlMzczOWQzZDNjZmMwMTQ5MzlmZWYifQ"
+        },
+        {
+          "resource": "repo://mealie/services/scheduler/scheduler_registry.py",
+          "version": "repo-file-v1:sha256:eb155f6a1253d2e188cb21575c559286c5e91a767750e53a7d9aa2cc09f4b20f"
+        }
+      ]
+    },
+    {
+      "id": "claim_4da896a89f2541b0b3f496a048ab292b",
+      "statement": "Scheduled callbacks run through a wrapper that logs and swallows exceptions; the daily loop waits until DAILY_SCHEDULE_TIME_UTC before starting, and the 'minutely' loop fires every 5 minutes.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scheduler/scheduler_service.py",
+          "version": "repo-file-v1:sha256:6d872d10728a95a156790f72c3ab13b2d80f925853d357a3a1a41e3b68bb6d87"
+        }
+      ]
+    },
+    {
+      "id": "claim_233b325b7a784ea2878ce2d78b276d73",
+      "statement": "The SPA is mounted only when PRODUCTION is true and TESTING is false, and mount_spa returns without mounting if STATIC_FILES is missing.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/app.py#L155-L160",
+          "version": "repo-lines-v1:sha256:5a5bd7921a099fede66b29550f59af1ea5f61f6a3cf3f861b5977acfc8f48958:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmU3NGJiYzRlMWE3YTA5ZWVmZmVkY2FiNGRlNDdkODY1NDAxNDJkN2IzZWY4ZGI3ZTNjMDU4OGEwYTQxYjZmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIyMzY5OWFhODBmYTQ2MTE5MWQyOWMwOWUxYzAxZmJjZTIyZThhM2IwNjEzZGRiMTg5OWQzOTVkMzc5NmEyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFmNmQ3OGEyZmM0MzFiZTYwYjdkZjYzOTMzYmFlMzFjNzg1N2JmODk0YWUzNzM5ZDNkM2NmYzAxNDkzOWZlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTYyMjM4Y2M1ODY4ZmMwMzg0Nzc0Yzc2YjE2YzQ2Y2M1ZjljOTE4ZTg2YjFlNmI2MjM1YmI1MzIxOTExNTFkMiJ9"
+        },
+        {
+          "resource": "repo://mealie/routes/spa/__init__.py#L277-L287",
+          "version": "repo-lines-v1:sha256:f5bf627ce574aed0f91e9296c5ee0ace7a472f44613a0b399cd2374fe582221a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5M2ZkYTExOWQ2OTI0ZDFlMDZhYTE4MjQ0MjVlZGNmMTk2NDA4YjdkZGU4YzMzNjJiZDJiNGY5YTc1ZDA5MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2NDVmYmY4NWYxYjRjZTA2YjQ0MTgyMWI2MDc2NmYwOTc3YjY3OGM4ZDRhZGIyZjRlZTdiMzA2YThiZGU4NGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyNjg1ZmM1MjJhMjZlYTIxYjRkMWVmYWM3MDNiN2M0YmQxYzM5OGNmNTE1M2U1YWYxNDE2ZmRjYjk4YzU2MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8834789a8744cc39228df5b211ab3ef",
+      "statement": "SPAStaticFiles falls back to index.html on 404, rewrites HTML 404s to 200, uses relative redirects, and sets immutable caching for _nuxt/* and no-cache for HTML.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/spa/__init__.py#L28-L63",
+          "version": "repo-lines-v1:sha256:0a3a73106cc66a39e5477f095ab49885fa30a9040bc760d7ad8d63b1519c8c41:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwMWE4Y2M3YzUwYTFmZDBmN2ZmODUxYzg2YTY1NzIzOTMwNDdiNjRiN2Q0YmNhOTg5MGE0MjY0MzY3MmQxYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1NTg1NTRkYWYwYjI3OGY4MzgxNzkwZDZiZjBmNmZmYzYzZGU0YjlkNWY0NzRhMTEyZWMxNzVhM2EwMzlhMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4YWVmMDdhM2IxNGM1NmU4ODY5OTg0MDgxYmQ2Y2M0MWE5NTkwMWM5MjVkMjk2ZTcyYTViYmZiODQ1YTZhNzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyYWM2ZmEzOWMwZGNmNzM2OGVlZjY4OGZkZDcxM2JmYTUyYjJmZTNjMWQ1NmE2NzI3NGUxYWZiM2EzODU3MzYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

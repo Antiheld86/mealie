@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bb5d1cf6f6b446eb02f8d142f870e26f1384a5e0727133d057de9bb3b0ca6ed6",
+  "claims": [
+    {
+      "id": "claim_83475a4d3c094c7b9164aa3ec9deb835",
+      "statement": "RepositoryGeneric._filter_builder adds group_id and household_id equality to lookups when the repository has a scope, and _keep_scope overwrites scope fields in update payloads with stored values so rows cannot be moved between tenants.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L84-L103",
+          "version": "repo-lines-v1:sha256:79e9cb42c50bc745bd024ac4f06c563cb330a7a7f1631b1c6c5abbf7b8b3bb72:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiZWU4MmI3MDhmMDlmNGI1ZDQxM2I5ZjEzYTc5OWQ2OTc2OGY3MmNhMTQwMjhmNzhkZDFjMWE1MWZjNzlmNjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkY2RmZmM5MWEzNmQ3OTlkZTdmZjZhODI3ZmFhOGY0ZmJiY2ExMzgyMjhlMzY4ZGFjOTcwM2NiNWNkZDQ0Y2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyMmJmMWU1NDU4NTc1ZjAzZWEwZjIwN2RiOTQ2YzRiYjFjMmVlMDdlY2ZkYzEzZTBmYThkNzU5NGIyOGE4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0YjZkZGMyMmZlNDU2NzBjZGIzYzc4NzY2MWQ1ODEzOTA4MTJiMzczMTZkZTczOTYyNGM2YTNiNjU5OTc3NTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_76cbe42a93a14870bcde676fb67e2f59",
+      "statement": "Group and household scoped repositories raise ValueError when constructed with the NOT_SET sentinel, requiring callers to explicitly choose a scope or None.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L503-L537",
+          "version": "repo-lines-v1:sha256:d7aef26c962b2bc5ad967c88c5690d870e066ef661580a3a810ece63b8b6c3a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0NzM0YzIxN2JhYjExODNmNThmYjAzMDBjOWQ4MTBhZDM2Nzk3N2I1ZGRiZmVhZmQ2NDI2MjNkYjkzMTBkZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkMzY3MmNmOWQ0YTdjZjc0NzU3ZGU1NWY1ZWQ2ZWY2YjYzMjBiOTU3OGY2MGE0YzMxZWRiZjAzODU4ZDFiY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlODQyNjc5OWIwMzQ1ODAzNDgxYmViMWU3MmFiNDA2NGE3OWM2OWI2NjNhZGI0NDc0NDAwYjZkYmIwNTRjNDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4d823dd65ca41bba8c9aa28dd006ec2",
+      "statement": "The Household model has unique (group_id, name) and (group_id, slug) constraints, and recipes are linked to households through the households_to_recipes association which stores per-household last_made.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/household/household.py#L28-L35",
+          "version": "repo-lines-v1:sha256:f0330970c5d5bbd5665a243b7b83877687eace578b132619ad071bcf49985297:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDZiMDE4YjZjY2NhZGJiOWVjZDM1OGVmZjM0MWEyZGZjZTQ4MDU5YzQ5ZWU1ZGZjMTk1YzEyMzYzN2QwNDY3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWU5ODg0YTAxZWU2M2FlNjQzMWQ4ZWNmYzVkYWZmYTNkODA4Zjk0ZTFhMjYwOGNiMDcxYzBlNjQ5Y2ZhZWJjNSJ9"
+        },
+        {
+          "resource": "repo://mealie/db/models/household/household_to_recipe.py#L16-L34",
+          "version": "repo-lines-v1:sha256:89a8d0a8adc63087c4628653657b13d2ad43d628de20a27093b1f9e5a95b5975:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4YzhkOTBkM2MxNTYwNDAzMTNlNDY4N2EyNWIzZGRkOWMxZmU2NTZkZGY2N2ExZGEwMjFkYTRkNDExM2Q2NzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwNjJlNThlYTBiMGZkMTk1YmEwNzY2MTNiNjMwZDU5ZTY3YmQ0NzBiYjE5ZTk3YTIwYzkwMjM2NmU1YmEwZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwZjhkOTdhOTZlZmVkNzY1Mjg2MzE2Zjg5OGM3NDQxZDhlYTEwNDQwNTc4YjAwNDZhZTdjNDdiMTI1YjQ1ZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2a21a6d243e14af1a86526d4b7e297c1",
+      "statement": "Household preferences default private_household and lock_recipe_edits_from_other_households to true, and the iCal token is deliberately not a filterable column.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/household/preferences.py#L26-L33",
+          "version": "repo-lines-v1:sha256:6c9888ea83bc0a727a5475885d1fabce62f7b8e2a4c0166ffc7eca4428644690:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmMyMzZlYmJiODdhN2U5MTU0NDA5ZGQxZTYwMjEyNmVkMTVjM2ZmODQyYTcyZDRjMzIxYmY4MjI4NTZlYWVlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOThiMTA0NWJhMWJmZjYxMDg5YmYwMWJiODRiNjEzNzYzZWFlMTcwMjQyNDhmOTE5NTNhYjZjOGUwOWUzMzNmOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmUwNmViYjRhMjk4ZTA5NmI2MTZkMTBkYTE5ZTY2ZGYxOWNlZWUwM2I0N2VmYjU0YjhkNzZjOTg2ZDAzY2M0OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTc4ZjYwNDdkYWFjYjVjZjAwN2QzMjZhODYwNTcwZTgxMjJlYmUxNDRkOWRiMmFiNTM3YjJhYzNiNGMyZTQyYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_95e22cf194fc492a87293f2a1623cd00",
+      "statement": "Users carry can_manage, can_manage_household, can_invite and can_organize flags.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/users/users.py#L86-L89",
+          "version": "repo-lines-v1:sha256:423e1b405771f73582b2518e4c64278a12b73a76dfbfc4b80b09148afd8cc80d:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJmYTk2MmU1NmIxOGNlZmQ0OWE4YjAyNmNhZTVkOTU1MWZjM2Y5MTcyODdiMmRmNDEyMDFmYzlkMTkyOGM4OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTIxNzU0NzdlMWJjZDVkYTExY2VlMTBhMmI4ZGQzNTQ5N2E1MjQ0MDU1MTcwNThhNDc2YjQxMzUzNjYzMDlhOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzIxNGI1NDJiMDQ4ZTY5MDIxNDJlYjY4MTIxMzkyNDM1ODIyMzI3ZWE1MWRhYjI5ZWM0YzI1ZDA2YTViYTQ0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODg5YzM0ZDY4YzNiNWVjNjQ3OTc4OTNhNTVhMzQyMzBlNmFlMDBmNmNhMGY3Yjc0ZWUxMmFhMjVhZGFiODg0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1be2a009271445ba82ad30757ec80e61",
+      "statement": "RequirePermission maps each Perm value to a user flag and raises a translated 403 when the user lacks it; routes declare it via require(Perm.X).",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/permissions.py#L12-L72",
+          "version": "repo-lines-v1:sha256:f5ee1d7ff2169c4bd02236523c459e4d5781d9c1dd2f5db48c93ffda8f1ea523:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyNmMzMjgwMjAzNWZiOTJiN2Q0ODQ3OTY0ZmFiODg3Nzc3NGY5MzE3MWJiMmU3ODc0MWEyZGE0NTc0NzdkYzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwYTM4NTk5Y2MxYzc2MWQ1ZGQxNjRlYjM5ZTNkNTdiNzM0ZmI1ZWQ4NjkyZTcyYmM2ZDdhMmQwYThmZWY5ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_39b52a4600b549ad8137b31e73df1429",
+      "statement": "A route permission test walks the app's routes and compares declared permissions to an explicit EXPECTED_ROUTE_PERMISSIONS table.",
+      "evidence": [
+        {
+          "resource": "repo://tests/integration_tests/test_route_permissions.py#L1-L30",
+          "version": "repo-lines-v1:sha256:c27e4ff11b79a0a26f9823884c8a65a11275dcf96268e1802066d01c007300a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4MzAzMzMzMTJjNGM5YzIyMzNiYjAyNzYyYmQ0OTgyMDNiMWMzYmYwNTI3NjE0NzM1NjkzYjRiNzlmNmQxNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MjkwYTJjNGFhMzc5MjE2YmEzM2IxMWNkMzU4NDJiN2NiOTRkM2YyNDQxOTA3NGNkMDk2NjQ2ODU1MDdkZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3OGU2NTZhMmJmNGFkMDQ5ZjMyZTJiYWY2OTUzNTJiMjAxZTE2NzI3ODI3YzRhYjU2NTliZmJhMTc4YjUyMzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f095a3365a124d9d946bab9d178e2eb6",
+      "statement": "Multitenant test cases verify a user from a different group sees none of another group's categories, foods, tags, tools or units.",
+      "evidence": [
+        {
+          "resource": "repo://tests/multitenant_tests/case_abc.py#L1-L31",
+          "version": "repo-lines-v1:sha256:6c86185ddc7dece5d55afbb2e216f395113f97675983bc58ff17e6dcb0e231a3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmZTFlZDhkZGU1ZjBhZTZjNGJiNzFlMjE5MGU5ODYwNzMwNzczODBiYTFhOTg2NDg2NzZhNDZkZTAxZjU3NGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0ZTIyZmRjZWQ3Yzk0YzNlYTVkNmFlNDBkYTQwMzhhMmU5MjkzNjk0M2M0ZTIzNDM5MTdjZmZhZTJkNTAxMjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tests/multitenant_tests/test_multitenant_cases.py#L23-L58",
+          "version": "repo-lines-v1:sha256:a4418caaf65e7e7dac7a4f3dd1d4842eb32bd1ac46b853427b9cb8da343e4078:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUyMDJiZDgyYjQwODZkN2U0YjQxYWQzZjgxYjNmOTliNTZmNWVmZDAxNDdhODJjZThkY2MzY2Y4ODA3OGIyODYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjYzlmYjI3M2VkODQ2YjFmZWUzNGM0MDM1OWVmMjU3Y2YyNzY0MTU0ZTFjZGU4NmFlYzY2MjQ4MDJmNTVlNTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkMzA1ZTc0YjliMDFhMTQyNjY1ZDQ0NTYzODllNmNiMjJjY2U1YmYxZmFhMGJmNjE0MWE4ZmYyYTMzNGJjMTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf7e334d358b4183bab03a9e9c095f29",
+      "statement": "RepositoryRecipes filters by group_id and household_id when set.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_recipes.py#L443-L455",
+          "version": "repo-lines-v1:sha256:397f0690a8c52bd1b21a61135cfaa4c99fabbd8b6ddb7ef0e49b16ad8a934c45:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNDkwMTcxMjA2MjE0OTY3M2FhMDRkYzJlMGVmNTIzZWY0YTBkODMxNzRhNDcyNjY5NmU3MDMyMGZjNTQxODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNGZiOTkwZTg0Yjk5N2FkMDYyMjZiZmJkNzkxYzRkYWUyMzNmYmExYTBmODZmMGZkZTcwZTc3NzE3NmVmMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0YjU3OGYwYjRlZjVjNWZmYTY0MzExNGQ4ODUxZmMyODY3M2EyMGNkNDQ5YjJlNGU5NmJkMzE4YmU2Njk3ZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJlMWZjZjNjNmVmNGI0YjkwMGEwYTYzZDNjNmEwMjdlYmNmNDIyZjc1YjdkMjE2YzA0ZDBmMmMxMmY0NzFlOTMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

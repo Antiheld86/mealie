@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8bb70a6891a4b51387e6af6b769c33342c7f2de810ff7968accbaa3762a019fb",
+  "claims": [
+    {
+      "id": "claim_e19ac32533e7485ba2567be8c157debb",
+      "statement": "EventBusService.dispatch fans out to every household in a group when household_id is None (requiring a session), and queues publishing on FastAPI BackgroundTasks when available, otherwise publishes inline.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_bus_service.py#L64-L98",
+          "version": "repo-lines-v1:sha256:e64461fab80099f6ff5d7a7293e52824123e92878fa4e0ca70482f5cba7f410d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhZjdkYzY3OTkxYjgxODk1NDdiNGYxZTQ1MjIyNWM4MDI0ZmQ4NGMzMjVhNmNmZDUwZjFhZTdlYjE2M2Y0ODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1N2QyYmZkYWI1ZjI1ZTc5ZTIzZWI0MjlhMjg1N2EwYTcxOTc3NTM3NDA0N2ZiNjViZGM1MDU0ODkzMzQyMDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4MDhlNTM2NzhkMWU1YjVlYWE5YWRmNTg2ZTcxOWNhMDZmNjkwZWIyM2JjNjIyYjliODJjMzJhNmViNDA3OTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwYmY3NjEyNjkxM2Y2MzU3YjczNmQ3YTcxZTExZDQ3OTUxMzNkZWU2YjY1NTZmN2VkYTllZjE4YTM0ZWRmZjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e03fa28cfb44eb19d59d091442a4f1c",
+      "statement": "Each published event is offered to an AppriseEventListener and a WebhookEventListener, which publish only if they find subscribers.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_bus_service.py#L56-L62",
+          "version": "repo-lines-v1:sha256:95d985ff1d7d90a6a05bfbda2b1dcfa6ed6bef6b86c358869fa519795cd1e227:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjgzMjA3MDdhZDIyMmE0MDhlZThkZWRmZmI5YTFiYjE2MDFjNjdhMjc4ZGVjNWFhMzIzOWJmMjliOGJlMGFhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWNkMTYxNjZhNDRlYTRlMmI5YWU0N2RhZjA0MjAwMmJmNWE0MTI1MjQzMDIzOWM5ODMzYWYxYmYyNTU3YzY2OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f8309def26214dcd9020ce79b3b9a874",
+      "statement": "Listeners open their own session_context when no session was provided, so they work both inside requests and in scheduled tasks.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_bus_listeners.py#L41-L72",
+          "version": "repo-lines-v1:sha256:f2b95585c2b64c80badfb8d3d778d403e5d04bdf85d86cdf61ed725c06b34500:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkMTI3ODVlMDhlNjdkZDgyZDdjYjE0YmIwOGM3MDc2NWU0YWQ5OGNjMGUxNzRjZjI4OGY5ZmRlZGJlNzI2YzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyN2VmMzZjOGFjZTQyMDVkYzdjMTljY2JlZmYxNDRiZDBlYWNiNzhiMDU2YzM4YWU4NTBlZjc4ZGMzOGE3NGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiMTNiZGFiMmNiMDhiNjI5MDA5ZDU5YWU1NjJkOWE5ZDkxN2E0ZjYwZjRjMjIyY2IzZDBkZjg1MWRlNGQzZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1203a4f18fba47039ef3e3211d9fb17c",
+      "statement": "AppriseEventListener selects enabled group notifiers whose options enable the event type and adds event metadata as ':'-prefixed query parameters only for form/json/xml URL schemes.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_bus_listeners.py#L75-L132",
+          "version": "repo-lines-v1:sha256:d3098c26992b93b7367474eed9957d00e89a7294035b34cf33f0188ea3f0fe01:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzMzVjNDI4NDVkNWUwMTA4NTk0NGJhZjVmOGY2ZjVkZjNmNThjZDMzZWZmZGMzNTZjZmYwMTFjNWE3ZjVlMzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhYWU4YTBjYTc2Zjk4ZjdiN2RjNzk4NDk1MWQ2M2U1N2RiM2M2NDU1NzljYTUxYmFkNmE1MzlkNjE0ZWRiYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0NjBiN2ZlNGRiOWIxM2U2OTIzMzA4OTlkNzVmZTI1OGY2YzgwZDJkOGU5ZTBhYzU3ZDQ5ZGYxNjUzOGFmZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5NmNmZTk5ZWViYmE3N2VlOTE0MjMwMTliMWZmODc4N2U2ZDljNjE3OTVmNTFlOTkwMDNjMDgwNzI4ZWU5N2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3551fac6fb644f52b2434e9a81ab2fad",
+      "statement": "WebhookEventListener only handles webhook_task events with EventWebhookData, selects enabled webhooks by scheduled time of day within the window (handling midnight UTC wraparound), and publishes only when a webhook body exists.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_bus_listeners.py#L135-L197",
+          "version": "repo-lines-v1:sha256:f482fc0d707d635f4e8e93bac94921d2d674ffb6ea9a03a664dab2ce8e834a52:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiYjU4OGI3YzdlYjdhYTk4YTU3Y2ZiYTk1ZWQ3MGY3YWRiNTQ0MzY5YWFkNzkyZTA0NmQ3MTA2YTdlY2ViMWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmZGYwNjNkZjZhNzkxZWEwOWRjZjA1ZDBjY2Y0YWU5ZDhkZmZkMDRkOTE3OTFkOGI3NjFjZjJhNTA2OTdkMTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZDZkYmI0NmY3ODcyNmI2OGE5NWMwYTNkMjJiYzgxYWFhZDQ3M2FhMDNmYjZmNzk0ZDk5OGQzZTEwMzRkMjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d1e9ce11a9647f288e546ab1b3bc8c9",
+      "statement": "WebhookPublisher posts events through safehttp with a 15 second timeout and the configured allow and deny host lists.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/publisher.py#L38-L59",
+          "version": "repo-lines-v1:sha256:a333b5d4889051a9aa074b369d11d4660304e5b4e276564400e64ad01d48127e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4MzVjNjY2MTMwMWJmNmZmZDE5OTNjNzFiMDg4N2MxZDk4YTc3NDQ0ZDQ1ZDZjMjFmODZiMTAyOWMzNjVjYTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiYzlkMDMzMjgzNTEyM2Y5NGQxNGFjOTkwMjI2ODlhMDE3NzgwNjc0NWFmOGVlNjc3YmQ4ZTkzMWQxZWUyMWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ad5f5f981cd44060aa1be9d5978a01bc",
+      "statement": "EventTypes test_message and webhook_task are internal and not subscribable, and each subscribable type maps to a database field so adding one needs a migration.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/event_bus_service/event_types.py#L19-L35",
+          "version": "repo-lines-v1:sha256:d1ecde09f2da00ad473cebafb7210d2d9d5fd0793b578f695b51bb9627e0f40c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2ZjkxN2Q4NjIyYTY4YTNiNmU2M2M4MDgzZmFlZDAyYjkwNmJjZWUxYzRmZGI3YzE5YTQ5ZGRlYzk0ZDk4NjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZGU2YTkxY2U5MWRlNGQwZTMwZDEyNzdhNGU4MWRhYmE1Zjc5NGU3MDc0NzBlNWEyMmI3MzMwY2ZlOWQzOTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5NjEwYTg1Y2JjYTVlOTg5ZjIxMmE4NmU0NzRlNDVjZjUyNjBiMDgyNGJlMjU1MmQyYjVhMzViMjg0MWJlYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2ZTgxYzFhYmZmZjBkMzZhZjA4YmFkZWNmYTliYTllYWQ1MTgyZTczOGFiYWNmOTg2YTYyOWVjNGQxZTNhZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e5ce20da7f4499cbaa2346718a96b1a",
+      "statement": "post_group_webhooks uses a module-level last_ran timestamp as the start of the time window, iterates all groups and households, and dispatches a webhook_task event with mealplan data; only mealplan webhooks are supported.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/scheduler/tasks/post_webhooks.py#L21-L78",
+          "version": "repo-lines-v1:sha256:a54e78f5be1a6753c62eabea1e175d59a3bc8f92b20b7102835b0ad314ec2749:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyZWQyMjYyOGQ0MzRhNzY4ZmUxNTlkYzRmNjgxOTlmMjUzOTZjNzU3ZDFjMGU2MzliY2QxZjIxZjI2NDcyMWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3OGY2MmM5Y2VmMjJjOTRkN2ZjNDAyYmQ2MzgxMWVjOTgzMzBkZjliMDE0ZmY5YWI2MzZmNWJlOTdkNzA3MzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwZTIxOWE2MzQzYmM4NmQ4MmQyODYyMjg4OWRkZGM0OTY5MjU5ODMyMWY0NmE3NzU0MTE2YjJmYTZjYzljODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2ZGZiZjQ1M2Y3ZjFiZWJhYjcyODM2MWIwZjM5M2VlYjRjMWZiNjY4ZjllYTIyYjkxNmRhY2Y1ZGZmODFkODMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8104f33011334f9996fa1630f0c2e94b",
+      "statement": "EmailService.send_email returns False without sending when SMTP_ENABLE is off, and DefaultEmailSender requires SMTP from-address, from-name, host and port settings.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/email/email_senders.py#L126-L152",
+          "version": "repo-lines-v1:sha256:08d4b0148165a68a89fba20739e08e828784b831250c4c92690c4371a8d20730:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0YmIxOGY5NzcxZDIxYzliNWYzMWQ4MmI0NDU0OGJlYzIwYTc4NDAwMTlhMDBmZWExYTUwNzdmZTliZjQwYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxMzRkYTcyNGU4OTc5NGIyYWI4Mzc5NmY3ZDc1YmY0NDQ2ZDM3MTBkMGZjYzQ1ODg5MzZjNDliZTE0NjUyZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxZTNiYTY1MGRjOGI0NTQyZGE4YjU5OWI2NTI3YjNlNzE3NmVlYzlkMjViZDdiYjUyZmJjZTU4ZGYzODlhZDEifQ"
+        },
+        {
+          "resource": "repo://mealie/services/email/email_service.py#L39-L45",
+          "version": "repo-lines-v1:sha256:b4988ca838fb5a753bfb4409db1b4cab712dba9c60dc82ccc30c1831d804ac5f:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmYzN2QzN2M2MzViZjcyMGI3ODQ3ZWNhOWFlNjc0ZWM3NjkyNjQyYzg0OGViNTM3N2Y2NDNjMjFlNjg1YjgxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk3Zjg2MDhkMWYwZjg5MjFkMmFhNTk4MWNhNWQ1NDY0YmFkODU1MzI0MWJkMzg4OTNhZjJmYTVhY2E0MGVkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTUzMGFlYmRmOTAwYjY2ZWIwMzgwNzU1YzQwMTdlMzUyY2FkOThmYWE0ZDYxZDY4NWFiZmY0NDU4YWIyZTgyZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTIzNjcxZjhkMzg4YjUyYmViYTBmZDJmNmNiOWM3NWFjNjQ3MjY1YjNhMDcwYWUxZTdhMDczYjYyZGJmYmRkOSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

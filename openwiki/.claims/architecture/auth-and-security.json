@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1c9e96c8eaf9cdf17d11c8811739342182f64a21751f2d5c3754bd6ecc424abd",
+  "claims": [
+    {
+      "id": "claim_814a7453c4934e3cb0ba5b7cf330ee7a",
+      "statement": "get_auth_provider returns LDAPProvider when LDAP_ENABLED, otherwise CredentialsProvider; LDAPProvider falls back to local credential auth for users that are not LDAP users.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/security/providers/ldap_provider.py#L26-L38",
+          "version": "repo-lines-v1:sha256:081f192dd76d8e6f72f2c9591efe5a6dd21d5ebd1856be38c5da8843dfbf4ad6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2ODU3MWI5ZjkxYmZmOTFkMDNmMjYwNmYyMjU1N2ZmNjQzZDViYzZmMDZhZTk4NDI3MTUyNGRmNjc4Yjg1YWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkMjRhYjMwZDNjN2U5YmI4ZTI4OGJhY2EyNmExN2FlOTE3N2NiM2FkMTU1MzczM2IzODIyODMxOTZhNmM5NDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJlZjU5YjQyYWY2YmNmMzRiOTYyYThlNzZjYWFhNmRjODM0Yzk5Y2NmYjkwMjMzN2Y4NzUwMWY5Mjg5YTY2MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwZDEwMjcwZjdjMDY1MGU1OWUxOGM5YzczMDg2OTY0N2EyMzdlNjQ4YmQxMDhiYWU2M2QyMmFhOTE0MjQyNjMifQ"
+        },
+        {
+          "resource": "repo://mealie/core/security/security.py#L29-L37",
+          "version": "repo-lines-v1:sha256:1c743227eb4a324f2a8303d88401a700f473b4f90497c6f52bbfa025ec4a6daf:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzVhYjQ2OTkwMmI3N2Q1ZTIxYWVjNDg2ODIzN2E5OWJlZjhjZWM5MTE4NTY5MGFmYzFlNzNlMDEwYWQ1ZTc3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTlhMzJmYjk3M2JjMmI2YzE2YzJmMjBlYWNmODNmM2JkMTgzZWMzMTlhNmI5MjQ1ZTZmMTc0NTEwZWI2Y2IzNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmY0NTEzZWI0MzUxZjA4NjA5YWMxOTlhZWU4ZmRkOWRhMTAxMWRlYjk3ZjgxMWYyNTk1YWFjNWIyNGEzZWY1YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_255ac6a9c44740efac8454d070827f52",
+      "statement": "Local credential login locks a user after SECURITY_MAX_LOGIN_ATTEMPTS failed attempts and runs a dummy password verify for unknown or non-Mealie users to avoid timing-based user enumeration.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/security/providers/credentials_provider.py#L24-L64",
+          "version": "repo-lines-v1:sha256:9121e4c97f17bb4a21edea42d636f83c87b6c20cbb5af32001ae266f93dc1725:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2ODU3MWI5ZjkxYmZmOTFkMDNmMjYwNmYyMjU1N2ZmNjQzZDViYzZmMDZhZTk4NDI3MTUyNGRmNjc4Yjg1YWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjOTRjMTkxNGIxZWI1NTAxMTg1MzlkNjk2ZTg3ZWI1MDQxM2QzNjdhNTliMTVjM2I0MmNiNWY2NDRlNWViOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhMzg1Y2VjMWRjNzAwNjU0MGVhYWJiYWQyMTk2N2MyYmNiMTAwNjJjN2Y2YzJkNGRiM2I5ZmM2NmZhOGRiOTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d3bbe2916e748ed9848533a2d762551",
+      "statement": "Access tokens are HS256 JWTs signed with settings.SECRET carrying iss, iat and exp, and the lifetime is returned to callers.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/security/tokens.py#L1-L30",
+          "version": "repo-lines-v1:sha256:d24fd5b010ffc404a794e7d67371a5b2980655adaf4b2cde3b7c818e78190d9a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTY2MzUwMDY1YzM5MWQ1NjJkZTJmODA3NGU3MmNmNmNlYmQyN2IxMTAxYjdhMWYxYzJlMjU1MmEzMTBhODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhZTIyZjlmZDdmY2M1NWQ0N2UzYmY3MmYyZjg4YWE5Njk1MGVhYzNhODhhMDMwOTVkNDVkYjkyOWQyOTg2N2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb7ffa6add4d4d6096bf963be72fa495",
+      "statement": "get_current_user treats a JWT with a long_token claim as an API token validated against the api_tokens repo, otherwise loads the user by sub, and rejects tokens issued before the user's tokens_valid_after.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/dependencies/dependencies.py#L102-L138",
+          "version": "repo-lines-v1:sha256:fb8b060ec3d9e893774a37ff88f2f185127200a9572db0adc5c568e6ec49b904:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlMjdlY2VlM2ExODBkZWE4ZDUwZGViMzM2YTU5YWNjMzU2MWQ0YzlmM2IxMzUwNjgyOGY3MmZmZTBiNDQ0YWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwYzg4OTE4MzVlNDJmZmJjMWZkOGRkNWU4ZDY4N2FmMWEzZDk3OTZhZTkwY2JlNDMzYjU4NTYyOTRhYThiOTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczM2U4NDg3Yzg1ZGZkY2Y5ZmE3YjkzYzc0NmM5NDYyNWFlNDdlMTIwYzc5N2U3OTFlNzM3ZjllZDdmZmM3M2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhMzU4MjJmZjM5MDljM2ViM2YzODdiNjM1ZGRhM2VkMWM4MDQ3NWI5MjNjYjIwZThlNDc4ZGU4YTA3YjQzYzIifQ"
+        },
+        {
+          "resource": "repo://mealie/core/dependencies/dependencies.py#L159-L175",
+          "version": "repo-lines-v1:sha256:325e5f899e330d3e1a93cd0d9c35102d25d112d96b8716b7ea7268fdbb9eb211:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3NmY0MWIzM2ZkN2NhNGFjNzMxMGI3YjQ4YzBlYjNmM2FhODliY2Y0OWE4OTAyNjVlNjYxNzEyNWU0YTU4NDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExMTRiYjQwZTRiYmU4NDQ2Yjc0MmNkM2I0NGFkMWQ0MWZiZmE1N2MxOTAwYTZmNmI5YzkxM2E2ODI2MDUwYWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYzNjBjYjI0NmZlZDIyMzI0OGIwZTU3NWY0YTQxN2Y1ZjhlMzJhNTM3NzkyMzdkZGRhZDU0ZWEzNWMyYmE4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3NTg4ZTI1OGFhNDRjNzk0YTU1ODgwMDIwMDk0ZjlhMDVjY2JmMzFiMDBjYjk2ZTVhNzE3YTgxNTQ4ZWU5MTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_00b904ec5b5f4fd0877c940b4ef74e45",
+      "statement": "The auth token is read from the Authorization header with a fallback to the mealie.access_token cookie.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/dependencies/dependencies.py#L76-L89",
+          "version": "repo-lines-v1:sha256:5a559f46e6e3f08d9da4e043670e3d0d92ac4b05eac65f479e6a48b104cdf9c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1YjMyMTk2MWM3YjVlOWE3OTU3OTMxNmU1NmI0NTFkMGUwOWE5Mzk5NWQ1NzhmZTNlYzBkNWViYTQyNjU2ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3YWQ1YTUxMmJhYjE1OTEwNDMwYmJmYWE3MjFmNjQ5YTE4NjI5NDJmMzQwODcwMGNjZTQ1NmZjODJkN2U3YzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg1M2Q0YWM1ODNkZjZkOWVhYmFlODgwZWZjYzY0ZjQ2YzQ0YmFmZDQ4Y2JkMjQ0NjAzMDI1Yzc4ZjFmNTg4MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwNjdmNWRkNGI1MmM1ZDA3Njc2MjI5YmM3MGE1ZWFlYTA0OWRiZGVhZjEzOGI3NDU5YmRkMTNmYjgzZmU5NmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_755e02d216ee48d496348f89b8a4aaa2",
+      "statement": "ReverseProxyProvider authenticates a username from a trusted proxy header and creates a new user only if REVERSE_PROXY_AUTH_SIGNUP_ENABLED.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/core/security/providers/reverse_proxy_provider.py#L10-L40",
+          "version": "repo-lines-v1:sha256:090d8029b530a191d787ffc71b65ebc119853b9df203794ec169be53754ab4c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyNTkzNDZmZjlkZGRkZWNmZTJhNDcyNjg5ODYxYTU0MTVlMGUwOTdiYmU5NzgzOTVkYzEwYWIwY2QzYzU5ZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5ODUxZGYzZmUyNjY1MmZlZTMzZmEzNTkxMWFlYzhkMjVmYjhhZjhiZWQ3NmVmZmU4NjZhNmI3Nzc1YzFmMjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2MDg1OTc1M2RjMjE5MWE2MDFlNzExZTNjM2MzNTZlZjZmNDMyZjI2OGEzYWNkNTQ3ZDRiYjZiNGU0MjY3MDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkZjJiMzJkODQyMmFlYzkwZGI1NjM3OTk2NzY2ZTViOTcwZWRkZTYzMTZjODg4OGZkZDNlOTYxMzhjOWMwM2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_db666ab422fa49bb938f40d6da2ce60e",
+      "statement": "UserService locks users by setting locked_at and unlocks them by clearing locked_at and login_attemps; reset_locked_users unlocks expired locks.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/services/user_services/user_service.py#L13-L39",
+          "version": "repo-lines-v1:sha256:c2331d00964478b1d85f9f95362445041acebc576f7e5c202ff3bccd0d8af620:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyYTY0N2FjZjEwNWQ3N2U4MTkxMWQzMmE1NGZkOTZlZjE2NjRlZjI1YmE4NTg0ZWM1ZWJiM2MzYzQ2OTY1YWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhZGQwZWJkMmIzMzQ1OGEwNjJlMTA1ZDE2MDFjMjQxODc0NzJlYzg0MWY3NTk2M2JkYzUxMDJhNmE2YWRlMDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhODZlYjkyNGM5MjY2NjMxZDU0NmVjMjMwNzY2YjI4OTgzMmZkNTEyMDhlMzUzYTZkZGYyY2JjYTdjMDkxMjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

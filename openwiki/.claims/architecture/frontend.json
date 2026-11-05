@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:59517fc14027185b6009d8a1a878938d440845a77f023b830ed244f49998d49a",
+  "claims": [
+    {
+      "id": "claim_e78fe82339fa477f8e32522fd96d9052",
+      "statement": "The Nuxt frontend runs with ssr disabled, making it a static single-page app, and components are auto-imported with pathPrefix false.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/nuxt.config.ts#L6-L25",
+          "version": "repo-lines-v1:sha256:0c1cecaa19fcbc11fcdbc599cdb69859f47fd57594581a0d4be9c555a256aa7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljNjU3MTI1NDdhNGU1NmFmZmVmOTE0MDUxYjRhNzg3NjkyMGRiNjQ4N2I1OWE1YWQ2ZTg4MjRhY2ViOTRmYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmZDA3YjU3NDdjZWY5ZDI0MGEzMjA4NjU4MGRjOWRjNTk3NzY3M2M4ZmYzNDg0MjZhOWFiODYzM2M3NjM0ZDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwNDQ5YjQ5ZTNmMmZmN2JlYTNiMzJjZjgwNzkwNDAxMTJjNGI0ODUxODk5MmU3N2FjZDcwOTNiNmRiM2FkZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjZDgyY2IyMDY3Nzk1Y2FmYjk2YmE5MjFkYWM1NDlmM2RmOTk4NDk5MzFmYzk5ZTQwNWE4NTlkYzY4OTAzZjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_60d65cfc5e154ffcb07fde703026fb14",
+      "statement": "Frontend component folders follow naming rules: Domain components use a domain prefix, global components use a Base prefix, layout components use App (with props) or The (singleton) prefixes, and page components are a last resort.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/components/README.md#L1-L34",
+          "version": "repo-lines-v1:sha256:76be6174ce9432724f958a5739db929dd29700c53b774fd637f275eefb2bb325:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyMmM0NmI4YTk4M2U1YWNiOGFkMDgyNmQyZTg2M2U5NjBlMzMyMGNmOGQxYTdiNDEyMjJmMDRlZDQ1OTQ5ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3NDVmOTkwYzAzMzRjM2I2MDZjOWM4OTc2ZDBhNDM3YjI5MTRjMzhiNGFkOWMwYjI2YjBjYzllOGY2NjVlOTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0b64f41608ce4fe392f8bea90132d41d",
+      "statement": "API clients extend BaseAPI, BaseCRUDAPIReadOnly or BaseCRUDAPI, which provide getAll/getOne and create/update/patch/delete/duplicate operations over an injected request instance.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/lib/api/base/base-clients.ts#L1-L82",
+          "version": "repo-lines-v1:sha256:76fbfc44bafb1c43e863bbe131ef7b11b850d6acfd5b6667d212b741961214a0:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzYzg2MzY4M2I1NWEwYWUwOGIxMGY0ZjU1ZjU0YjE4YWQzOTdlYjIwZjRhM2NhYzIwYzZiNDIzYzI1NTgyNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4f26e215de044096b361b6891c226f58",
+      "statement": "useRequests sets Accept-Language from the i18n locale and returns request wrappers that return { response, error, data } instead of throwing; useUserApi, useAdminApi, usePublicApi and usePublicExploreApi build clients on top.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/composables/api/api-client.ts#L8-L86",
+          "version": "repo-lines-v1:sha256:1982bd219a2f1162a1acf994e4befecc00b04310384b3ef739758962c0e5ee60:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyZjYxMDNhNzdkYmNiMjllZTViOGJlZTg2ZGM2Zjk4MGRiZjJiZjA0ZTRmYzA3ZWJlNjI2NmJkOTFjZjYzMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY0MTI1NTM0NDdlMmI3Nzg2YWJjYTVmYzFiMjk2OTcwNzgxMjQwZjMxMTIwODYyMzg2ZTFiYjI0NTRmMjllNGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f81c4911d6d4818b823748e3fd63cf2",
+      "statement": "The axios plugin attaches the bearer token from the cookie, and on a first 401 for a non-auth request it refreshes the token once (sharing concurrent refreshes) and replays the request before falling back to logout and redirect to /login.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/plugins/axios.ts#L9-L156",
+          "version": "repo-lines-v1:sha256:21f907244576670c173b41ec3949bb049e37103686c2aa2f893e758426ce2b7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQ4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3NjU0MWY4ZjRkMjJjYjFkZmQwY2IxNTMxMmIxOWJjNjlkYzUxNzI5NDZiOWVjZjE0OWRmOWI2NWVjZDg1NmY1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3OWMyNGQ4YWRhNDRhMzQxNDc4MDdiYWI0ZTM3ODU0MDI1ZjI0ODhjMDc3YjQ2NGMyYTlkYjRhOTM5NjVhZjRkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d32937c8fd9416ebe4d09f019c06382",
+      "statement": "useAuthBackend keeps module-level user, status and token refs and schedules token refresh from the token's own expiry, clearing stores and composable caches on sign-out.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/composables/use-auth-backend.ts#L1-L80",
+          "version": "repo-lines-v1:sha256:decf5119c1031282f3bf6b84f8b2bc5d4c6a482025ace8204e4a120b702c514b:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwYjlhYzQ5NTE2ODVmOGIzNDUyNDg0YTE2M2UwYmE4ODA3ZmU5OWM2Nzk3MjJmOWNlYzgxYzYyZDRjNzgwYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkMTI2Zjg5OTFkMWJjYjFkOTg1YjY4YTg3ZDlmNWZiNTk2Nzc1MmM5YmJkODYyM2NlMDA5ZWMwZmMxY2RmZDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc11e0393c43496ebe9b30d759dd36b8",
+      "statement": "The auth route middleware redirects unauthenticated users to /login with a redirect query.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/middleware/auth.ts#L1-L7",
+          "version": "repo-lines-v1:sha256:c91db697a34a2ad1a52fb78e44b9aca2072830451abc0e5802f26b838b50a4a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFhNWZlNzVjZjg2YzdmZjc3ODFlZDBmOWI1ZGM4OTdmMzA3ODc3ZTlkYTE5NzAxOWRmMzM4YTMzNWM3MmRkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5c7a1e629c4e4836a8788d026fbd9278",
+      "statement": "In development the Nitro handler proxies /api requests to runtimeConfig.apiUrl (default http://localhost:9000), except /api/auth/oauth which is redirected to the backend.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/nuxt.config.ts#L75-L80",
+          "version": "repo-lines-v1:sha256:b935a0d1b3d72120bba38f38303c3a357e0e376379bb226c7e89bf2211a260c5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTljYmJjMDlhNGEzNDI3NzAzOGM4OGVlNTAxZjUxOTAyNGIwNmI5ODlhZTkwYWYzMGUwMjYwODVhNTliMjZmNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWJlYTA3NzMxODdkMDNkMWUyNzNiZDMxMmEzNDIyNjZkNDcyZDRkODhlZDFkODJlZTY5YjM0ZDZhYzVjZDc1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTZjYjIzOWNmOTJkYTJhZGM3MTRiNjNiMWE5Y2NkNzk1YzZmNWUwMmIzYzdlOGQxMDM4ZGRjZWZiMWI3Y2Q4MiJ9"
+        },
+        {
+          "resource": "repo://frontend/server/api/%5B...%5D.ts#L1-L12",
+          "version": "repo-lines-v1:sha256:fae8bbea4a5a25a8521811e5046768aa510214af8913951b39849852c3d6891e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxZWFhYjgwMGNiNTZiNWZlYjE5ODliOTMwNmU5MDQwMTA2YmNhYjIzOWI0ZjQxNDg1MjEwMTUwMjhlN2VmZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b2b35032f66b4be4aeadeff133bdd754",
+      "statement": "The i18n config lazy-loads locale files from app/lang/locales using the no_prefix strategy with en-US as default.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/nuxt.config.ts#L160-L290",
+          "version": "repo-lines-v1:sha256:e1704e7f5056d34f22144b2e49c5e3bc4d122f8fefec95d2faba71fc7f8fc8f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzYTgzMzFmOTJlNThmNjc5N2ZjZTgyZTE1ODM1M2E4Mzc3MWQ3NDYyMzBmNTM1MDcwODczMWY1MGU5MTI2MjA3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5NDhkZDc1ZjMwZDBhNWY0NzA0ZDQ4OTAyOThhNWEyNzczOWUxNzA3OGI0Nzk0NjYwNWU3ZmU0ZWM5MjM2YTJlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_8eb6c5e0d61845728544e2ca34e8e655",
+      "statement": "The production static frontend is built by 'task ui:generate', which runs pnpm generate in frontend/.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L261-L267",
+          "version": "repo-lines-v1:sha256:22f67264127edafc280daafc90a0de57bf44825184c4d15a5bf9b30c3a1c6d58:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2JjMzUzZmNiYjc0NzdmOGM4MDNkZDEzZmM0YTk2NWZmYzNiMzQ0NjBmOGVjZDNkZDA2NDZkMWVjZGY0NTNkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGIzMGU0M2M3YzYwMzFlMTkxYjgwM2RhMmZkOWU4ZGJmMDc1ZmIzZGJhNjY2ZjJjMjFiOTRhOTlhOTZjMDcwYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjMzMGFiN2FhZmRmOTY2ZGUwMmQzOTA4MGJjYmI3YWFmYmNiYzE3MTg2OTMwMTExZDVjNWVhOTE4ZmZkOTYwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjczZDY1YTA5OGYyNGUyNDM4NTFhZTdhOTg1MmNmZmZmZDIwZjZhODVhNjljMzhkMjVjZTkzZGM4NDU4NzMzNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ce662f41d6d744c49728f9c41b2894b4",
+      "statement": "The frontend declares neither Pinia nor Vuex as a dependency; shared data lives in composable stores built from module-level refs under composables/store.",
+      "evidence": [
+        {
+          "resource": "repo://frontend/app/composables/store/use-tag-store.ts#L1-L20",
+          "version": "repo-lines-v1:sha256:a6afb6fd05f4d7b7d0e4fe7a690306d41dda47761bbab020524e066c9f77d44a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzI3MWJjMDU1NGYwMjFhZjRmNzYyNmZkYTQ5OTUyMjEzM2IwYzJkYWFiN2FlYmY3OWU5NWQwZTUyNjE1MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiYzE3NmEyYjhlZDFiMjAyMzU5ZTg3YmVmMTA2MzBkZmM2NjJiZDQ5YzBlNGVhMjEyNzllMjFhNDI2ZGY4YWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM5ODM3ZTM1MGE2MDZhZjI5OWY0YTE0ODY5YmVhNjNiOWI2NzA2NDhkMmQ2MzA4ZWZhNGFmYTgyNzM5MjZkNTQifQ"
+        },
+        {
+          "resource": "repo://frontend/package.json",
+          "version": "repo-file-v1:sha256:a872997ae569cca03f44dbf04252dea585a9de829d88b6a1a31d736cac3e6aaa"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:38:26.692Z"
+  }
+}

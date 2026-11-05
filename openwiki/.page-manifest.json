@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/app-lifecycle.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:20c55c314d6419e1a12aa7f4282384d85290350dd2395456d36427e6543663f5",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/architecture/auth-and-security.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:1c9e96c8eaf9cdf17d11c8811739342182f64a21751f2d5c3754bd6ecc424abd",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/architecture/backend-layers.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:b7a56806aff88fc2dc34c3567eaeba04947c9b7003d6a5e01c632d99e70340ab",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/architecture/database-and-migrations.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:d04a30fd1be9ff3dbcd59c03e66682b70f282c93f60d2efefb614019da603c32",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/architecture/events-and-notifications.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:8bb70a6891a4b51387e6af6b769c33342c7f2de810ff7968accbaa3762a019fb",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/architecture/frontend.md": {
+      "pageVersion": "sha256:59517fc14027185b6009d8a1a878938d440845a77f023b830ed244f49998d49a",
+      "completedBy": "claude-code",
+      "completedRunId": "6b268b51-bd27-46b9-b484-136c4124b38e",
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60"
+    },
+    "/openwiki/architecture/multi-tenancy.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:bb5d1cf6f6b446eb02f8d142f870e26f1384a5e0727133d057de9bb3b0ca6ed6",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:2541ded5732175bdb4a52d3d1a38f248b8cedabb406f67ebbd22507e391c7114",
+      "completedBy": "claude-code",
+      "completedRunId": "6b268b51-bd27-46b9-b484-136c4124b38e",
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60"
+    },
+    "/openwiki/workflows/backups-and-migrations-import.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:4c6e39a96cda71376bd8b80bfb5e7d940b1976b1690c18d997da0ee17da761e8",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/workflows/meal-plans-and-shopping-lists.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:e2d550eb4cb6be4ff478e8a08abc658bae483f54bbb75d6d04a48227d224d73d",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/workflows/recipe-import-and-scraping.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:f78cddd5c360ee422695f4aab7cae386af9e4eb32300d1a474543919b5eb400a",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/workflows/schemas-and-codegen.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:222ceb2b556fc2cec1900d40d0d37cc8716f2060cebf2569eb1ead0834872fc0",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/workflows/search-and-filtering.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:a074f1d5fdf14cc329ed84a2164772e671dceeb0acab5873386030efb3644623",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    },
+    "/openwiki/workflows/testing.md": {
+      "gitHead": "5dbe1f339aed2658151a50390423cc3a4c6bb43e",
+      "sourceFingerprint": "sha256:82146002cd7ed8fe169baac4339250bacc145f5e44b83c7d37cda3adbd1c9a60",
+      "pageVersion": "sha256:0a5773544181bd3d69411bb9ffb81a57c8645e7a3e3158f0ad5b8e45b1f167bb",
+      "completedBy": "claude-code",
+      "completedRunId": "9220fedf-538a-406e-bc80-76d96fb950d8"
+    }
+  }
+}

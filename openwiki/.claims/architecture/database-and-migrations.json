@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d04a30fd1be9ff3dbcd59c03e66682b70f282c93f60d2efefb614019da603c32",
+  "claims": [
+    {
+      "id": "claim_d18b27bf66b4461da3ede9d95f808893",
+      "statement": "A single module-level SQLAlchemy engine and SessionLocal are built from settings.DB_URL, with SQLite getting check_same_thread=False and pool_pre_ping enabled.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/db_setup.py#L50-L62",
+          "version": "repo-lines-v1:sha256:3c8b0e5d5a475a3636f7450e3650260e0c48794cb325e9c0373982be26fcc2e0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjYmRlZjlmOTIxZGFlMDdiMTdjOTFhMDBhZTg1MGY1NzEyZDkwZWRjZGQzNjEzMGZmMTkzMDkzZDVlZWU2YjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4MjU4N2E3ZDVmMTE1NGQ2OTVkNzY4NWM4ZGM4ZWJhY2RlMTI3YjE1ZTUyMWVlNzQ0ZmE2MzcyZDNlOTcxY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhMWVhZDNlMDE5MmY1OWJkMWFhZjc5N2I2ZjZiMjBkNmI2ODc2ZGM3NWE3ZGVhNTliNjYxMjUwNzJkYzg1YTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6ebdbe40c1994b76850de98863e209ec",
+      "statement": "SQLite WAL mode is enabled only when DB_ENGINE is sqlite and SQLITE_MIGRATE_JOURNAL_WAL is set; in TESTING mode SQLite uses synchronous=OFF.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/db_setup.py#L13-L47",
+          "version": "repo-lines-v1:sha256:027e83792cd9efc6612e05590807983eddcc9480e103dec3d8d058ca0fe80526:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0MmJhNDk1OGU1ODUxMjE0ZGQ1NjZiMWE3YTU4MTAyYTJmMjYxOTJlZTVjZTJlYzQxNzFmODVjMDMxMThlZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwOThiNjdiYmM0YjVlZjRhY2Y0YThiM2VmZjdkNjg0NWJjMTQ2Y2ZhODEzMjMyYmE1OTkwNDdhNWNmYjkxNWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0483b208c3a64c90947cfa510c6a80fb",
+      "statement": "Startup init retries the DB connection 10 times at one-second intervals, then runs alembic upgrade head only if the database is not at the migration head, and flags data fixes to run only after a migration.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/init_db.py#L78-L125",
+          "version": "repo-lines-v1:sha256:250810e932a12eb3cfc72cec5bb752ad61b993993ac3d40070a42c59b8f54bac:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlNDIzNmIxODJhZjA0YTUxNTkwMDU1MDFjNjg0ZjFhZmVlOTFjODdmYmU4NDA2NzIxZDQzMDVhMGU1YTRhMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzMDMxMDhjYmEyNzQxZTYyOTA4ODhlYWFmYzc1ZTRiNzAwMWYzNTMyZTU4OWIyMGViZDFiY2U1MTMzMTQ1M2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwOGExZjliZmUyMTg2OWFiNTdkN2NlNjE0NGYxZWYzNTRhZDA4MmYwNTA4OTQ2ZjVjZThhOWFmOWY5ZDk1Y2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b84e1e5a1f14f89a3f0f3ddc9ed56f8",
+      "statement": "On PostgreSQL, startup ensures the pg_trgm extension exists for fuzzy search and GIN text indices.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/init_db.py#L117-L119",
+          "version": "repo-lines-v1:sha256:aa09b4cf2d1e828e891ce5675bd0f4477a06916ffc6c9158f3c505f8f5256114:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk3YjQ3YmI4MWNlOTNjYmE2N2FmYzA4Njk4YTgwY2ZhMDkzYTg2NjdlOWM5Zjk2NTMzNzgxOGQ2NTc4ZDE4NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJhZTc4NGNlNWQ5MGZiNTk0Y2U0NjRlNjM2YjJlZDk3ZjkwMWYwMzYxYjc3N2JkYWZmZTc3ZmUzYjg4Y2U3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFmNjcxMDEyMjBlMTNiNzJhMDc3MGU4NDQ2MWE0NjdjZDMyNTU5YTY5NTdlMGVmYmZiOTNhNDM0MmMzMDRmMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTg3ZDhkNTZjNmMzOWE0Mjg3ZGFlNzcyODMxZjg0Y2YxNTE4ZWE5OTMyNjVkMDk2Y2M3NDllMWQzNTZiOGE0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b57397dc621e4651a18e60a6c4ce6863",
+      "statement": "When the database has no users, startup creates the default group, default household and default user; when users exist and a migration just ran, it runs fix_migration_data and fix_group_with_no_name wrapped in safe_try.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/init_db.py#L121-L135",
+          "version": "repo-lines-v1:sha256:e0857a46246d14afa4ac36d3f8f94612f54997324b64c65361dde906e91909f9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkNzljZWViZWUyNzJmMjY1ZmNkY2YwNGRmOTk0OGVmZDQyMjY1YTY3Mzc4YjNkOTg2M2RlOGViOTAzMmRlNjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRjNzVhMTMxMDQ5N2UzNGE0ZmM4Mjg2Yzk4NWVjNjZmM2Q0MmQyZjEwMGJkZTBhOTdiY2Y5YmNiOTg5NTdjMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkNDEzNDBjYzIzOWExNTljZTliNjAyMmU5ZjYzMjI4MzJlMmVhZDc2Y2FlOWU0NzU0ZDIxMGViOGZiNmQ1ZTgifQ"
+        },
+        {
+          "resource": "repo://mealie/db/init_db.py#L28-L40",
+          "version": "repo-lines-v1:sha256:b114232362e53ae73e45ce1c9c33b1af8cc21039d2e3cde7851587d97198319b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjOGE4ODZmYTY4OWUwOTM3NjI2YzgzMTk4MDNkNjM1ODc1NDRkNGI2ZTRlMmVhNWEzNzM5NmE0MjQ0OWQyZjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3MTYwYzU3NDA2YWExYjViOTk2YTZjYmE1NjhhMzhkYjE1MWIwZTkwMTU0NDU3MmY5MjNiNjc2YTg2ODkzMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjYjVlOWE2NTBjMTcxOTIyYjI3ZmZjYTUxOTVkMDZhZGQ4M2Y1NDQ0MzZkZWU3Zjc0MTRjMzc2YmM4M2Y2N2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2ee73584248f423cb2aae55e86cf2468",
+      "statement": "FilterableColumn marks a column with info filterable=True, and the query filter builder rejects columns lacking that flag.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/_filterable_column.py#L1-L23",
+          "version": "repo-lines-v1:sha256:a4973510d8534b0b3db21861e570f42008425811e5be256a6f3eca49e675d6b0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzNTJmNTAxM2UzOTI4NTc2NTM2ZGRmNWU0ZWQ5N2JkNTEwNDFiOWRiOTQ1NTQ5ZTM2ZGMwOWQ0ZjFkMDAwM2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2Y2YxMzA0M2YwYjc3ZWEzNTE2MzY2NGY0NTk0Y2U1ZTNiMGI0NzgzMmQyNzI1MTg2NTM0ZmIxYzM0NjI0YmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://mealie/services/query_filter/builder.py#L310-L320",
+          "version": "repo-lines-v1:sha256:b064f82efadd36eed469c92a96da4315f4b475431f2cee3851a4317cf3d7fd47:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmZWEzOTQ5MDQ1MmE0NWY4OTY4ZmQzNjE4NjdjOTM3MjNiZWMxMTY0MzhjYjkwZmJlMjQ1YmRjZDg4NDE3ZjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5OThiZDQ2MjJmNjQwOWUwOWM3ZTRkZDcyMWFmMjMyZGUxMzI3NTY2NjI1MDZkNWQ4ZjM4ZjcxZmI0YjRmZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZWUwZDQ0YWFjOWM3Yjc0NjBjZDNkYzA1OGFjMjgxMjE4Njg3ZjY5MWE1MjVlNzRlYmFkNGY0YjJiMzA3YWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7dbfea9a24c74553ae49ec29ac57dab6",
+      "statement": "SqlAlchemyBase provides id, created_at, update_at columns and a normalize helper that transliterates, strips punctuation except quote characters, lowercases and truncates to 255 characters.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/_model_base.py#L10-L36",
+          "version": "repo-lines-v1:sha256:46690e3a86a95219d0cced11659f2ebb066abab1df05c3f4f5555db499b39835:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZWJiODg1OTVmMDNmNjRhMDQ4YzFhZDg1YWExNDFhYjFhMWYwNGY0N2NjMmJjMTAyNzVlNTBmNzAxMDA5Y2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViZmUzODcwNTU4Mzk5ZDk4ODQ1NGIxYzU0Y2NjZDI3YTVhMTE2N2I0Y2E4OGEyOTQ3NzhlNjA2YTVkOWY1NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRjNmY2ZTA5MWMxYjdlMTllMzkzZTdmM2M3MmM2OWIxNzNjOGIzZjZiZDI5OGRkY2ZkYzg1NmM4OTMyNTg4NzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6dab1f8fef2d4822a990bdbc2a08abc9",
+      "statement": "The GUID type uses PostgreSQL's native UUID and CHAR(32) hex strings on other dialects.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/models/_model_utils/guid.py#L8-L18",
+          "version": "repo-lines-v1:sha256:87df2e0f98a7eb0b351be3ae91532e51fa2d6363c424baef2f444dc0961c14a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYWJjZDBjYzY5MTNkNGY1MWViMjFlNGY1YWZjMmU5MGY4NmQzNmE0NTBiYjQyY2IwNWM2ZjNlMGQ3MDZmOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0YTljNmE4MjZkMjQ1YjYzNDM0YjA1NTJjNmQ4ZDM1YmY1NjY2OTkxZGNiMjI2ZWU4MWExZGRmODJiOWY0NDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiOGY4MjYxOTEyNWExZWM0YTEyZjJlODUyYTI5MmY2NTM5ZDQ1ZmNkMTBlMGIzMDYwYTQ2YTA4NGIwZjRjMjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd32f1010cb1421aaaa8c3c141b16fef",
+      "statement": "New Alembic migrations are generated via 'task py:migrate', which runs alembic revision --autogenerate and then formats the file.",
+      "evidence": [
+        {
+          "resource": "repo://Taskfile.yml#L241-L248",
+          "version": "repo-lines-v1:sha256:a2622fa579a8aa5507245616cf89019ac531ddcfd11b6b4ea274bc0a9debec26:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzI0MGE1ZDYxNjU4Mzk5YmY2NWEwNWEwOTBjM2JjOTNlYWMyNmQxNWQxZGU3YjMyNzc4MDRkNGUzMTBiYzExYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzYzZjQ3NjE5YmRlNzQ3YmM3NzY0N2E1MGRkZjJiYTE1NzY3Y2Q3ZWFkMDEzOTlhNTE4OTJhMjFlNDg3MTExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWFkNTFiNTI3OGU1ZGMxZTJhZGMyOGNmNzczNjczY2ZlMDE0ZWFmZTVkNzUwYTQ3NjczOGIyZTdiMGRlNzU1MiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}

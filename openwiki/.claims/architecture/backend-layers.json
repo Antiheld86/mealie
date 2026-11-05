@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b7a56806aff88fc2dc34c3567eaeba04947c9b7003d6a5e01c632d99e70340ab",
+  "claims": [
+    {
+      "id": "claim_ce84bce3161047eeba5f21879e4708aa",
+      "statement": "The @controller decorator converts a class into a class-based view whose Depends-annotated attributes become constructor dependencies, and its methods registered on the router become endpoints.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/controller.py#L18-L47",
+          "version": "repo-lines-v1:sha256:36fdf3d680fd238d3ac19ab6180158a2ed3ffa2197abb211f1c708f15a1ace97:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0YjI2ODliODEzMWEyYjNhYzY5OTg5NDQ2NDRhZGEzOTdhYzYzOWFlZGU4YWUwMmI0MGQ5M2E2ZTE3NGE3MzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY0YzFhZjMyZDAwMTZlZjIzMzVhNDk4ZWY5MzQxNDM5OTQ5MWIyOTU4MzAxYjFlOGU4NzZiN2ZiZmU0ZmUwY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxYTRlMTRhNmQzYjIwODBmZWRjMWMzZTcyN2JlNjUxM2Y3ODNhODliYTc2ZTVjZjFkYTRjMzU0ZWRlNDliNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c00df19676ca49198a8b772f9294bb43",
+      "statement": "_BaseController lazily builds AllRepositories scoped by the controller's group_id and household_id, which default to NOT_SET.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/base_controllers.py#L33-L72",
+          "version": "repo-lines-v1:sha256:bc34331bb12771ed6764612309df8fd66f47f8f86338c80216c10c7a84dbfe90:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkM2FkMjhiMjIxNWI1OTA4Y2I0MDM4MzAzYWE5ZWQwZjRjNDQ2MDY1MWUwY2NmZDNkNWMwNmNmOTgwNjVkMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRhMjU0ZmY4NmUwZjc0NTA1MzExOTY1MjViNmQzNzFiODczYjkyN2YwNGU2YWFkYTE4M2ZiZjRlNTkyZjUyYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzZGFkOGRlMDU1MWQwMDNiMDJlYTVhN2VkOTY5NzZlZTMzNGZkMDM3MmMwMjhmN2ZjZTlkZTRkYTk5YzA1MzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2824983a5e1d4c8ebddbc8144bbf8e77",
+      "statement": "BaseUserController scopes repositories to the authenticated user's group and household, while BaseAdminController overrides repos to use group_id=None and household_id=None for unscoped access.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/base_controllers.py#L126-L179",
+          "version": "repo-lines-v1:sha256:570a6e74bb58a8816049a3f436b64ee788fe6f2c8713f0d561fbb143eb51f548:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3MmJkM2NmODMyOTk4MTQyODI3YmM2M2U4ZmI5ZWQ2MzVkNzA1MDljMmJlNmFmOTI2NWM3MmUwYjI1ODQ0NGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2Yzc2ODg4YTZmMmIwZGQwNzY2ZDg1NTc2N2EyNGY0YzIxNDBiODY1NTRkOWMyZDkwZjI0OGZjOThmMzk0M2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiYTk1NWNkMmE1MmI4OGJjN2RkOWVmNmE5MDg4NDI1M2Q3ZmE1NzkxNDlkOWFiZDc1YTE3OWNmNzE3ZTNkNzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiZDhiODU5YmI1N2QyZjJkMDAwYWM2N2Y0NTc5MThjNTcyM2U2M2I4YTQ2ZTc4Y2ZiZDhiOGJkOTk0Y2Y0YTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_341107a20a764f48b61d433b5c6ebd15",
+      "statement": "Public explore controllers resolve a group from the URL slug, and BasePublicHouseholdExploreController exposes cross_household_repos with no household filter so callers must filter by household privacy preferences.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/base_controllers.py#L84-L126",
+          "version": "repo-lines-v1:sha256:cfa3e9241c08ec323e0a45ee7fd85852c4476cf58e1b397ac211facdd766af71:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4YzQzYzllNzE3ZjUyYWMzZDYxMjYxYzkzYTI1YjllYTc4NDI3NDI4MTdkOTU4ZWE2MTczMTUzZDhiYTA3NDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3MmJkM2NmODMyOTk4MTQyODI3YmM2M2U4ZmI5ZWQ2MzVkNzA1MDljMmJlNmFmOTI2NWM3MmUwYjI1ODQ0NGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5N2M3NmJiNGZhYTUzODI4OThiNzE4NzAyMWNjMDE4ZmZmZTRhNDFmZjYxNTA1ZTA4ZTA3OGZlMTg1ZDQ2MzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyNTllZmRlMmM0MWE1MGEyMzFiM2NjMGMxNWZjYTRjMDRjNmIyOWQ3MjE5ODViZWJiOTEzMGQ2NjhkMGM4ZWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3762fe55b7814914b378f19f18221f9b",
+      "statement": "AllRepositories holds the session and group/household scope and exposes each repository as a cached property; get_repositories constructs it.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/all_repositories.py#L1-L11",
+          "version": "repo-lines-v1:sha256:8245894da92be54034bae0c68b3037f2e51e601ce91ed8fa6d62db637ece49ce:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyMjc5OGNmMjQ5YTZlOGE4N2FlYTkyZWNmNmZiODk1NzE0NTlmNmYxMjU3ZjExODdiMzczMTE2MzQ0ZDFiODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwYWIxYThmZDc0OTNjOThiZTYzMmZkYTU1YTRkYzllMzFhNWI4OGQ0ZmZlNGZjMGFmZGE4YWZiOGVkMmRmMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://mealie/repos/repository_factory.py#L254-L283",
+          "version": "repo-lines-v1:sha256:de9872d0861b14fbbd7d85119588d1980c7d6a9f121d493b1a14e4e473549af7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4MWIwYjY1MTczODNjMTMwMDM3YWY3MzJiMDlhNTEwM2M0NzZhMzM2NDA2ODc3MzlmZmIxYjAyZmY0OThmY2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkMjVkOTgyM2ZiNzFlZTNlMWFiMWY3NjgzZWY4OTk2ZjdiNjBjY2VmNzBkYWE1YmYyOWU3YTlmYzVlNTdlMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwZTQxMmZiNWZjZjE1ODM3MzZiZWE1ODhiZWRiNDk5YmI3ZGIzOTc1OWQ2MTYwODc0NzQ3ZDY2NjU2NDIyZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3NTgwNzk4MjhkOTg0MDY3NTM4NGRkMzZhMGRiYTk1ZjQ2YTgwYWY2ZWUzMzYwNzhkYTNmZjVjZmE2NDE5ZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_44b9a8b622cd4c8abb7e7b068abd6fd3",
+      "statement": "GroupRepositoryGeneric and HouseholdRepositoryGeneric raise ValueError when group_id (and household_id) is NOT_SET, forcing callers to explicitly choose a scope.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/repos/repository_generic.py#L503-L537",
+          "version": "repo-lines-v1:sha256:d7aef26c962b2bc5ad967c88c5690d870e066ef661580a3a810ece63b8b6c3a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0NzM0YzIxN2JhYjExODNmNThmYjAzMDBjOWQ4MTBhZDM2Nzk3N2I1ZGRiZmVhZmQ2NDI2MjNkYjkzMTBkZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkMzY3MmNmOWQ0YTdjZjc0NzU3ZGU1NWY1ZWQ2ZWY2YjYzMjBiOTU3OGY2MGE0YzMxZWRiZjAzODU4ZDFiY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlODQyNjc5OWIwMzQ1ODAzNDgxYmViMWU3MmFiNDA2NGE3OWM2OWI2NjNhZGI0NDc0NDAwYjZkYmIwNTRjNDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a3e2068def7f4afbaf93268471fcbf8f",
+      "statement": "HttpRepo.handle_exception rolls back the session and maps NoResultFound to 404, IntegrityError to 409 (unique violations get an 'already exists' message) and all other errors to 400.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/_base/mixins.py#L70-L100",
+          "version": "repo-lines-v1:sha256:6706cfbd7021ad241dfbe29156087bfe9ea413b9f8b3b3429dfc633c714899ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2NjU1MzdiNWMwNjNkMTMzYWZiNjRhNDdmYWM0NDg1YTg4MjU0ODE5OTBmZDUyMmM5YmQ5MjMzMjViZTEwMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1NjljYjA5MjgwZWUwNzgxOTQ1ZTQ4ZDQwNDFiZDJkZmFhZTY5MWFkMmVhYmY1ZDNjYmEwODQ2YzcyMTZjYWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxNTFhZmY5MjgzYjA4NTEzYjk2MTUxNThmOTE5NDY5YTAwNzM1ZDE1MmY1Mzc3OTBmMjg5YWM3OTEzNWY2NjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjOTk2OWE1ZmNmYjMyMDFiY2U4NGE3MDA1ZTYyOTVjZTJhYjg3ZThjY2I2MzVkMGFiYmE2ZTE3OWJjZGFjNTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a30bf44180a54050983c38adab92ace3",
+      "statement": "generate_session is a FastAPI-request-only dependency, while session_context is the managed context manager for services and scripts.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/db/db_setup.py#L64-L94",
+          "version": "repo-lines-v1:sha256:e2fb8a27fa325ecfc0e687f81771cf226f61c9e4b465e5f2936b06898f7616b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliOGMxYTg0Y2E4Zjg4OTRiYzJiMjMwZjkwNzEyNmZjOTgwMWRlNDQ3ZWIxNDY0MGU4YjRlNmI4MTkxMDBlYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmNjVjMmJiZTNmNTYwY2IwMGQ3YjEwY2IwZWUzNDI1MDc4NTk0YTY5N2Y2YTc2ZWJkZjk0NDQ1MjhmNTFmMDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5N2I4YTg4ZTYzYTY2NGQwM2U1NzU2YWJjOGJhMTkwYTcyZWRjNDU1OTMwN2YzYWZiNDJhNzFhZjNjYzMxNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a4d450614384609867a0561691ad9f3",
+      "statement": "All domain routers are included under an /api prefix in mealie/routes/__init__.py.",
+      "evidence": [
+        {
+          "resource": "repo://mealie/routes/__init__.py#L1-L35",
+          "version": "repo-lines-v1:sha256:546f0cd036b8e5bcf32132c591522b5e38c2fe90a0892b68257ca65fde30f7f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhYjM0OGUyMWZjNTFiMTkxYjEzYTcxMjhkYWJmZGE0MjFiY2FmMDZlNjQxMTZiYzYzMTBkYTcxYTQ0NjkyMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhZGQxNmUyN2ExNDVhNDBlMDNiMGVkOTdjYTkzYWNhMTI1YzA0NTkxNTg4OTFiMzgxMzMyZjEzZDllZGY3MzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-04T19:23:01.839Z"
+  }
+}
